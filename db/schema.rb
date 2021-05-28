@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210318135430) do
+ActiveRecord::Schema.define(version: 20210528105248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "category_lit_koms", force: :cascade do |t|
+    t.integer  "boss_id"
+    t.string   "name"
+    t.string   "link"
+    t.string   "category_path"
+    t.boolean  "parsing",       default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["boss_id"], name: "index_category_lit_koms_on_boss_id", using: :btree
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -30,28 +41,6 @@ ActiveRecord::Schema.define(version: 20210318135430) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "distributors", force: :cascade do |t|
-    t.string   "name"
-    t.string   "prefix"
-    t.string   "permalink"
-    t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "drs", force: :cascade do |t|
-    t.string   "fid"
-    t.integer  "quantity"
-    t.string   "sku"
-    t.string   "title"
-    t.string   "price"
-    t.string   "desc"
-    t.string   "param"
-    t.boolean  "check",      default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "sku"
     t.string   "title"
@@ -65,29 +54,8 @@ ActiveRecord::Schema.define(version: 20210318135430) do
     t.string   "url"
     t.bigint   "insales_id"
     t.bigint   "insales_var_id"
-    t.integer  "rt_id"
-    t.integer  "dr_id"
-    t.string   "weight"
-    t.string   "color"
-    t.string   "size"
-    t.string   "distributor"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["dr_id"], name: "index_products_on_dr_id", using: :btree
-    t.index ["rt_id"], name: "index_products_on_rt_id", using: :btree
-  end
-
-  create_table "rts", force: :cascade do |t|
-    t.string   "fid"
-    t.integer  "quantity"
-    t.string   "sku"
-    t.string   "title"
-    t.string   "price"
-    t.string   "desc"
-    t.string   "param"
-    t.boolean  "check",      default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

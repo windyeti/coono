@@ -2,8 +2,7 @@ class Product < ApplicationRecord
   require 'open-uri'
 
   # TODO NewDistributor
-  belongs_to :rt, optional: true
-  belongs_to :dr, optional: true
+  # belongs_to :rt, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }

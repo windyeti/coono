@@ -1,25 +1,22 @@
 Rails.application.routes.draw do
 
+  root to: 'visitors#index'
+
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  resources :users
+
   resources :visitors, only: [:index] do
     collection do
       get :manual
     end
   end
-  resources :distributors
 
-  resources :rts do
-    collection do
-      post :import_insales
-      get :unlinking_to_xls
-    end
-  end
-
-  resources :drs do
-    collection do
-      post :import_insales
-      get :unlinking_to_xls
-    end
-  end
+  # resources :rts do
+  #   collection do
+  #     post :import_insales
+  #     get :unlinking_to_xls
+  #   end
+  # end
 
   resources :products do
     collection do
@@ -36,10 +33,6 @@ Rails.application.routes.draw do
       get :export_api
     end
   end
-
-  root to: 'welcome#index'
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  resources :users
 
   mount ActionCable.server => '/cable'
 end
