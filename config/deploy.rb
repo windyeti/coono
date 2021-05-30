@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.0"
 
-set :application, 'polyintegration'
+set :application, 'coono'
 set :repo_url, 'git@github.com:windyeti/polyintegration.git'
 set :deploy_to, '/var/www/polyintegration'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
