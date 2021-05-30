@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :desc
       t.string :cat
-      t.string :charact
       t.decimal :oldprice
       t.decimal :price
       t.integer :quantity
@@ -13,6 +12,9 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :url
       t.bigint :insales_id
       t.bigint :insales_var_id
+      t.string :distributor
+      t.string :p1
+      t.boolean :check, default: true
 
       t.timestamps
     end

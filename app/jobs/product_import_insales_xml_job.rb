@@ -2,8 +2,8 @@ class ProductImportInsalesXmlJob < ApplicationJob
   queue_as :default
 
   def perform
-    Product.import_insales_xml
+    Services::ImportInsalesXml.call
 
-    ActionCable.server.broadcast 'finish_process', {process_name: "Обновление Товаров InSales"}
+    # ActionCable.server.broadcast 'finish_process', {process_name: "Обновление Товаров InSales"}
   end
 end

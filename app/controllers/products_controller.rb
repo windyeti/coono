@@ -9,8 +9,8 @@ class ProductsController < ApplicationController
   def index
     if params[:q]
       @params = params[:q]
-      @params.delete(:rt_id_not_null) if @params[:rt_id_not_null] == '0'
-      @params.delete(:dr_id_not_null) if @params[:dr_id_not_null] == '0'
+      @params.delete(:lit_kom_id_not_null) if @params[:lit_kom_id_not_null] == '0'
+      # @params.delete(:dr_id_not_null) if @params[:dr_id_not_null] == '0'
     else
       @params = []
     end
@@ -130,53 +130,25 @@ class ProductsController < ApplicationController
   end
 
   def update_price_quantity_all_providers
-    ActionCable.server.broadcast 'start_process', {process_name: "Обновление Цен и Остатков Товаров"}
+    # ActionCable.server.broadcast 'start_process', {process_name: "Обновление Цен и Остатков Товаров"}
 
     HardJob.perform_later
   end
 
-  def export_api
-    Product.delay.export_api
-    flash[:notice] = 'Задача экспорт запущена'
-    redirect_to products_path
-  end
-  def linking
-    Product.delay.linking
-    flash[:notice] = 'Задача линкования запущена'
-    redirect_to products_path
-  end
-
   def syncronaize
-    Product.delay.syncronaize
+    SyncronaizeJob.perform_later
     flash[:notice] = 'Задача синхронизации каталога запущена'
     redirect_to products_path
   end
 
   def import_insales_xml
-    ActionCable.server.broadcast 'start_process', {process_name: "Обновление Товаров InSales"}
+    # ActionCable.server.broadcast 'start_process', {process_name: "Обновление Товаров InSales"}
     ProductImportInsalesXmlJob.perform_later
   end
 
-  def import
-    path_file = params[:file].path
-    extend_file = File.extname(params[:file].original_filename)
-    ProductImportJob.perform_later(path_file, extend_file)
-    flash[:notice] = 'Задача обновления каталога запущена'
-    redirect_to products_path
-  end
 
-  # def csv_param
-  #   if Rails.env.development?
-  #     Product.csv_param
-  #   else
-  #     Product.delay.csv_param
-  #   end
-  #   flash[:notice] = "Запустили"
-  #   redirect_to products_path
-  # end
-
-  def create_csv
-    Product.delay.create_csv
+  def export_csv
+    ExportCsvJob.perform_later
     redirect_to products_path, notice: 'Запущен процесс создания файла'
   end
 
@@ -189,6 +161,6 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     # TODO NewDistributor
     def product_params
-      params.require(:product).permit(:sku, :title, :desc, :cat, :charact, :oldprice, :price, :quantity, :image, :url, :rt_id, :dr_id)
+      params.require(:product).permit(:sku, :title, :desc, :cat, :charact, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
     end
 end

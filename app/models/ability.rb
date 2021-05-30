@@ -21,8 +21,7 @@ class Ability
     guest
     can :manage, Distributor
     can :manage, Product
-    can :manage, Rt
-    can :manage, Dr
+    can :manage, LitKom
   end
 
   def admin

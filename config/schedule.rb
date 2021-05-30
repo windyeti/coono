@@ -33,11 +33,7 @@
 # set :chronic_options, :hours24 => true
 
 every 1.day, :at => '06:00' do
-  runner "Product.delay.update_price_quantity_all_providers"
-end
-
-every 1.day, :at => '04:00' do
-  runner "Mb.unlinking_to_csv"
+  runner "HardJob.perform_later"
 end
 
 # every 1.day, :at => '16:00' do

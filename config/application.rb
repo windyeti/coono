@@ -15,8 +15,7 @@ module Coono
 
     config.time_zone = 'Moscow'
 
-    config.autoload_paths += %W(
-    #{config.root}/app/services
-    )
+    config.autoload_paths += %W(#{config.root}/app)
+    # config.autoload_paths += %W(#{config.root}/lib)
   end
 end

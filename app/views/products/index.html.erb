@@ -14,11 +14,10 @@
           Действия
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <%= link_to 'Обновить Цены и Остатки Товаров', update_price_quantity_all_providers_products_path, remote: true, class: 'dropdown-item text-success'%>
+          <%#= link_to 'Обновить Цены и Остатки Товаров', update_price_quantity_all_providers_products_path, remote: true, class: 'dropdown-item text-success'%>
           <%= link_to 'Обновить каталог Товаров', import_insales_xml_products_path, remote: true, class: 'dropdown-item'%>
-          <%= link_to 'Линковать', linking_products_path, class: 'dropdown-item'%>
           <%= link_to 'Синхронизировать', syncronaize_products_path, class: 'dropdown-item'%>
-          <%= link_to 'Экспортировать', export_api_products_path, class: 'dropdown-item'%>
+          <%= link_to 'Экспортировать', export_csv_products_path, class: 'dropdown-item'%>
           <%#= link_to 'Сформировать файл', create_csv_products_path, class: 'dropdown-item'%>
           <!--      <div class="dropdown-divider"></div>-->
           <%#= link_to '(Скачать файл)', "/export_insales.csv", download: "export_insales_#{Time.now}.csv", class: 'dropdown-item' %>
@@ -32,16 +31,12 @@
       <%#= f.collection_select :name_eq, Distributor.all, :name, :name, {include_blank: 'Поставщики'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%#= f.collection_select :cat_cont, Product.product_cat, "cat", "cat", {include_blank: false, prompt: 'Категория'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :rt_id_or_dr_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="form-inline form_search_distributor">
         <span class="form-group">
-          <%= f.check_box :rt_id_not_null, class: "form-check-input" %>
-          <%= f.label :rt_id_not_null, 'Поставщика RT', class: "form-check-label" %>
-        </span>
-        <span class="form-group">
-          <%= f.check_box :dr_id_not_null, class: "form-check-input" %>
-          <%= f.label :dr_id_not_null, 'Поставщика DR', class: "form-check-label" %>
+          <%= f.check_box :lit_kom_id_not_null, class: "form-check-input" %>
+          <%= f.label :lit_kom_id_not_null, 'Lit-kom', class: "form-check-label" %>
         </span>
       </div>
 

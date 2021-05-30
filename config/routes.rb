@@ -11,12 +11,13 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :rts do
-  #   collection do
-  #     post :import_insales
-  #     get :unlinking_to_xls
-  #   end
-  # end
+  resources :lit_koms do
+    collection do
+      post :import_insales
+      get :unlinking_to_xls
+      get :parsing
+    end
+  end
 
   resources :products do
     collection do
@@ -30,9 +31,9 @@ Rails.application.routes.draw do
       get :csv_param
       get :syncronaize
       get :linking
-      get :export_api
+      get :export_csv
     end
   end
 
-  mount ActionCable.server => '/cable'
+  # mount ActionCable.server => '/cable'
 end

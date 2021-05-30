@@ -1,5 +1,8 @@
 class Services::CreateCategoryLitKom
   def self.call
+
+    CategoryLitKom.all.each {|c| c.update(parsing: false)}
+
     url_source = "https://lit-kom.ru"
     selector_top_level = '#vmenu_61 .menu-level- .ty-menu__submenu-item-header a'
     selector_other_level = '.ty-mainbox-body .subcategories a'
@@ -24,9 +27,9 @@ class Services::CreateCategoryLitKom
 
     selector = current_top_level ? selector_top_level : selector_other_level
 
-    category = CategoryLitKom.find_by(category_path: data_category_from_up[:category_path])
+    p category = CategoryLitKom.find_by(category_path: data_category_from_up[:category_path])
     unless category
-      category = CategoryLitKom.create!(
+      p category = CategoryLitKom.create!(
                    name: data_category_from_up[:name].nil? ? "Каталог" : data_category_from_up[:name],
                    link: url,
                    category_path: data_category_from_up[:category_path]
@@ -36,6 +39,9 @@ class Services::CreateCategoryLitKom
     doc_subcategories = doc.css(selector)
 
     p subcategories = create_layer_sub(doc_subcategories, current_top_level, data_category_from_up[:category_path]) if doc_subcategories.present?
+
+    # удаляем категории, которые были, но сейчас их нет
+    delete_not_exits_subcategory(category.subordinates, subcategories)
 
     if subcategories.present?
       subcategories.each do |subcategory_data|
@@ -64,6 +70,15 @@ class Services::CreateCategoryLitKom
       }
     end
     result
+  end
+
+  def self.delete_not_exits_subcategory(old_sub, new_sub)
+    old_sub = old_sub.present? ? old_sub.map {|sub| sub.category_path} : []
+    new_sub = new_sub.present? ? new_sub.map {|sub| sub[:category_path]} : []
+
+    (old_sub - new_sub).each do |category_path|
+      CategoryLitKom.find_by(category_path: category_path).destroy
+    end
   end
 
   def self.get_doc(url)
