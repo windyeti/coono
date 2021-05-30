@@ -2,8 +2,8 @@
 lock "~> 3.14.0"
 
 set :application, 'coono'
-set :repo_url, 'git@github.com:windyeti/polyintegration.git'
-set :deploy_to, '/var/www/polyintegration'
+set :repo_url, 'git@github.com:windyeti/coono.git'
+set :deploy_to, '/var/www/coono'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public')
 set :format, :pretty
