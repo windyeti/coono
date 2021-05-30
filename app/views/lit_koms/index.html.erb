@@ -12,12 +12,7 @@
         Действия
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <%#= link_to 'Импортировать', import_drs_path, class: 'dropdown-item'%>
-        <%#= link_to 'Линковать', linking_drs_path, class: 'dropdown-item'%>
         <%= link_to 'Парсинг', parsing_lit_koms_path, class: 'dropdown-item'%>
-        <%#= link_to 'Создать файл с незалинкованными Товарами Поставщика', unlinking_to_xls_drs_path, remote: true, class: 'dropdown-item'%>
-<!--        <div class="dropdown-divider"></div>-->
-        <%#= link_to '(Скачать файл XLS)', "/drs_unlinking.xls", download: "drs_unlinking.xls", class: 'dropdown-item' %>
       </div>
     </div>
   </div>
@@ -57,6 +52,7 @@
       <th>Цена</th>
       <th>Описание</th>
       <th>Параметры</th>
+      <th>Товар у поставщика</th>
       <th colspan="1"></th>
     </tr>
     </thead>
@@ -71,8 +67,9 @@
         <td><%= product.title %></td>
         <td><%= product.quantity %></td>
         <td><%= product.price %></td>
-        <td><%= product.desc.truncate(25) if product.desc != nil %></td>
+        <td><%= product.desc.truncate(50) if product.desc != nil %></td>
         <td><%= product.p1.truncate(25) if product.p1 != nil  %></td>
+        <td><%= product.link  %></td>
         <td><%= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>
       </tr>
     <% end %>

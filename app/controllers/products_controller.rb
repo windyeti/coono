@@ -129,12 +129,6 @@ class ProductsController < ApplicationController
 		end
   end
 
-  def update_price_quantity_all_providers
-    # ActionCable.server.broadcast 'start_process', {process_name: "Обновление Цен и Остатков Товаров"}
-
-    HardJob.perform_later
-  end
-
   def syncronaize
     SyncronaizeJob.perform_later
     flash[:notice] = 'Задача синхронизации каталога запущена'
@@ -144,6 +138,7 @@ class ProductsController < ApplicationController
   def import_insales_xml
     # ActionCable.server.broadcast 'start_process', {process_name: "Обновление Товаров InSales"}
     ProductImportInsalesXmlJob.perform_later
+    redirect_to products_path, notice: 'Запущен процесс Обновление Товаров InSales'
   end
 
 

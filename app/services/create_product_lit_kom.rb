@@ -1,7 +1,7 @@
 class Services::CreateProductLitKom
   def self.call
     # TODO сделать по-умолчанию check: true
-    LitKom.all.each {|tov| tov.update(check: false, quantity: "0")}
+    LitKom.all.each {|tov| tov.update(check: false, quantity: "0", p4: '')}
     get_category(CategoryLitKom.first)
   end
 
@@ -93,11 +93,11 @@ class Services::CreateProductLitKom
 
     quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
 
-    fid = doc.at('.ty-product-block__sku label')['id'].gsub('sku_','')
-    title = doc.at('.ty-product-block-title').text.strip
+    fid = doc.at('.ty-product-block__sku label')['id'].gsub('sku_','') rescue nil
+    title = doc.at('.ty-product-block-title').text.strip rescue nil
     desc = doc.at('#content_description').inner_html rescue nil
-    sku = doc.at('.ty-product-block__sku .ty-control-group__item').text.strip
-    price = doc.at('.ty-product-block__price-actual .ty-price-num').text.strip.gsub(" ", "")
+    sku = doc.at('.ty-product-block__sku .ty-control-group__item').text.strip rescue nil
+    price = doc.at('.ty-product-block__price-actual .ty-price-num').text.strip.gsub(" ", "") rescue nil
     # oldprice = data[:oldprice]
 
     quantity = quantity
