@@ -7,7 +7,6 @@ class VisitorsController < ApplicationController
       subject: 'Оповещение: обновление закончено',
       body: '<span>Здесь будет текст</span>'.html_safe
     }
-    NotificationMailer.notify(data).deliver_now
-    redirect_to visitors_path
+    NotificationMailer.notify(data).deliver_later
   end
 end

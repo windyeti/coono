@@ -129,6 +129,18 @@ class ProductsController < ApplicationController
 		end
   end
 
+  def csv_not_sku
+    CsvNotSkuJob.perform_later
+    flash[:notice] = 'Задача создания csv с товарами без артикула запущена'
+    redirect_to products_path
+  end
+
+  def linking
+    LinkingJob.perform_later
+    flash[:notice] = 'Задача ЛИНКИНГ запущена'
+    redirect_to products_path
+  end
+
   def syncronaize
     SyncronaizeJob.perform_later
     flash[:notice] = 'Задача синхронизации каталога запущена'

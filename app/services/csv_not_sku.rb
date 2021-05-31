@@ -1,16 +1,14 @@
-# require 'open-uri'
-
-class Services::ExportCsv
+class Services::CsvNotSku
   def self.call
-    file = "#{Rails.root}/public/export_insales.csv"
+    file = "#{Rails.root}/public/csv_not_sku.csv"
     check = File.file?(file)
     if check.present?
       File.delete(file)
     end
 
-    products = Product.where.not(lit_kom: nil).order(:id)
+    products = Product.where(sku: [nil, '']).order(:id)
 
-    CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|
+    CSV.open("#{Rails.root}/public/csv_not_sku.csv", "wb") do |writer|
       headers = [ 'ID варианта товара', 'Название товара', 'Артикул', 'Цена продажи' ]
 
       writer << headers

@@ -26,7 +26,7 @@ class Services::ImportInsalesXml
       end
 
       pp data_create = {
-        sku: nil,
+        sku: pr.xpath("vendorCode").text,
         title: pr.xpath("model").text,
         url: pr.xpath("url").text,
         desc: pr.xpath("description").text,
@@ -41,6 +41,7 @@ class Services::ImportInsalesXml
       }
 
       pp data_update = {
+        sku: pr.xpath("vendorCode").text,
         title: pr.xpath("model").text,
         url: pr.xpath("url").text,
         desc: pr.xpath("description").text,

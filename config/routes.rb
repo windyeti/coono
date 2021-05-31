@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get :syncronaize
       get :linking
       get :export_csv
+      get :csv_not_sku
     end
   end
 
