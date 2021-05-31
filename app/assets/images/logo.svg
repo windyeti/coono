@@ -3,18 +3,32 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 264.5 82" style="enable-background:new 0 0 264.5 82;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#DB1416;}
-	.st1{font-family:'DINPro-Black';}
-	.st2{font-size:82.38px;}
-	.st3{enable-background:new    ;}
-	.st4{fill:#3AA686;}
-	.st5{letter-spacing:-6;}
+	.st0{enable-background:new    ;}
+	.st1{fill:#DB1416;}
+	.st2{fill:#3AA686;}
 </style>
 <title>Artboard 2</title>
 <g>
-	<text transform="matrix(1 0 0 1 11.6585 69.61)" class="st0 st1 st2">InS</text>
+	<g class="st0">
+		<path class="st1" d="M17.6,69.6V11H32v58.7H17.6z"/>
+		<path class="st1" d="M67.4,69.6V43.1c0-5.1-3.6-6.1-5.4-6.1s-5.4,1-5.4,6.1v26.5H43V25.3h13.2v3.6c2.7-2.7,6.8-4.1,10.3-4.1
+			c4.2,0,7.6,1.4,10,3.8c3.8,3.8,4.4,8,4.4,12.7v28.3H67.4z"/>
+		<path class="st1" d="M108.3,70.1c-9,0-16.3-1.6-22.2-7.7l9.2-9.2c3,3,8.4,4.1,13.1,4.1c5.7,0,8.4-1.9,8.4-5.3
+			c0-1.4-0.3-2.6-1.2-3.5c-0.7-0.7-2-1.3-3.9-1.6l-7.1-1c-5.2-0.7-9.1-2.5-11.8-5.2c-2.7-2.8-4-6.8-4-11.8
+			c0-10.7,8.1-18.5,21.4-18.5c8.4,0,14.7,2,19.8,7l-9.1,9.1c-3-3-6.4-3.5-11.1-3.5c-5,0-7.1,2.9-7.1,5.4c0,0.7,0.2,1.8,1.2,2.7
+			c0.7,0.7,2,1.5,4,1.7l7.1,1c5.3,0.7,9.1,2.4,11.5,4.9c3.1,3,4.4,7.4,4.4,12.9C130.9,63.6,120.6,70.1,108.3,70.1z"/>
+	</g>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 134.4027 69.61)" class="st3"><tspan x="0" y="0" class="st4 st1 st2">I</tspan><tspan x="26.3" y="0" class="st4 st1 st2 st5">n</tspan><tspan x="67.8" y="0" class="st4 st1 st2">T</tspan></text>
+	<g class="st0">
+		<path class="st2" d="M140.3,69.6V11h14.4v58.7H140.3z"/>
+	</g>
+	<g class="st0">
+		<path class="st2" d="M190.2,69.6V43.1c0-5.1-3.6-6.1-5.4-6.1s-5.4,1-5.4,6.1v26.5h-13.5V25.3H179v3.6c2.7-2.7,6.8-4.1,10.3-4.1
+			c4.2,0,7.6,1.4,10,3.8c3.8,3.8,4.4,8,4.4,12.7v28.3H190.2z"/>
+	</g>
+	<g class="st0">
+		<path class="st2" d="M233.5,23.8v45.8h-14.4V23.8h-14.4V11h43.2v12.9H233.5z"/>
+	</g>
 </g>
 </svg>

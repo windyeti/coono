@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :visitors, only: [:index] do
     collection do
       get :manual
+      get :mail_test
     end
   end
 
