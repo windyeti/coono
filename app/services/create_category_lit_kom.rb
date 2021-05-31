@@ -4,7 +4,7 @@ class Services::CreateCategoryLitKom
     CategoryLitKom.all.each {|c| c.update(parsing: false)}
 
     url_source = "https://lit-kom.ru"
-    selector_top_level = '#vmenu_61 .menu-level- .ty-menu__submenu-item-header a'
+    selector_top_level = '#vmenu_61 .menu-level- > .ty-menu__submenu-item-header a'
     selector_other_level = '.ty-mainbox-body .subcategories a'
 
     create_structure(
@@ -57,10 +57,10 @@ class Services::CreateCategoryLitKom
 
       if current_top_level
         link = doc_subcategory['href']
-        name = doc_subcategory.text.strip
+        name = doc_subcategory.text.strip.gsub("/","&#47;")
       else
         link = doc_subcategory['href']
-        name = doc_subcategory.text.strip
+        name = doc_subcategory.text.strip.gsub("/","&#47;")
       end
 
       result << {

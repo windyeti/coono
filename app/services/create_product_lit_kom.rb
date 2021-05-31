@@ -1,7 +1,7 @@
 class Services::CreateProductLitKom
   def self.call
     # TODO сделать по-умолчанию check: true
-    LitKom.all.each {|tov| tov.update(check: false, quantity: "0", p4: '')}
+    LitKom.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryLitKom.first)
   end
 
@@ -54,60 +54,33 @@ class Services::CreateProductLitKom
         p "Нет такой страницы #{product_link}"
         next
       end
-      fid = doc.at('.ty-product-block__sku label')['id'].gsub('sku_','')
+      fid = doc.at('.ty-product-block__sku label')['id'].gsub('sku_','') rescue nil
       tov = LitKom.find_by(fid: fid)
 
-      if tov.present?
-        p '================ UPDATE ================'
-        tov.update(check: true)
-        next if tov.p4.split(' ## ').include?(category_path_name)
-        update_product(tov, category_path_name)
-      else
-        data = {
-          product_link: product_link,
-          category_path_name: category_path_name
-        }
-        create_product(data)
-      end
-      p "END <<<< закончили собирать данные на продукт:: #{product_link}"
-    end
-    p "Total: #{LitKom.count}"
-  end
 
-  def self.update_product(tov, category_path_name)
-    if tov.update(p4: "#{tov.p4} ## #{category_path_name}")
-      p "---- update товара #{tov.fid} -- p4: #{tov.p4} -- всего: #{LitKom.count}}"
-    else
-      p "!!!!ОШИБКА UPDATE!!!!! товара #{tov.fid} -- TIME: #{Time.now}"
-    end
-  end
+      p1 = doc.css('#content_features .ty-product-feature').map do |doc_item|
+        name = doc_item.at('.ty-product-feature__label').text.strip
+        value = doc_item.at('.ty-product-feature__value').text.strip
+        "#{name.gsub(/:/,"")}: #{value}"
+      end.join(' --- ')
 
-  def self.create_product(data)
-    doc = get_doc(data[:product_link])
+      quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
 
-    p1 = doc.css('#content_features .ty-product-feature').map do |doc_item|
-      name = doc_item.at('.ty-product-feature__label').text.strip
-      value = doc_item.at('.ty-product-feature__value').text.strip
-      "#{name.gsub(/:/,"")}: #{value}"
-    end.join(' --- ')
+      title = doc.at('.ty-product-block-title').text.strip rescue nil
+      desc = doc.at('#content_description').inner_html rescue nil
+      sku = doc.at('.ty-product-block__sku .ty-control-group__item').text.strip rescue nil
+      price = doc.at('.ty-product-block__price-actual .ty-price-num').text.strip.gsub(" ", "") rescue nil
 
-    quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
+      link = product_link
+      p4 = category_path_name
 
-    fid = doc.at('.ty-product-block__sku label')['id'].gsub('sku_','') rescue nil
-    title = doc.at('.ty-product-block-title').text.strip rescue nil
-    desc = doc.at('#content_description').inner_html rescue nil
-    sku = doc.at('.ty-product-block__sku .ty-control-group__item').text.strip rescue nil
-    price = doc.at('.ty-product-block__price-actual .ty-price-num').text.strip.gsub(" ", "") rescue nil
-    # oldprice = data[:oldprice]
+      categories = category_path_name.split('/')
+      mtitle = doc.at('title').text.strip rescue nil
+      mdesc = doc.at('meta[name="description"]')['content'] rescue nil
+      mkeyw = doc.at('meta[name="keywords"]')['content'] rescue nil
 
-    quantity = quantity
-    categories = data[:category_path_name].split('/')
-    mtitle = doc.at('title').text.strip rescue nil
-    mdesc = doc.at('meta[name="description"]')['content'] rescue nil
-    mkeyw = doc.at('meta[name="keywords"]')['content'] rescue nil
 
-    pp tov = LitKom.new(
-      {
+      data = {
         fid: fid,
         sku: sku,
         title: title,
@@ -118,8 +91,8 @@ class Services::CreateProductLitKom
         pict: get_pict(doc),
         quantity: quantity,
         p1: p1,
-        p4: data[:category_path_name],
-        link: data[:product_link],
+        p4: p4,
+        link: link,
         cat: categories[1],
         cat1: categories[2],
         cat2: categories[3],
@@ -129,7 +102,35 @@ class Services::CreateProductLitKom
         mdesc: mdesc,
         mkeyw: mkeyw
       }
-    )
+
+
+      if tov.present?
+        p '================ UPDATE ================'
+        update_product(tov, data)
+      else
+        create_product(data)
+      end
+      p "END <<<< закончили собирать данные на продукт:: #{product_link}"
+    end
+    p "Total: #{LitKom.count}"
+  end
+
+  def self.update_product(tov, data)
+    if tov.check
+      return if tov.p4.split(' ## ').include?(data[:p4])
+      if tov.update(p4: "#{tov.p4} ## #{data[:p4]}")
+        p "---- update товара #{tov.fid} -- p4: #{tov.p4} -- всего: #{LitKom.count}}"
+      else
+        p "!!!!ОШИБКА UPDATE!!!!! товара #{tov.fid} -- TIME: #{Time.now}"
+      end
+    else
+      tov.update(check: true)
+      tov.update(data)
+    end
+  end
+
+  def self.create_product(data)
+    pp tov = LitKom.new(data)
     if tov.save
       pp tov
       p "+++++ создан товар #{tov.fid} -- всего: #{LitKom.count}"

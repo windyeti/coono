@@ -4,8 +4,8 @@ namespace :p do
   # include Capybara::DSL
 
   task t: :environment do
-    doc = get_doc('https://lit-kom.ru/dymohody-baki-dlya-vody/bak-nerzhaveyka-60l-pod-kontur-gorizontal-ovalnyy-aisi-430/')
-    p desc = doc.at('#content_description').inner_html.truncate(25) rescue nil
+    doc = get_doc('https://lit-kom.ru/pechi-otopitelnye/pech-otopitelnaya-vezuviy-v8-224/')
+    p quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
   end
 
   def get_doc(url)
