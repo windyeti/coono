@@ -4,7 +4,7 @@ class VisitorsController < ApplicationController
   def mail_test
     data = {
       email: 'no-reply@coono.com',
-      subject: 'Оповещение об апдейте',
+      subject: 'Оповещение: обновление закончено',
       body: '<span>Здесь будет текст</span>'.html_safe
     }
     NotificationMailer.notify(data).deliver_now

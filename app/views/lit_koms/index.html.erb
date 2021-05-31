@@ -67,7 +67,7 @@
         <td><%= product.title %></td>
         <td><%= product.quantity %></td>
         <td><%= product.price %></td>
-        <td><%= product.desc.truncate(50) if product.desc != nil %></td>
+        <td><%= product.desc.strip.truncate(50) if product.desc != nil %></td>
         <td><%= product.p1.truncate(25) if product.p1 != nil  %></td>
         <td><%= link_to 'Страница товара', product.link, target: '_blank' %></td>
         <td><%= link_to '<span class="oi oi-eye"></span>'.html_safe, product, target: '_blank' %></td>
