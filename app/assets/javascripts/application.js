@@ -14,12 +14,17 @@
 // = require jquery_ujs
 // = require popper
 // = require bootstrap
-//= require action_cable
+
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
+
+////= require action_cable
 //= require_self
 //= require_tree .
 
-var App = App || {};
-App.cable = ActionCable.createConsumer();
+// var App = App || {};
+// App.cable = ActionCable.createConsumer();
 
 $(document).ready(function() {
 
@@ -32,4 +37,9 @@ $(document).ready(function() {
   //   $('.modal').modal('hide');
   //   $('#modal-edit').modal('show');
   // });
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
 });

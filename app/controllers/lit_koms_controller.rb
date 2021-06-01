@@ -17,8 +17,30 @@ class LitKomsController < ApplicationController
     @lit_kom = LitKom.find(params[:id])
   end
 
+  def edit; end
+
+  def update
+    @lit_kom = LitKom.find(params[:id])
+
+    respond_to do |format|
+      if @lit_kom.update(params[:lit_kom])
+        format.html { redirect_to(@lit_kom, :notice => 'Lit-kom was successfully updated.') }
+        format.json { respond_with_bip(@lit_kom) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@lit_kom) }
+      end
+    end
+  end
+
   def parsing
     LitKomJob.perform_later
     redirect_to lit_koms_path, notice: 'Запущен парсинг Lit-kom'
   end
+
+  private
+
+  # def lit_kom_params
+  #   params.require(:lit_kom).permit(:sku, :title, :desc, :cat, :charact, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
+  # end
 end

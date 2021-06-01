@@ -168,6 +168,6 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     # TODO NewDistributor
     def product_params
-      params.require(:product).permit(:sku, :title, :desc, :cat, :charact, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
+      params.require(:product).permit(:sku, :title, :desc, :cat, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
     end
 end

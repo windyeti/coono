@@ -32,6 +32,8 @@ gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'cancancan'
 gem 'spreadsheet'
 gem 'rename'
+gem 'jquery-ui-rails'
+gem 'best_in_place', '~> 3.0.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri

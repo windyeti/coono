@@ -57,6 +57,7 @@
     <tr>
       <th><%= check_box_tag 'selectAll', value = 'selectAll'%></th>
       <th>Артикул</th>
+      <th>ID</th>
       <th style="width:250px;">Title</th>
       <th>Цена продажи</th>
       <th>Поставщик</th>
@@ -71,13 +72,15 @@
 
   <tbody id="products_table">
     <% @products.each do |product| %>
-    <% distributor_product = distributor_product_id_quantity(product) %>
-      <tr class="<%= 'sync' if distributor_product[:available] %>">
+      <tr class="<%= 'sync' if distributor_exist?(product) %>">
         <td><%=check_box_tag "product_ids[]", product.id%></td>
         <td><%= product.sku %></td>
+        <td><%= product.id %></td>
         <td><%= link_to product.title, edit_product_path(product) %></td>
         <td><%= product.price %></td>
-        <td><%= distributor_product[:html].html_safe %></td>
+
+        <td><%= render 'product_distributor', product: product %></td>
+
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
         <td class="row ml-0 mr-0">

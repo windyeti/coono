@@ -1,0 +1,6 @@
+<% if product.lit_kom.present? %>
+  <p>Lit-kom: ID: <strong><%= best_in_place product, :lit_kom_id, :as => :input %></strong>, остаток: <%= product.lit_kom.quantity %>, цена: <%= product.lit_kom.price %></p>
+<!--  <p>Lit-kom: ID: <a href=/lit_koms?q%5Bid_eq%5D=<%#= product.lit_kom.id %>><%#= product.lit_kom.id %></a>, остаток: <%#= product.lit_kom.quantity %>, цена: <%#= product.lit_kom.price %></p>-->
+<% else %>
+  <p>Lit-kom: ID: <%= best_in_place product, :lit_kom_id, :as => :input %></p>
+<% end %>
