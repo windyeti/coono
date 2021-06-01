@@ -32,8 +32,17 @@
 # set :output, "/log/cron.log"
 # set :chronic_options, :hours24 => true
 
-every 1.day, :at => '06:00' do
-  runner "HardJob.perform_later"
+every 1.day, :at => '19:45' do
+  runner "ProductImportInsalesXmlJob.perform_later"
+end
+every 1.day, :at => '20:00' do
+  runner "LitKomJob.perform_later"
+end
+every 1.day, :at => '23:00' do
+  runner "SyncronaizeJob.perform_later"
+end
+every 1.day, :at => '23:15' do
+  runner "ExportCsvJob.perform_later"
 end
 
 # every 1.day, :at => '16:00' do

@@ -38,8 +38,8 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
-  config.action_cable.url = 'ws://134.122.82.238/cable'
-  config.action_cable.allowed_request_origins = [ 'http://134.122.82.238', 'https://134.122.82.238' ]
+  # config.action_cable.url = 'ws://134.122.82.238/cable'
+  # config.action_cable.allowed_request_origins = [ 'http://134.122.82.238', 'https://134.122.82.238' ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -72,9 +72,9 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     tls: true,
-    address: "smtp.yandex.com",
+    address: "smtp.mail.ru",
     port: 465,
-    domain: "yandex.ru",
+    domain: "mail.ru",
     authentication: "login",
     user_name: Rails.application.secrets.email_provider_username,
     password:  Rails.application.secrets.email_provider_password,

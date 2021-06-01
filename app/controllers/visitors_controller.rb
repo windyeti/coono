@@ -2,11 +2,11 @@ class VisitorsController < ApplicationController
   def index; end
   def manual; end
   def mail_test
-    data = {
-      email: 'no-reply@coono.com',
+    data_email = {
+      email: 'alohawind@mail.ru; yegor.tikhanin@gmail.com',
       subject: 'Оповещение: обновление закончено',
-      body: '<span>Здесь будет текст</span>'.html_safe
+      body: '<strong>Здесь будет текст</strong>'.html_safe
     }
-    NotificationMailer.notify(data).deliver_later
+    NotificationMailer.notify(data_email).deliver_later
   end
 end
