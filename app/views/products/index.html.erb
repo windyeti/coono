@@ -63,6 +63,7 @@
       <th>Всего остатков</th>
       <th>Desc</th>
       <th style="width:250px;">Image</th>
+      <th>Товар у поставщика</th>
       <th>Карточка товара</th>
     </tr>
   </thead>
@@ -87,6 +88,7 @@
             <% end %>
           <% end %>
         </td>
+        <td><% if product.lit_kom.present? %><%= link_to 'Lit-kom', product.lit_kom.link , target: 'blank' %><%end%></td>
         <td><% if product.url.present? %><%= link_to '<span class="oi oi-eye"></span>'.html_safe, product.url , target: 'blank' %><%end%></td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->
