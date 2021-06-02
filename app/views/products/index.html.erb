@@ -61,6 +61,7 @@
       <th style="width:250px;">Title</th>
       <th>Цена продажи</th>
       <th>Поставщик</th>
+      <th>Lit-kom</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th style="width:250px;">Image</th>
@@ -78,8 +79,9 @@
         <td><%= product.id %></td>
         <td><%= link_to product.title, edit_product_path(product) %></td>
         <td><%= product.price %></td>
+        <td><%= product.distributor %></td>
 
-        <td><%= render 'product_distributor', product: product %></td>
+        <td><%= render 'distributor_lit_kom', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
