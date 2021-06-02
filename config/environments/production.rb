@@ -74,35 +74,35 @@ Rails.application.configure do
 
 
 
-  # config.action_mailer.smtp_settings = {
-  #   tls: true,
-  #   address: "smtp.mail.ru",
-  #   port: 465,
-  #   domain: "164.90.173.171",
-  #   authentication: "login",
-  #   user_name: Rails.application.secrets.email_provider_username,
-  #   password:  Rails.application.secrets.email_provider_password,
-  #   enable_starttls_auto: true
-  # }
-  # # ActionMailer Config
-  # config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.perform_deliveries = true
-  # config.action_mailer.raise_delivery_errors = false
-
-
-
-
-
+  config.action_mailer.smtp_settings = {
+    tls: true,
+    address: "smtp.mail.ru",
+    port: 465,
+    domain: "164.90.173.171",
+    authentication: "login",
+    user_name: Rails.application.secrets.email_provider_username,
+    password:  Rails.application.secrets.email_provider_password,
+    enable_starttls_auto: true
+  }
+  # ActionMailer Config
   config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    user_name:            Rails.application.secrets.email_provider_username,
-    password:             Rails.application.secrets.email_provider_password,
-    authentication:       'plain',
-    enable_starttls_auto: true }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
+
+
+
+
+  # config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   user_name:            Rails.application.secrets.email_provider_username,
+  #   password:             Rails.application.secrets.email_provider_password,
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true }
 
 
 
