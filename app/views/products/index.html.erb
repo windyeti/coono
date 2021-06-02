@@ -30,7 +30,9 @@
     <%= search_form_for @search, html: {class: 'form-inline'}  do |f|%>
       <%= f.search_field :sku_or_title_cont, placeholder: 'Артикул, Название', class: "form-control input-sm"%>
       <%#= f.collection_select :name_eq, Distributor.all, :name, :name, {include_blank: 'Поставщики'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
-      <%#= f.collection_select :cat_cont, Product.product_cat, "cat", "cat", {include_blank: false, prompt: 'Категория'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
+      <%= f.collection_select :distributor_eq, Product.select(:distributor).uniq.order('distributor ASC'), 'distributor', 'distributor', {include_blank: false, prompt: 'Производитель'}, class: "form-control input-sm" , style: "max-width: 150px;" %>
+      <%#= f.select :distributor_eq, Product.all.map{|p|  p.distributor if p.distributor.present? }.reject(&:nil?).uniq, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
+      <%#= f.collection_select :distributor_eq, Product.all.reject {|p| p.distributor.nil? }.uniq, :distributor, :distributor, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
       <%= f.search_field :lit_kom_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
@@ -45,7 +47,8 @@
         <% f.submit 'Поиск', class: 'btn btn-info' %>
         <%= button_tag(type: 'submit', :class => "btn btn-info") do %><span class="oi oi-magnifying-glass"></span><% end %>
         <%= link_to '<span class="oi oi-reload"></span>'.html_safe, products_path, class: 'btn btn-outline-dark' %>
-        <%#= link_to '<span class="oi oi-list"></span>'.html_safe, products_path(params.permit(:products).merge(selected_products: @products.pluck(:id), otchet_type: 'selected')), title: "Создать файл с выбранными товарами", class: 'btn btn-outline-dark'%>
+        <%= link_to '<span class="oi oi-list"></span>'.html_safe, products_path(selected_products: @search_id_by_q, otchet_type: 'selected'), title: "Создать файл с выбранными товарами", class: 'btn btn-outline-dark'%>
+        <%#= link_to '<span class="oi oi-list"></span>'.html_safe, products_path(params.permit(:products).merge(selected_products: @search_all.pluck(:id), otchet_type: 'selected')), title: "Создать файл с выбранными товарами", class: 'btn btn-outline-dark'%>
       </div>
     <% end %>
   </div>
@@ -64,6 +67,7 @@
       <th>Lit-kom</th>
       <th>Всего остатков</th>
       <th>Desc</th>
+      <th>Параметры</th>
       <th style="width:250px;">Image</th>
       <th>Товар в InSales</th>
       <th>Товар у поставщика</th>
@@ -85,6 +89,7 @@
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
+        <td><%= product.p1.truncate(25) if product.p1 != nil%></td>
         <td class="row ml-0 mr-0">
           <% if product.image.present? %>
             <% product.image.split(' ').each do |pict| %>
