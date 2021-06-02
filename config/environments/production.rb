@@ -79,7 +79,7 @@ Rails.application.configure do
     address: "smtp.mail.ru",
     port: 465,
     domain: "164.90.173.171",
-    authentication: "login",
+    authentication: "plain",
     user_name: Rails.application.secrets.email_provider_username,
     password:  Rails.application.secrets.email_provider_password,
     enable_starttls_auto: true
@@ -89,8 +89,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-
-
 
 
 
