@@ -38,10 +38,10 @@ end
 every 1.day, :at => '07:15' do
   runner "LitKomJob.perform_later"
 end
-every 1.day, :at => '10:15' do
+every 1.day, :at => '08:30' do
   runner "SyncronaizeJob.perform_later"
 end
-every 1.day, :at => '10:30' do
+every 1.day, :at => '08:45' do
   runner "ExportCsvJob.perform_later"
 end
 

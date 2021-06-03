@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: 'no-replay@conoo_integration.com'
+  default from: 'no-reply@coono.com'
   layout 'notification_mailer'
 
   def notify(data)
