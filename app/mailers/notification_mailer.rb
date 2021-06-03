@@ -7,6 +7,6 @@ class NotificationMailer < ApplicationMailer
     @subject = data[:subject]
     @body = data[:body]
 
-    mail to: @email, subject: @subject, cc: "yegor.tikhanin@gmail.ru"
+    mail to: @email, subject: @subject
   end
 end
