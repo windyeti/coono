@@ -3,11 +3,11 @@ class VisitorsController < ApplicationController
   def manual; end
   def mail_test
     data_email = {
-      email: 'alohawind@mail.ru',
+      email: 'alohawind@mail.ru; yegor.tikhanin@gmail.ru',
       subject: 'Оповещение: обновление закончено',
       body: '<strong>Здесь будет текст</strong>'.html_safe
     }
-    NotificationMailer.notify(data_email).deliver_now
+    NotificationMailer.notify(data_email).deliver_later
     redirect_to visitors_path
   end
 end
