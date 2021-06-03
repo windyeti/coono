@@ -78,8 +78,8 @@ Rails.application.configure do
     tls: true,
     address: "smtp.mail.ru",
     port: 465,
-    domain: "http://164.90.173.171",
-    authentication: "plain",
+    domain: "mail.ru",
+    authentication: "login",
     user_name: Rails.application.secrets.email_provider_username,
     password:  Rails.application.secrets.email_provider_password,
     enable_starttls_auto: true
