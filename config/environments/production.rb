@@ -78,7 +78,7 @@ Rails.application.configure do
     tls: true,
     address: "smtp.mail.ru",
     port: 465,
-    domain: "coono.com",
+    domain: "mail.ru",
     authentication: "login",
     user_name: Rails.application.secrets.email_provider_username,
     password:  Rails.application.secrets.email_provider_password,
