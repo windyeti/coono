@@ -41,6 +41,10 @@
           <%= f.check_box :lit_kom_id_not_null, class: "form-check-input" %>
           <%= f.label :lit_kom_id_not_null, 'Lit-kom', class: "form-check-label" %>
         </span>
+        <span class="form-group">
+          <%= f.check_box :kovcheg_id_not_null, class: "form-check-input" %>
+          <%= f.label :kovcheg_id_not_null, 'Kovcheg', class: "form-check-label" %>
+        </span>
       </div>
 
       <div class="form-group ml-2 button_group">
@@ -65,6 +69,7 @@
       <th>Цена продажи</th>
       <th>Производитель</th>
       <th>Lit-kom</th>
+      <th>Kovcheg</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -86,6 +91,7 @@
         <td><%= product.distributor %></td>
 
         <td><%= render 'distributor_lit_kom', product: product %></td>
+        <td><%= render 'distributor_kovcheg', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -100,7 +106,10 @@
           <% end %>
         </td>
         <td><%= link_to 'Страница', product.url , target: 'blank' %></td>
-        <td><% if product.lit_kom.present? %><%= link_to '<span class="oi oi-eye"></span> Lit-kom'.html_safe, product.lit_kom.link , target: 'blank' %><%end%></td>
+        <td>
+          <p><% if product.lit_kom.present? %><%= link_to '<span class="oi oi-eye"></span> Lit-kom'.html_safe, product.lit_kom.link , target: 'blank' %><%end%></p>
+          <p><% if product.kovcheg.present? %><%= link_to '<span class="oi oi-eye"></span> Kovcheg'.html_safe, product.kovcheg.link , target: 'blank' %><%end%></p>
+        </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->
       </tr>

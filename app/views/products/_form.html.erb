@@ -3,32 +3,45 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs row">
-    <span class="col-md-4">
-       Название: <strong><%= @product.title %></strong>
-    </span>
+  <div class="form-inputs">
+    <row>
+      <span class="col-md-4">
+         Название: <strong><%= @product.title %></strong>
+      </span>
 
-    <span class="col-md-4">
-      Артикул Товара в InSales: <strong><%= @product.sku %></strong>
-    </span>
+      <span class="col-md-4">
+        Артикул Товара в InSales: <strong><%= @product.sku %></strong>
+      </span>
 
-    <span class="col-md-4">
-      ID в InSales: <strong><%= @product.insales_id %></strong>
-    </span>
-    <span class="col-md-4">
-      ID Варианта в InSales: <strong><%= @product.insales_var_id %></strong>
-    </span>
+      <span class="col-md-4">
+        ID в InSales: <strong><%= @product.insales_id %></strong>
+      </span>
+      <span class="col-md-4">
+        ID Варианта в InSales: <strong><%= @product.insales_var_id %></strong>
+      </span>
 
-    <span class="col-md-4">
-      <%= f.input :price, label: 'Цена продажи:' %>
-    </span>
-    <span class="col-md-4">
-      <%= f.input :quantity, label: 'Остаток:' %>
-    </span>
+      <span class="col-md-4">
+        <%= f.input :price, label: 'Цена продажи:' %>
+      </span>
+      <span class="col-md-4">
+        <%= f.input :quantity, label: 'Остаток:' %>
+      </span>
+    </row>
+
 <!--    # TODO NewDistributor-->
-    <span class="col-md-4 editable">
-      <%= f.input :lit_kom_id, label: "ID у поставщика Lit-kom" %>
-    </span>
+    <row>
+      <span class="col-md-4">
+        <span class="editable">
+          <%= f.input :lit_kom_id, label: "ID у поставщика Lit-kom" %>
+        </span>
+      </span>
+      <span class="col-md-4">
+        <span class="editable">
+          <%= f.input :kovcheg_id, label: "ID у поставщика Kovcheg" %>
+        </span>
+      </span>
+    </row>
+<!--    # TODO NewDistributor ----  END  -->
 
     <span class="col-12">
       Описание: <%= @product.desc.truncate(300) %>

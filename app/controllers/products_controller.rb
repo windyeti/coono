@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     if params[:q]
       @params = params[:q]
       @params.delete(:lit_kom_id_not_null) if @params[:lit_kom_id_not_null] == '0'
-      # @params.delete(:dr_id_not_null) if @params[:dr_id_not_null] == '0'
+      @params.delete(:kovcheg_not_null) if @params[:kovcheg_not_null] == '0'
     else
       @params = []
     end
@@ -173,6 +173,6 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     # TODO NewDistributor
     def product_params
-      params.require(:product).permit(:sku, :title, :desc, :cat, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
+      params.require(:product).permit(:sku, :title, :desc, :cat, :oldprice, :price, :quantity, :image, :url, :lit_kom_id, :kovcheg_id)
     end
 end

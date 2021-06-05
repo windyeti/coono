@@ -32,12 +32,21 @@
 # set :output, "/log/cron.log"
 # set :chronic_options, :hours24 => true
 
-every 1.day, :at => '07:00' do
+every 1.day, :at => '01:00' do
   runner "ProductImportInsalesXmlJob.perform_later"
 end
-every 1.day, :at => '07:15' do
+
+
+every 1.day, :at => '06:00' do
+  runner "KovchegJob.perform_later"
+end
+
+
+every 1.day, :at => '07:00' do
   runner "LitKomJob.perform_later"
 end
+
+
 every 1.day, :at => '08:30' do
   runner "SyncronaizeJob.perform_later"
 end

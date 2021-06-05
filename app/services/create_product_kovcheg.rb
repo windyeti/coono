@@ -1,7 +1,6 @@
 class Services::CreateProductKovcheg
   def self.call
     # TODO сделать по-умолчанию check: true
-    @@list = []
     Kovcheg.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryKovcheg.first)
   end
@@ -89,10 +88,10 @@ class Services::CreateProductKovcheg
       desc = doc.css('#content') rescue nil
       if desc
         desc.at('.productCard').unlink
-        desc = desc.inner_html
+        desc = desc.inner_html.gsub(/<!--Карточка товара-->|<!--Видео-->|<!--Статья-->/,'').strip
       end
 
-      pp data = {
+      data = {
         fid: fid,
         sku: sku,
         title: title,

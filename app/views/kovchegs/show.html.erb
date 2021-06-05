@@ -1,48 +1,48 @@
 <p>
   <strong>Название:</strong>
-  <%= @lit_kom.title %>
+  <%= @kovcheg.title %>
 </p>
 
 <p>
   <strong>Артикул:</strong>
-  <%= @lit_kom.sku %>
+  <%= @kovcheg.sku %>
 </p>
 
 <p>
   <strong>Описание:</strong>
-  <%= @lit_kom.desc.html_safe %>
+  <%= @kovcheg.desc.html_safe %>
 </p>
 
 <p>
   <strong>Категория:</strong>
-  <%= @lit_kom.cat %>
+  <%= @kovcheg.cat %>
 </p>
 
 <p>
   <strong>Характеристики:</strong>
-  <%= @lit_kom.p1.gsub(' --- ', ', ') %>
+  <%= @kovcheg.p1.gsub(' --- ', ', ') %>
 </p>
 
 <p>
   <strong>Цена:</strong>
-  <%= @lit_kom.price %>
+  <%= @kovcheg.price %>
 </p>
 
 <p>
   <strong>Количество:</strong>
-  <%= @lit_kom.quantity %>
+  <%= @kovcheg.quantity %>
 </p>
 
 <p>
   <strong>Картинки:</strong>
-  <% @lit_kom.pict.split(' ').each do |image| %>
+  <% @kovcheg.pict.split(' ').each do |image| %>
     <%= image_tag image%>
   <% end %>
 </p>
 
 <p>
   <strong>Товар у поставщика:</strong>
-  <%= link_to "Ссылка", @lit_kom.link, target: '_blank' %>
+  <%= link_to "Ссылка", @kovcheg.link, target: '_blank' %>
 </p>
 
-<%= link_to 'Back', lit_koms_path %>
+<%= link_to 'Back', kovchegs_path %>
