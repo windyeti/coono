@@ -37,10 +37,4 @@ class LitKomsController < ApplicationController
     LitKomJob.perform_later
     redirect_to lit_koms_path, notice: 'Запущен парсинг Lit-kom'
   end
-
-  private
-
-  # def lit_kom_params
-  #   params.require(:lit_kom).permit(:sku, :title, :desc, :cat, :charact, :oldprice, :price, :quantity, :image, :url, :lit_kom_id)
-  # end
 end

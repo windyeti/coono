@@ -3,13 +3,16 @@ class HardJob < ApplicationJob
 
   def perform
     Services::ImportInsalesXml.call
+
     Services::CreateCategoryLitKom.call
     Services::CreateProductLitKom.call
+
     Services::ExportCsv.call
+    Services::Syncronaize.call
     data_email = {
       email: 'd.andreev@coono.com',
       subject: 'Оповещение: Закончен полный цикл обновления-синхронизации-создания товаров для импорта',
-      body: '<strong>Закончен полный цикл обновления-синхронизации-создания товаров для импорта</strong>'.html_safe
+      body: 'Закончен полный цикл обновления-синхронизации-создания товаров для импорта'
     }
     NotificationMailer.notify(data_email).deliver_later
 

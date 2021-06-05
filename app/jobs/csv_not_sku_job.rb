@@ -6,7 +6,7 @@ class CsvNotSkuJob < ApplicationJob
     data_email = {
       email: 'd.andreev@coono.com',
       subject: 'Оповещение: Создан csv c товарами без Артикула',
-      body: '<strong>Создан csv c товарами без Артикула</strong>'.html_safe
+      body: 'Создан csv c товарами без Артикула'
     }
     NotificationMailer.notify(data_email).deliver_later
   end

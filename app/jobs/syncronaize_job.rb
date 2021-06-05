@@ -6,7 +6,7 @@ class SyncronaizeJob < ApplicationJob
     data_email = {
       email: 'd.andreev@coono.com',
       subject: 'Оповещение: Закончена синхронизация Товаров с товарами поставщиков',
-      body: '<strong>Закончена синхронизация Товаров с товарами поставщиков</strong>'.html_safe
+      body: 'Закончена синхронизация Товаров с товарами поставщиков'
     }
     NotificationMailer.notify(data_email).deliver_later
   end

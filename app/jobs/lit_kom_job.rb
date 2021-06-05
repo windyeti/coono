@@ -7,7 +7,7 @@ class LitKomJob < ApplicationJob
     data_email = {
       email: 'd.andreev@coono.com',
       subject: 'Оповещение: Lit-kom: Закончено обновление товаров поставщика',
-      body: '<strong>Lit-kom: Закончено обновление товаров поставщика</strong>'.html_safe
+      body: 'Lit-kom: Закончено обновление товаров поставщика'
     }
     NotificationMailer.notify(data_email).deliver_later
   end

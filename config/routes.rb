@@ -14,8 +14,12 @@ Rails.application.routes.draw do
 
   resources :lit_koms do
     collection do
-      post :import_insales
-      get :unlinking_to_xls
+      get :parsing
+    end
+  end
+
+  resources :kovchegs do
+    collection do
       get :parsing
     end
   end

@@ -43,47 +43,13 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :letter_opener
 
-
-  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  # Send email in development mode?
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.smtp_settings = {
-    tls: true,
-    address: "smtp.mail.ru",
-    port: 465,
-    domain: "coono.com",
-    authentication: "login",
-    user_name: Rails.application.secrets.email_provider_username,
-    password:  Rails.application.secrets.email_provider_password,
-    enable_starttls_auto: true
-  }
-  # ActionMailer Config
-
-
-
-  # config.action_mailer.smtp_settings = {
-  #   tls: true,
-  #   address: "smtp.yandex.com",
-  #   port: 465,
-  #   domain: "yandex.ru",
-  #   authentication: "login",
-  #   user_name: 'ad2020k@yandex.ru',
-  #   password: 'zima2021',
-  #   enable_starttls_auto: true
-  # }
-  # ActionMailer Config
-
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  # config.action_mailer.delivery_method = :letter_opener
-
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.raise_delivery_errors = true
-  # # Send email in development mode?
-  # config.action_mailer.perform_deliveries = true
 
 
   # Suppress logger output for asset requests.

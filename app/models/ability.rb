@@ -22,6 +22,7 @@ class Ability
     can :manage, Distributor
     can :manage, Product
     can :manage, LitKom
+    can :manage, Kovcheg
   end
 
   def admin
