@@ -8,7 +8,10 @@ class Services::ExportCsv
       File.delete(file)
     end
     # TODO NewDistributor
-    products = Product.where.not(lit_kom: nil).where.not(kovcheg: nil).order(:id)
+    products = Product
+                 .where.not(lit_kom: nil)
+                 .or(Product.where.not(kovcheg: nil))
+                 .order(:id)
 
     CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|
       headers = [ 'ID варианта товара', 'Название товара', 'Артикул', 'Цена продажи' ]
