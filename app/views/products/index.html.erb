@@ -111,8 +111,8 @@
         </td>
         <td><%= link_to 'Страница', product.url , target: 'blank' %></td>
         <td>
-          <p><% if product.lit_kom.present? %><%= link_to '<span class="oi oi-eye"></span> Lit-kom'.html_safe, product.lit_kom.link , target: 'blank' %><%end%></p>
-          <p><% if product.kovcheg.present? %><%= link_to '<span class="oi oi-eye"></span> Kovcheg'.html_safe, product.kovcheg.link , target: 'blank' %><%end%></p>
+          <% if product.lit_kom.present? %><p><%= link_to '<span class="oi oi-eye"></span> Lit-kom'.html_safe, product.lit_kom.link , target: 'blank' %></p><%end%>
+          <% if product.kovcheg.present? %><p><%= link_to '<span class="oi oi-eye"></span> Kovcheg'.html_safe, product.kovcheg.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->
