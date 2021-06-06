@@ -7,8 +7,8 @@ class Services::ExportCsv
     if check.present?
       File.delete(file)
     end
-
-    products = Product.where.not(lit_kom: nil).order(:id)
+    # TODO NewDistributor
+    products = Product.where.not(lit_kom: nil).where.not(kovcheg: nil).order(:id)
 
     CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|
       headers = [ 'ID варианта товара', 'Название товара', 'Артикул', 'Цена продажи' ]

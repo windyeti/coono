@@ -42,8 +42,10 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @product.image %>
+  <strong>Картинки:</strong>
+  <% @product.image.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
 </p>
 
 <p>
