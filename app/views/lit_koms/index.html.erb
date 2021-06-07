@@ -4,7 +4,7 @@
     <span class="align-middle"><small>Всего: <%= LitKom.product_all_size %></small></span>
     <span class="align-middle"><small>Отфильтровано: <%=@lit_koms.count%></small></span><br>
     <span class="align-middle"><small>Больше нуля: <%= LitKom.where.not(quantity: "0").size %></small></span>
-    <span class="align-middle"><small>Синхронизируется: <%= LitKom.all.map(&:product).reject(&:nil?).size %></small></span>
+    <span class="align-middle"><small>Синхронизируется: <%= Product.where.not(lit_kom: nil).size %></small></span>
   </div>
   <div class="col- mr-1">
     <div class="dropdown">
@@ -48,7 +48,8 @@
       <th>ID в Товарах</th>
       <th>Артикул</th>
       <th>Название</th>
-      <th><%= sort_link(@search, :quantity) %></th>
+      <th>quantity</th>
+<!--      <th><%#= sort_link(@search, :quantity) %></th>-->
       <th>Цена</th>
       <th>Описание</th>
       <th>Параметры</th>
