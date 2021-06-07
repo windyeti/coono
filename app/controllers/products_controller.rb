@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
       @params = params[:q]
       @params.delete(:lit_kom_id_not_null) if @params[:lit_kom_id_not_null] == '0'
       @params.delete(:kovcheg_id_not_null) if @params[:kovcheg_id_not_null] == '0'
+
+      @params.delete(:kovcheg_id_or_lit_kom_id_not_null) if @params[:kovcheg_id_or_lit_kom_id_not_null] == '0'
     else
       @params = []
     end

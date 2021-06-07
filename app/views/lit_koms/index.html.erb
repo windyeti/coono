@@ -5,6 +5,8 @@
     <span class="align-middle"><small>Отфильтровано: <%=@lit_koms.count%></small></span><br>
     <span class="align-middle"><small>Больше нуля: <%= LitKom.where.not(quantity: "0").size %></small></span>
     <span class="align-middle"><small>Синхронизируется: <%= Product.where.not(lit_kom: nil).size %></small></span>
+<!--    <span class="align-middle"><small>Синхронизируется2: <%#= LitKom.joins("INNER JOIN products ON products.lit_kom_id = lot_koms.id").size %></small></span>-->
+<!--    <span class="align-middle"><small>Синхронизируется3: <%#= Product.joins(:lit_kom).count %></small></span>-->
   </div>
   <div class="col- mr-1">
     <div class="dropdown">
