@@ -34,7 +34,7 @@
       <%#= f.select :distributor_eq, Product.all.map{|p|  p.distributor if p.distributor.present? }.reject(&:nil?).uniq, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%#= f.collection_select :distributor_eq, Product.all.reject {|p| p.distributor.nil? }.uniq, :distributor, :distributor, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :lit_kom_id_or_kovcheg_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="form-inline form_search_distributor">
         <span class="form-group">
@@ -46,8 +46,12 @@
           <%= f.label :kovcheg_id_not_null, 'Kovcheg', class: "form-check-label" %>
         </span>
         <span class="form-group">
-          <%= f.check_box :kovcheg_id_or_lit_kom_id_not_null, class: "form-check-input" %>
-          <%= f.label :kovcheg_id_or_lit_kom_id_not_null, 'Only sync', class: "form-check-label" %>
+          <%= f.check_box :nkamin_id_not_null, class: "form-check-input" %>
+          <%= f.label :nkamin_id_not_null, 'Nkamin', class: "form-check-label" %>
+        </span>
+        <span class="form-group button_only_sync">
+          <%= f.check_box :lit_kom_id_or_kovcheg_id_or_nkamin_id_not_null, class: "form-check-input" %>
+          <%= f.label :lit_kom_id_or_kovcheg_id_or_nkamin_id_not_null, 'Only sync', class: "form-check-label" %>
         </span>
       </div>
 
@@ -75,6 +79,7 @@
       <th>Производитель</th>
       <th>Lit-kom</th>
       <th>Kovcheg</th>
+      <th>Nkamin</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -97,6 +102,7 @@
 
         <td><%= render 'distributor_lit_kom', product: product %></td>
         <td><%= render 'distributor_kovcheg', product: product %></td>
+        <td><%= render 'distributor_nkamin', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -114,6 +120,7 @@
         <td>
           <% if product.lit_kom.present? %><p><%= link_to '<span class="oi oi-eye"></span> Lit-kom'.html_safe, product.lit_kom.link , target: 'blank' %></p><%end%>
           <% if product.kovcheg.present? %><p><%= link_to '<span class="oi oi-eye"></span> Kovcheg'.html_safe, product.kovcheg.link , target: 'blank' %></p><%end%>
+          <% if product.nkamin.present? %><p><%= link_to '<span class="oi oi-eye"></span> Nkamin'.html_safe, product.nkamin.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->
