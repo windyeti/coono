@@ -12,7 +12,7 @@ class Services::CreateProductNkamin
       get_category(subordinate)
     end
 
-    get_product_links(category[:link], category[:category_path])
+    get_product_links(category[:link], category[:category_path]) unless category[:category_path] == "Каталог"
   end
 
   def self.get_product_links(category_url, category_path_name)

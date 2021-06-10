@@ -36,6 +36,5 @@ class NkaminsController < ApplicationController
   def parsing
     NkaminJob.perform_later
     redirect_to nkamins_path, notice: 'Запущен парсинг Nkamin'
-
   end
 end

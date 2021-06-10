@@ -17,11 +17,19 @@ class Services::CreateCategoryNkamin
 
     selector = {
       "0"=> '#header .navigation > li',
-      "1"=> '.navigation_drop_box .list_nav > li',
-      "2"=> '> ul li',
+      "1"=> '',
+      "2"=> '',
       "3"=> '',
       "4"=> '',
     }
+
+    # selector = {
+    #   "0"=> '#header .navigation > li',
+    #   "1"=> '.navigation_drop_box .list_nav > li',
+    #   "2"=> '> ul li',
+    #   "3"=> '',
+    #   "4"=> '',
+    # }
 
     category = {
       name: name,
