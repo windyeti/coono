@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @nkamin.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @nkamin.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @nkamin.desc.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @nkamin.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @nkamin.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @nkamin.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @nkamin.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @nkamin.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @nkamin.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', nkamins_path %>

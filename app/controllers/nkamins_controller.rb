@@ -34,7 +34,6 @@ class NkaminsController < ApplicationController
   end
 
   def parsing
-    # Services::CreateCategoryNkamin.call
     NkaminJob.perform_later
     redirect_to nkamins_path, notice: 'Запущен парсинг Nkamin'
 

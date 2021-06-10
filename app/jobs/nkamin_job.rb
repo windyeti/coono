@@ -2,8 +2,8 @@ class NkaminJob < ApplicationJob
   queue_as :default
 
   def perform
-    Services::CreateCategoryNkamin.call
-    # Services::CreateProductNkamin.call
+    category = Services::CreateCategoryNkamin.call
+    Services::CreateProductNkamin.call(category)
     data_email = {
       email: 'd.andreev@coono.com',
       subject: 'Оповещение: Nkamin: Закончено обновление товаров поставщика',
