@@ -8,7 +8,8 @@ class Services::Syncronaize
 
       min_price = [price_lit_kom, price_kovcheg].reject(&:nil?).min
 
-      min_price = price_nkamin.present? && price_nkamin < min_price ? price_nkamin : min_price - 1
+      # какую цену брать: минимальную минус один или из nkamin, у которой один не отнимаем
+      min_price = (price_nkamin.present? && price_nkamin < min_price) || min_price.nil? ? price_nkamin : min_price - 1
 
       product.price = min_price.present? ? min_price : 0
       # product.quantity = "#{lit_kom&.quantity ? lit_kom.quantity : 0}".to_i
