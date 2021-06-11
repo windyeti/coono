@@ -148,7 +148,7 @@ class Services::CreateProductTmf
     doc_picts = doc.css('.wrapp_thumbs li')
     if doc_picts.present?
       result = doc_picts.map do |doc_pict|
-        "https://t-m-f.ru#{doc_pict['data-big_img']}"
+        "https://t-m-f.ru#{doc_pict['data-big_img']}" if doc_pict['data-big_img'].present?
       end
     elsif doc.at('.item_main_info img')
       result << "https://t-m-f.ru#{doc.at('.item_main_info img')['src']}"
