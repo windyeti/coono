@@ -23,6 +23,8 @@ class Ability
     can :manage, Product
     can :manage, LitKom
     can :manage, Kovcheg
+    can :manage, Nkamin
+    can :manage, Tmf
   end
 
   def admin

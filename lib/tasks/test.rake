@@ -10,48 +10,74 @@ namespace :p do
 
   end
   task t: :environment do
-    doc = get_doc('https://nkamin.ru/catalog/pechi-dlya-bani/everest/everest-inox-15-210-kovka')
-    # doc = get_doc('https://nkamin.ru//catalog/pechi-dlya-bani/everest/everest-inox-20-280')
-    p doc.css('.card_data_info .green, .card_data_info .red').text.strip rescue nil
+    # url = 'https://t-m-f.ru/catalog-new/model/pechi_dlya_bani_1/variata_barrel_inox/#1931'
+    # url = 'https://t-m-f.ru/catalog-new/model/mangaly_grili_koptilni_1/grili_1/barabek_/'
+    # p doc = rest_client_get(url)
 
-  # def get_pict(doc)
-  #   p '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-  #   result = []
-  #   doc_picts = doc.css('.carousel a')
-  #   if doc_picts.present?
-  #     p '==============================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-  #     result = doc_picts.map do |doc_pict|
-  #       "https://gk-kovcheg.ru#{doc_pict['href']}"
-  #     end
-  #   elsif doc.at('#content .photo a')
-  #     p '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-  #     result << "https://gk-kovcheg.ru#{doc.at('#content .photo a')['href']}"
-  #   else
-  #     p '---------------------------------------------------------------------------------------------'
-  #     nil
-  #   end
-  #   result.join(' ')
-  # end
+    # p doc = get_doc('https://t-m-f.ru/catalog-new/model/pechi_dlya_bani_1/variata_barrel_inox/#1931')
+    # p doc = get_doc('https://t-m-f.ru/catalog-new/pechi_dlya_bani_1/variata_barrel_inox/')
+    # response = RestClient::Request.execute(:url => 'https://t-m-f.ru/catalog-new/model/pechi_dlya_bani_1/variata_barrel_inox/#1931', :timeout => 100, :method => :get, :verify_ssl => false)
+    # begin
+    # p result = Nokogiri::HTML(JSON.parse(response.body))
+    # rescue
+    #   p 'EXEPTION!!!'
+    # end
+    # p result
+
+    # p get_pict(doc)
+    #
+    call
   end
-  #
+
   def get_doc(url)
     category_url = URI.escape(url)
     Nokogiri::HTML(RestClient::Request.execute(:url => category_url, :timeout => 100, :method => :get, :verify_ssl => false))
   end
+
+  # def rest_client_get(url)
+  #   response = RestClient.get(url)
+  #   Nokogiri::HTML(response.body)
+  # end
+
+  # def rest_client_get(url)
+  #   result_body = ''
+  #   RestClient.get(url) do |response, request, result, &block|
+  #     p response.code
+  #     case response.code
+  #     when 200
+  #       puts 'sleep 0.3 категорию добавили'
+  #       sleep 0.3
+  #       result_body = Nokogiri::HTML(response.body)
+  #       # result_body = JSON.parse(response.body)
+  #     when 422
+  #       puts "error 422 - не добавили категорию"
+  #       puts response
+  #     when 404
+  #       puts 'error 404'
+  #       puts response
+  #     when 503
+  #       sleep 1
+  #       puts 'sleep 1 error 503'
+  #     else
+  #       response.return!(&block)
+  #     end
+  #   end
+  #   result_body
+  # end
   #
   # def self.get_pict(doc)
   #   result = []
-  #   doc_picts = doc.css('.slick-SliderCardNav img')
+  #   doc_picts = doc.css('.wrapp_thumbs li')
   #   if doc_picts.present?
   #     result = doc_picts.map do |doc_pict|
-  #       "https://nkamin.ru#{doc_pict['src'].gsub("-100", "-600")}"
+  #       "https://t-m-f.ru#{doc_pict['data-big_img']}" if doc_pict['data-big_img'].present?
   #     end
-  #   elsif doc.at('.SliderCard a')
-  #     result << "https://nkamin.ru#{doc.at('.SliderCard a')['href']}"
+  #   elsif doc.at('.item_main_info img')
+  #     result << "https://t-m-f.ru#{doc.at('.item_main_info img')['src']}"
   #   else
   #     nil
   #   end
-  #   result.join(' ')
+  #   result.reject(&:nil?).join(' ')
   # end
 
 end

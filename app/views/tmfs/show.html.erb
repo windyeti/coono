@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @tmf.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @tmf.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @tmf.desc.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @tmf.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @tmf.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @tmf.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @tmf.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @tmf.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @tmf.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', nkamins_path %>
