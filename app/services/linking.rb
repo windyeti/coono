@@ -12,7 +12,7 @@ class Services::Linking
 
       # # Tmf
       tmf = Tmf.find_by(sku: product.sku)
-      product.update(tmf: kovcheg) if tmf.present?
+      product.update(tmf: tmf) if tmf.present?
     end
   end
 end
