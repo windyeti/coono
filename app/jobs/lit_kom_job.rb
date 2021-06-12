@@ -5,7 +5,7 @@ class LitKomJob < ApplicationJob
     Services::CreateCategoryLitKom.call
     Services::CreateProductLitKom.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Lit-kom: Закончено обновление товаров поставщика',
       body: 'Lit-kom: Закончено обновление товаров поставщика'
     }

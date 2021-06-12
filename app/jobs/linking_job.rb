@@ -5,7 +5,7 @@ class LinkingJob < ApplicationJob
     Services::Linking.call
 
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Linking',
       body: 'linking: Закончено'
     }

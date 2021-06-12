@@ -5,7 +5,7 @@ class KovchegJob < ApplicationJob
     Services::CreateCategoryKovcheg.call
     Services::CreateProductKovcheg.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Kovcheg: Закончено обновление товаров поставщика',
       body: 'Kovcheg: Закончено обновление товаров поставщика'
     }

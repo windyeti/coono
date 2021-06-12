@@ -5,7 +5,7 @@ class TmfJob < ApplicationJob
     Services::CreateCategoryTmf.call
     Services::CreateProductTmf.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Tmf: Закончено обновление товаров поставщика',
       body: 'Tmf: Закончено обновление товаров поставщика'
     }

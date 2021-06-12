@@ -5,7 +5,7 @@ class NkaminJob < ApplicationJob
     category = Services::CreateCategoryNkamin.call
     Services::CreateProductNkamin.call(category)
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Nkamin: Закончено обновление товаров поставщика',
       body: 'Nkamin: Закончено обновление товаров поставщика'
     }

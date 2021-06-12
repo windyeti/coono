@@ -4,7 +4,7 @@ class CsvNotSkuJob < ApplicationJob
   def perform
     Services::CsvNotSku.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Создан csv c товарами без Артикула',
       body: 'Создан csv c товарами без Артикула'
     }

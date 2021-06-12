@@ -10,7 +10,7 @@ class HardJob < ApplicationJob
     Services::ExportCsv.call
     Services::Syncronaize.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Закончен полный цикл обновления-синхронизации-создания товаров для импорта',
       body: 'Закончен полный цикл обновления-синхронизации-создания товаров для импорта'
     }

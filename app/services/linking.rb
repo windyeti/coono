@@ -9,6 +9,10 @@ class Services::Linking
       # # Kovcheg
       kovcheg = Kovcheg.find_by(sku: product.sku)
       product.update(kovcheg: kovcheg) if kovcheg.present?
+
+      # # Tmf
+      tmf = Tmf.find_by(sku: product.sku)
+      product.update(tmf: kovcheg) if tmf.present?
     end
   end
 end

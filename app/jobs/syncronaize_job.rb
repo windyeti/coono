@@ -4,7 +4,7 @@ class SyncronaizeJob < ApplicationJob
   def perform
     Services::Syncronaize.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Закончена синхронизация Товаров с товарами поставщиков',
       body: 'Закончена синхронизация Товаров с товарами поставщиков'
     }

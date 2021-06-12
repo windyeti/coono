@@ -4,7 +4,7 @@ class ProductImportInsalesXmlJob < ApplicationJob
   def perform
     Services::ImportInsalesXml.call
     data_email = {
-      email: 'd.andreev@coono.com',
+      email: 'coonocom@mail.ru',
       subject: 'Оповещение: Закончено обновление Товаров',
       body: 'Закончено обновление Товаров'
     }
