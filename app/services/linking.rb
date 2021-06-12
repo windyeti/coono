@@ -10,9 +10,10 @@ class Services::Linking
       kovcheg = Kovcheg.find_by(sku: product.sku)
       product.update(kovcheg: kovcheg) if kovcheg.present?
 
-      # # Tmf
-      tmf = Tmf.find_by(sku: product.sku)
-      product.update(tmf: tmf) if tmf.present?
+      # # # Tmf
+      # !!!! Артикулы не совпадают !!!!
+      # tmf = Tmf.find_by(sku: product.sku)
+      # product.update(tmf: tmf) if tmf.present?
     end
   end
 end
