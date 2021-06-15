@@ -34,7 +34,7 @@
       <%#= f.select :distributor_eq, Product.all.map{|p|  p.distributor if p.distributor.present? }.reject(&:nil?).uniq, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%#= f.collection_select :distributor_eq, Product.all.reject {|p| p.distributor.nil? }.uniq, :distributor, :distributor, {include_blank: false, prompt: 'Производитель'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="form-inline form_search_distributor">
         <span class="form-group">
@@ -53,9 +53,13 @@
           <%= f.check_box :tmf_id_not_null, class: "form-check-input" %>
           <%= f.label :tmf_id_not_null, 'Tmf', class: "form-check-label" %>
         </span>
+        <span class="form-group">
+          <%= f.check_box :shulepov_id_not_null, class: "form-check-input" %>
+          <%= f.label :shulepov_id_not_null, 'Shulepov', class: "form-check-label" %>
+        </span>
         <span class="form-group button_only_sync">
-          <%= f.check_box :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_not_null, class: "form-check-input" %>
-          <%= f.label :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_not_null, 'Only sync', class: "form-check-label" %>
+          <%= f.check_box :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_not_null, class: "form-check-input" %>
+          <%= f.label :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_not_null, 'Only sync', class: "form-check-label" %>
         </span>
       </div>
 
@@ -85,6 +89,7 @@
       <th>Kovcheg</th>
       <th>Nkamin</th>
       <th>Tmf</th>
+      <th>Shulepov</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -109,6 +114,7 @@
         <td><%= render 'distributor_kovcheg', product: product %></td>
         <td><%= render 'distributor_nkamin', product: product %></td>
         <td><%= render 'distributor_tmf', product: product %></td>
+        <td><%= render 'distributor_shulepov', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -128,6 +134,7 @@
           <% if product.kovcheg.present? %><p><%= link_to '<span class="oi oi-eye"></span> Kovcheg'.html_safe, product.kovcheg.link , target: 'blank' %></p><%end%>
           <% if product.nkamin.present? %><p><%= link_to '<span class="oi oi-eye"></span> Nkamin'.html_safe, product.nkamin.link , target: 'blank' %></p><%end%>
           <% if product.tmf.present? %><p><%= link_to '<span class="oi oi-eye"></span> Tmf'.html_safe, product.tmf.link , target: 'blank' %></p><%end%>
+          <% if product.shulepov.present? %><p><%= link_to '<span class="oi oi-eye"></span> Shulepov'.html_safe, product.shulepov.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->

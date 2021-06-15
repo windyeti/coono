@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to :kovcheg, optional: true
   belongs_to :nkamin, optional: true
   belongs_to :tmf, optional: true
+  belongs_to :shulepov, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }
@@ -39,6 +40,12 @@ class Product < ApplicationRecord
       tmf = Tmf.find_by(id: tmf_id)
       if tmf.nil? || (tmf.product.present? && tmf.product != self)
         errors.add(:tmf_id, "Товар поставщика Tmf не существует или он уже связан с другим товаром")
+      end
+    end
+    if shulepov_id.present?
+      shulepov = Shulepov.find_by(id: shulepov_id)
+      if shulepov.nil? || (shulepov.product.present? && shulepov.product != self)
+        errors.add(:shulepov_id, "Товар поставщика Shulepov не существует или он уже связан с другим товаром")
       end
     end
   end

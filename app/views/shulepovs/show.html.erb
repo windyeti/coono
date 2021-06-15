@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @shulepov.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @shulepov.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @shulepov.desc.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @shulepov.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @shulepov.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @shulepov.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @shulepov.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @shulepov.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @shulepov.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', shulepovs_path %>

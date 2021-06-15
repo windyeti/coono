@@ -25,6 +25,7 @@ class Ability
     can :manage, Kovcheg
     can :manage, Nkamin
     can :manage, Tmf
+    can :manage, Shulepov
   end
 
   def admin

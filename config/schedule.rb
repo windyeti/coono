@@ -37,6 +37,10 @@ every 1.day, :at => '01:00' do
 end
 
 
+every 1.day, :at => '02:30' do
+  runner "ShulepovJob.perform_later"
+end
+
 every 1.day, :at => '03:30' do
   runner "TmfJob.perform_later"
 end

@@ -4,10 +4,12 @@ class Services::Syncronaize
     Product.find_each(batch_size: 1000) do |product|
       price_lit_kom = product.lit_kom.price.to_f if product.lit_kom.present? && product.lit_kom.price.present?
       price_kovcheg = product.kovcheg.price.to_f if product.kovcheg.present? && product.kovcheg.price.present?
+      # price_nkamin без отнятия рубля
       price_nkamin = product.nkamin.price.to_f if product.nkamin.present? && product.nkamin.price.present?
       price_tmf = product.tmf.price.to_f if product.tmf.present? && product.tmf.price.present?
+      price_shulepov = product.shulepov.price.to_f if product.shulepov.present? && product.shulepov.price.present?
 
-      min_price = [price_lit_kom, price_kovcheg, price_tmf].reject(&:nil?).min
+      min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov].reject(&:nil?).min
 
       # какую цену брать: минимальную минус один или из nkamin, у которой один не отнимаем
       min_price = min_price.nil? || (price_nkamin.present? && price_nkamin < min_price) ? price_nkamin : min_price - 1
