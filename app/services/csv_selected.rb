@@ -1,5 +1,5 @@
 class Services::CsvSelected
-  def self.call(products)
+  def self.call(product_ids)
 
     file = "#{Rails.root}/public/pre_products_selected.csv"
     new_file = Rails.public_path.to_s + '/product_selected.csv'
@@ -11,7 +11,7 @@ class Services::CsvSelected
     File.delete(new_file) if check.present?
 
     # создаём файл со статичными данными
-    @tovs = Product.where(id: products).order(:id)
+    @tovs = Product.where(id: product_ids).order(:id)
 
     CSV.open(file, 'w') do |writer|
       headers = ['fid', 'Артикул', 'Название товара', 'Полное описание', 'Производитель', 'Цена продажи', 'Цена старая',
