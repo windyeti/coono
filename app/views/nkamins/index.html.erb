@@ -27,13 +27,21 @@
       <%#= f.collection_select :brend_cont, Dr.all.select(:brend).uniq, :brend, :brend, {include_blank: 'Бренд'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_eq, placeholder: 'Остаток: =', class: "form-control input-sm"%>
       <%= f.search_field :quantity_gt, placeholder: 'Остаток: >=', class: "form-control input-sm"%>
+
+      <div class="form-inline form_search_distributor">
+        <span class="form-group button_only_sync">
+          <%= f.check_box :product_id_null, class: "form-check-input" %>
+          <%= f.label :product_id_null, 'Only Not Sync', class: "form-check-label" %>
+        </span>
+      </div>
+
       <%#= f.search_field :vendorcode_eq, placeholder: 'Код производителя', class: "form-control input-sm"%>
       <%#= f.select :quantity_in, [['= 0', 0],['> 0', 1]], { include_blank: false, prompt: 'Кол-во'}, class: "form-control input-sm"  %>
       <div class="form-group ml-2 button_group">
         <% f.submit 'Поиск', class: 'btn btn-info' %>
         <%= button_tag(type: 'submit', :class => "btn btn-info") do %><span class="oi oi-magnifying-glass"></span><% end %>
         <%= link_to '<span class="oi oi-reload"></span>'.html_safe, nkamins_path, class: 'btn btn-outline-dark' %>
-        <%#= link_to '<span class="oi oi-list"></span>'.html_safe, drs_path(params.permit(:drs).merge(selected_drs: @drs.pluck(:id), otchet_type: 'selected')), title: "Создать файл с выбранными товарами", class: 'btn btn-outline-dark'%>
+        <%= link_to '<span class="oi oi-list"></span>'.html_safe, nkamins_path(otchet_type: 'selected', q: @params_q_to_csv), title: "Создать файл с выбранными товарами", class: 'btn btn-outline-dark'%>
       </div>
     <% end %>
   </div>
