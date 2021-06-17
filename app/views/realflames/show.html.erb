@@ -1,48 +1,48 @@
 <p>
   <strong>Название:</strong>
-  <%= @tmf.title %>
+  <%= @realflame.title %>
 </p>
 
 <p>
   <strong>Артикул:</strong>
-  <%= @tmf.sku %>
+  <%= @realflame.sku %>
 </p>
 
 <p>
   <strong>Описание:</strong>
-  <%= @tmf.desc.html_safe %>
+  <%= @realflame.desc.html_safe %>
 </p>
 
 <p>
   <strong>Категория:</strong>
-  <%= @tmf.cat %>
+  <%= @realflame.cat %>
 </p>
 
 <p>
   <strong>Характеристики:</strong>
-  <%= @tmf.p1.gsub(' --- ', ', ') %>
+  <%= @realflame.p1.gsub(' --- ', ', ') %>
 </p>
 
 <p>
   <strong>Цена:</strong>
-  <%= @tmf.price %>
+  <%= @realflame.price %>
 </p>
 
 <p>
   <strong>Количество:</strong>
-  <%= @tmf.quantity %>
+  <%= @realflame.quantity %>
 </p>
 
 <p>
   <strong>Картинки:</strong>
-  <% @tmf.pict.split(' ').each do |image| %>
+  <% @realflame.pict.split(' ').each do |image| %>
     <%= image_tag image%>
   <% end %>
 </p>
 
 <p>
   <strong>Товар у поставщика:</strong>
-  <%= link_to "Ссылка", @tmf.link, target: '_blank' %>
+  <%= link_to "Ссылка", @realflame.link, target: '_blank' %>
 </p>
 
-<%= link_to 'Back', tmfs_path %>
+<%= link_to 'Back', realflames_path %>

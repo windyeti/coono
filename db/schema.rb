@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210613180127) do
+ActiveRecord::Schema.define(version: 20210617094000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20210613180127) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.index ["boss_id"], name: "index_category_nkamins_on_boss_id", using: :btree
+  end
+
+  create_table "category_realflames", force: :cascade do |t|
+    t.integer  "boss_id"
+    t.string   "name"
+    t.string   "link"
+    t.string   "category_path"
+    t.boolean  "parsing",       default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["boss_id"], name: "index_category_realflames_on_boss_id", using: :btree
   end
 
   create_table "category_shulepovs", force: :cascade do |t|
@@ -233,11 +244,55 @@ ActiveRecord::Schema.define(version: 20210613180127) do
     t.integer  "nkamin_id"
     t.integer  "tmf_id"
     t.integer  "shulepov_id"
+    t.integer  "realflame_id"
     t.index ["kovcheg_id"], name: "index_products_on_kovcheg_id", using: :btree
     t.index ["lit_kom_id"], name: "index_products_on_lit_kom_id", using: :btree
     t.index ["nkamin_id"], name: "index_products_on_nkamin_id", using: :btree
+    t.index ["realflame_id"], name: "index_products_on_realflame_id", using: :btree
     t.index ["shulepov_id"], name: "index_products_on_shulepov_id", using: :btree
     t.index ["tmf_id"], name: "index_products_on_tmf_id", using: :btree
+  end
+
+  create_table "realflames", force: :cascade do |t|
+    t.string   "fid"
+    t.string   "link"
+    t.string   "sku"
+    t.string   "title"
+    t.string   "sdesc"
+    t.string   "desc"
+    t.string   "oldprice"
+    t.string   "price"
+    t.string   "pict"
+    t.string   "quantity"
+    t.string   "cat"
+    t.string   "cat1"
+    t.string   "cat2"
+    t.string   "cat3"
+    t.string   "cat4"
+    t.string   "mtitle"
+    t.string   "mdesc"
+    t.string   "mkeyw"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.string   "option4"
+    t.string   "option5"
+    t.string   "option6"
+    t.string   "option7"
+    t.string   "option8"
+    t.string   "option9"
+    t.string   "option10"
+    t.string   "option11"
+    t.string   "option12"
+    t.string   "option13"
+    t.string   "option14"
+    t.boolean  "check",      default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "shulepovs", force: :cascade do |t|
@@ -341,6 +396,7 @@ ActiveRecord::Schema.define(version: 20210613180127) do
   add_foreign_key "products", "kovchegs"
   add_foreign_key "products", "lit_koms"
   add_foreign_key "products", "nkamins"
+  add_foreign_key "products", "realflames"
   add_foreign_key "products", "shulepovs"
   add_foreign_key "products", "tmfs"
 end

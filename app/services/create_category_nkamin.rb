@@ -50,45 +50,6 @@ class Services::CreateCategoryNkamin
     category
   end
 
-
-  # БЕЗ СОЗДАНИЯ КАТЕГОРИЙ
-  # def self.get_structure(doc, url, name, category_path, level)
-  #
-  #   selector = {
-  #     "0"=> '#header .navigation > li',
-  #     "1"=> '.navigation_drop_box .list_nav > li',
-  #     "2"=> '> ul li',
-  #     "3"=> ''
-  #   }
-  #
-  #   category_path = category_path == "" ? "Каталог" : category_path
-  #
-  #   category = CategoryNkamin.find_by(category_path: category_path)
-  #   unless category
-  #     category = CategoryNkamin.create({
-  #                                        name: name,
-  #                                        link: category_path == "" ? "https://nkamin.ru/catalog" : "https://nkamin.ru#{url}",
-  #                                        category_path: category_path
-  #                                      })
-  #   end
-  #
-  #   doc_subcategories = selector[level.to_s].present? ? doc.css(selector[level.to_s]) : []
-  #
-  #   # category_paths = doc_subcategories.map {|doc_subcategory| "#{category.category_path}/#{doc_subcategory.at('a').text.strip.gsub("/","&#47;")}"}
-  #   # delete_not_exits_subcategory(category.subordinates, category_paths)
-  #
-  #   doc_subcategories.each do |doc_subcategory|
-  #     url_subcategory = doc_subcategory.at('a')['href']
-  #     name_subcategory = doc_subcategory.at('a').text.strip.gsub("/","&#47;")
-  #     category_path = "#{category[:category_path]}/#{name_subcategory}"
-  #
-  #     category.subordinates << get_structure(doc_subcategory, url_subcategory, name_subcategory, category_path, level + 1)
-  #
-  #   end
-  #   category
-  # end
-
-
   def self.delete_not_exits_subcategory(old_sub, new_sub)
     old_sub = old_sub.present? ? old_sub.map {|sub| sub.category_path} : []
 

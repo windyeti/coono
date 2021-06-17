@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :nkamin, optional: true
   belongs_to :tmf, optional: true
   belongs_to :shulepov, optional: true
+  belongs_to :realflame, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }
@@ -46,6 +47,12 @@ class Product < ApplicationRecord
       shulepov = Shulepov.find_by(id: shulepov_id)
       if shulepov.nil? || (shulepov.product.present? && shulepov.product != self)
         errors.add(:shulepov_id, "Товар поставщика Shulepov не существует или он уже связан с другим товаром")
+      end
+    end
+    if realflame_id.present?
+      realflame = Realflame.find_by(id: realflame_id)
+      if realflame.nil? || (realflame.product.present? && realflame.product != self)
+        errors.add(:realflame_id, "Товар поставщика Realflame не существует или он уже связан с другим товаром")
       end
     end
   end

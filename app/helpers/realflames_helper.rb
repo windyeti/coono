@@ -1,0 +1,2 @@
+module RealflamesHelper
+end
