@@ -28,12 +28,7 @@
       <%= f.search_field :quantity_eq, placeholder: 'Остаток: =', class: "form-control input-sm"%>
       <%= f.search_field :quantity_gt, placeholder: 'Остаток: >=', class: "form-control input-sm"%>
 
-      <div class="form-inline form_search_distributor">
-        <span class="form-group button_only_sync">
-          <%= f.check_box :product_id_null, class: "form-check-input" %>
-          <%= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
-        </span>
-      </div>
+      <%= render 'shared/filtersync', f: f %>
 
       <%#= f.search_field :vendorcode_eq, placeholder: 'Код производителя', class: "form-control input-sm"%>
       <%#= f.select :quantity_in, [['= 0', 0],['> 0', 1]], { include_blank: false, prompt: 'Кол-во'}, class: "form-control input-sm"  %>

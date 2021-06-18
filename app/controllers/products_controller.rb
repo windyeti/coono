@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       @params.delete(:tmf_id_not_null) if @params[:tmf_id_not_null] == '0'
       @params.delete(:shulepov_id_not_null) if @params[:shulepov_id_not_null] == '0'
 
-      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_not_null] == '0'
+      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null] == '0'
 
       # делаем доступные параметры фильтров, чтобы их поместить их в параметр q «кнопки создать csv по фильтру»
       @params_q_to_csv = @params.permit(:sku_or_title_cont,
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
                                         :nkamin_id_not_null,
                                         :tmf_id_not_null,
                                         :shulepov_id_not_null,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_not_null)
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null)
     else
       @params = []
     end
@@ -194,7 +194,8 @@ class ProductsController < ApplicationController
                                       :kovcheg_id,
                                       :nkamin_id,
                                       :tmf_id,
-                                      :shulepov_id
+                                      :shulepov_id,
+                                      :realflame_id
                                       )
     end
 end

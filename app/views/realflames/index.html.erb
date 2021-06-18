@@ -28,6 +28,8 @@
       <%= f.search_field :quantity_eq, placeholder: 'Остаток: =', class: "form-control input-sm"%>
       <%= f.search_field :quantity_gt, placeholder: 'Остаток: >=', class: "form-control input-sm"%>
 
+      <%= render 'shared/filtersync', f: f %>
+
       <div class="form-inline form_search_distributor">
         <span class="form-group button_only_sync">
           <%= f.check_box :product_id_null, class: "form-check-input" %>

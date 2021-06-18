@@ -8,8 +8,9 @@ class Services::Syncronaize
       price_nkamin = product.nkamin.price.to_f if product.nkamin.present? && product.nkamin.price.present?
       price_tmf = product.tmf.price.to_f if product.tmf.present? && product.tmf.price.present?
       price_shulepov = product.shulepov.price.to_f if product.shulepov.present? && product.shulepov.price.present?
+      price_realflame = product.realflame.price.to_f if product.realflame.present? && product.realflame.price.present?
 
-      min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov].reject(&:nil?).min
+      min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame].reject(&:nil?).min
 
       # какую цену брать: минимальную минус один или из nkamin, у которой один не отнимаем
       min_price = min_price.nil? || (price_nkamin.present? && price_nkamin < min_price) ? price_nkamin : min_price - 1

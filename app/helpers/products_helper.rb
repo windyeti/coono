@@ -5,6 +5,7 @@ module ProductsHelper
       product.kovcheg.present? ||
       product.nkamin.present? ||
       product.tmf.present? ||
-      product.shulepov.present?
+      product.shulepov.present? ||
+      product.realflame.present?
   end
 end

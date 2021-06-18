@@ -37,6 +37,10 @@ every 1.day, :at => '23:00' do
 end
 
 
+every 1.day, :at => '00:50' do
+  runner "RealflameJob.perform_later"
+end
+
 every 1.day, :at => '01:30' do
   runner "ShulepovJob.perform_later"
 end
