@@ -21,7 +21,7 @@ class Services::CreateProductShulepov
   def self.get_product_links(category_url, category_path_name)
     doc = get_doc("#{category_url}?SHOWALL_1=1")
     # удаляем рекламный блок
-    doc.css('.bxr-list').last.unlink
+    doc.css('.bxr-list').last.unlink if doc.css('.bxr-list').size > 1
 
     product_urls = doc.css('.bxr-list .bxr-element-container .bxr-element-name a').map {|a| "https://shulepov.ru#{a['href']}"}
 

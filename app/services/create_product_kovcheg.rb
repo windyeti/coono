@@ -85,11 +85,11 @@ class Services::CreateProductKovcheg
 
 
       # ЗДЕСЬ ---- УДАЛЯЕТСЯ ЦЕЛЫЙ БЛОК& Ставим его здесь, когда уже все данные собраны
-      desc = doc.css('#content') rescue nil
-      if desc
-        desc.at('.productCard').unlink
-        desc = desc.inner_html.gsub(/<!--Карточка товара-->|<!--Видео-->|<!--Статья-->/,'').strip
-      end
+        doc_content = doc.at('#content') rescue nil
+        if doc_content
+          doc_content.at('.productCard').unlink rescue nil
+          desc = doc_content.inner_html.gsub(/<!--Карточка товара-->|<!--Видео-->|<!--Статья-->/,'').strip
+        end
 
       data = {
         fid: fid,
