@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
       @params.delete(:nkamin_id_not_null) if @params[:nkamin_id_not_null] == '0'
       @params.delete(:tmf_id_not_null) if @params[:tmf_id_not_null] == '0'
       @params.delete(:shulepov_id_not_null) if @params[:shulepov_id_not_null] == '0'
+      @params.delete(:realflame_id_not_null) if @params[:realflame_id_not_null] == '0'
 
       @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null] == '0'
 
@@ -27,6 +28,7 @@ class ProductsController < ApplicationController
                                         :nkamin_id_not_null,
                                         :tmf_id_not_null,
                                         :shulepov_id_not_null,
+                                        :realflame_id_not_null,
                                         :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null)
     else
       @params = []
