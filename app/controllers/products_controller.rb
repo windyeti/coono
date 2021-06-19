@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       @params_q_to_csv = @params.permit(:sku_or_title_cont,
                                         :distributor_eq,
                                         :quantity_gteq,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_eq,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_eq,
                                         :lit_kom_id_not_null,
                                         :kovcheg_id_not_null,
                                         :nkamin_id_not_null,
