@@ -68,14 +68,14 @@
 <!--      </div>-->
 
       <div class="dropdown">
+        <% attrs = ["lit_kom_id_not_null", "kovcheg_id_not_null"] %>
+        <% head = attrs.map {|attr| attr if @search.send(attr.to_sym) }.reject(&:nil?) %>
         <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-          Все товары
+          <%= head.present? ? head.join(', ') : "Все товары" %>
         </button>
         <ul class="dropdown-menu">
-          <% ["lit_kom_id_not_null", "kovcheg_id_not_null"].each do |attr| %>
+          <% attrs.each do |attr| %>
             <li class="dropdown-input dropdown-item">
-              <% p '====================================' %>
-              <% p @search.send(attr.to_sym) %>
               <%= check_box_tag("q[#{attr}]", 1, @search.send(attr.to_sym))%>
               <%= attr %>
             </li>
