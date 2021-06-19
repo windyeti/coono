@@ -1,15 +1,26 @@
-<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Sync/Unsync
-  </a>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <span class="form-group button_only_sync dropdown-item">
-            <%= f.check_box :product_id_not_null, class: "form-check-input" %>
-            <%= f.label :product_id_not_null, 'Sync', class: "form-check-label" %>
-          </span>
-    <span class="form-group button_only_sync dropdown-item">
-            <%= f.check_box :product_id_null, class: "form-check-input" %>
-      <%= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
-          </span>
-  </div>
+<div class="form-inline form_search_distributor">
+  <span class="form-group button_only_sync">
+    <%= f.check_box :product_id_not_null, class: "form-check-input" %>
+    <%= f.label :product_id_not_null, 'Sync', class: "form-check-label" %>
+  </span>
+  <span class="form-group button_only_sync">
+    <%= f.check_box :product_id_null, class: "form-check-input" %>
+    <%= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
+  </span>
 </div>
+
+<!--<div class="dropdown">-->
+<!--  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--    Sync/Unsync-->
+<!--  </a>-->
+<!--  <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <span class="form-group button_only_sync dropdown-item">-->
+            <%#= f.check_box :product_id_not_null, class: "form-check-input" %>
+            <%#= f.label :product_id_not_null, 'Sync', class: "form-check-label" %>
+<!--          </span>-->
+<!--    <span class="form-group button_only_sync dropdown-item">-->
+            <%#= f.check_box :product_id_null, class: "form-check-input" %>
+      <%#= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
+<!--          </span>-->
+<!--  </div>-->
+<!--</div>-->

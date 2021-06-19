@@ -32,40 +32,40 @@
 # set :output, "/log/cron.log"
 # set :chronic_options, :hours24 => true
 
-every 1.day, :at => '23:00' do
+every 1.day, :at => '00:00' do
   runner "ProductImportInsalesXmlJob.perform_later"
 end
 
 
-every 1.day, :at => '00:50' do
+every 1.day, :at => '00:10' do
   runner "RealflameJob.perform_later"
 end
 
-every 1.day, :at => '01:30' do
+every 1.day, :at => '00:50' do
   runner "ShulepovJob.perform_later"
 end
 
-every 1.day, :at => '02:30' do
+every 1.day, :at => '04:00' do
   runner "TmfJob.perform_later"
 end
 
-every 1.day, :at => '03:00' do
+every 1.day, :at => '04:30' do
   runner "NkaminJob.perform_later"
 end
 
-every 1.day, :at => '05:00' do
+every 1.day, :at => '06:30' do
   runner "KovchegJob.perform_later"
 end
 
-every 1.day, :at => '06:00' do
+every 1.day, :at => '07:30' do
   runner "LitKomJob.perform_later"
 end
 
 
-every 1.day, :at => '07:30' do
+every 1.day, :at => '08:30' do
   runner "SyncronaizeJob.perform_later"
 end
-every 1.day, :at => '07:45' do
+every 1.day, :at => '08:45' do
   runner "ExportCsvJob.perform_later"
 end
 
