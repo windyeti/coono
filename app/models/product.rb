@@ -1,6 +1,17 @@
 class Product < ApplicationRecord
   require 'open-uri'
 
+  DISTRIBUTOR = [
+    ["lit_kom_id_not_null", "Lit-kom"],
+    ["kovcheg_id_not_null", "Kovcheg"],
+    ["nkamin_id_not_null", "Nkamin"],
+    ["tmf_id_not_null", "Tmf"],
+    ["shulepov_id_not_null", "Shulepov"],
+    ["realflame_id_not_null", "Realflame"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_null", "Unsync"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null", "Sync"],
+  ]
+
   # TODO NewDistributor
   belongs_to :lit_kom, optional: true
   belongs_to :kovcheg, optional: true

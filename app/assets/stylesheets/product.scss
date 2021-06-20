@@ -1,6 +1,5 @@
 form {
   .editable {
-    //padding: 10px;
     background-color: #9fffb8;
   }
   span {
@@ -10,6 +9,10 @@ form {
     -moz-border-radius: 3px;
     border-radius: 3px;
     margin-left: 3px;
+  }
+  .sync_unsync {
+    background: #3e9926;
+    color: #ffffff;
   }
 }
 
@@ -21,14 +24,5 @@ form {
 .form-group.ml-2.button_group {
   span.oi {
     padding: 0;
-  }
-}
-.form_search_distributor {
-  span {
-    background: #99d098;
-  }
-  .button_only_sync {
-    background: #3e9926;
-    color: #ffffff;
   }
 }
