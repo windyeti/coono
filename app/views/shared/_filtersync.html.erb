@@ -1,13 +1,29 @@
-<div class="form-inline form_search_distributor">
-  <span class="form-group button_only_sync">
-    <%= f.check_box :product_id_not_null, class: "form-check-input" %>
-    <%= f.label :product_id_not_null, 'Sync', class: "form-check-label" %>
-  </span>
-  <span class="form-group button_only_sync">
-    <%= f.check_box :product_id_null, class: "form-check-input" %>
-    <%= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
-  </span>
+<div class="dropdown">
+  <% attrs = [["product_id_null", "Unsync"], ["product_id_not_null", "Sync"]] %>
+  <% head = attrs.map {|attr| attr[1] if @search.send(attr[0].to_sym) }.reject(&:nil?) %>
+  <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+    <%= head.present? ? head.join(', ') : "Все товары" %>
+  </button>
+  <ul class="dropdown-menu">
+    <% attrs.each do |attr| %>
+      <li class="dropdown-input dropdown-item">
+        <%= check_box_tag("q[#{attr[0]}]", 1, @search.send(attr[0].to_sym))%>
+        <%= attr[1] %>
+      </li>
+    <% end %>
+  </ul>
 </div>
+
+<!--<div class="form-inline form_search_distributor">-->
+<!--  <span class="form-group button_only_sync">-->
+    <%#= f.check_box :product_id_not_null, class: "form-check-input" %>
+    <%#= f.label :product_id_not_null, 'Sync', class: "form-check-label" %>
+<!--  </span>-->
+<!--  <span class="form-group button_only_sync">-->
+    <%#= f.check_box :product_id_null, class: "form-check-input" %>
+    <%#= f.label :product_id_null, 'Unsync', class: "form-check-label" %>
+<!--  </span>-->
+<!--</div>-->
 
 <!--<div class="dropdown">-->
 <!--  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -24,3 +40,5 @@
 <!--          </span>-->
 <!--  </div>-->
 <!--</div>-->
+
+

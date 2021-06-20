@@ -36,52 +36,52 @@
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
       <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
-<!--      <div class="form-inline form_search_distributor">-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :lit_kom_id_not_null, class: "form-check-input" %>
-          <%#= f.label :lit_kom_id_not_null, 'Lit-kom', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :kovcheg_id_not_null, class: "form-check-input" %>
-          <%#= f.label :kovcheg_id_not_null, 'Kovcheg', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :nkamin_id_not_null, class: "form-check-input" %>
-          <%#= f.label :nkamin_id_not_null, 'Nkamin', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :tmf_id_not_null, class: "form-check-input" %>
-          <%#= f.label :tmf_id_not_null, 'Tmf', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :shulepov_id_not_null, class: "form-check-input" %>
-          <%#= f.label :shulepov_id_not_null, 'Shulepov', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group">-->
-          <%#= f.check_box :realflame_id_not_null, class: "form-check-input" %>
-          <%#= f.label :realflame_id_not_null, 'Realflame', class: "form-check-label" %>
-<!--        </span>-->
-<!--        <span class="form-group button_only_sync">-->
-          <%#= f.check_box :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null, class: "form-check-input" %>
-          <%#= f.label :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null, 'Only sync', class: "form-check-label" %>
-<!--        </span>-->
-<!--      </div>-->
-
-      <div class="dropdown">
-        <% attrs = ["lit_kom_id_not_null", "kovcheg_id_not_null"] %>
-        <% head = attrs.map {|attr| attr if @search.send(attr.to_sym) }.reject(&:nil?) %>
-        <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-          <%= head.present? ? head.join(', ') : "Все товары" %>
-        </button>
-        <ul class="dropdown-menu">
-          <% attrs.each do |attr| %>
-            <li class="dropdown-input dropdown-item">
-              <%= check_box_tag("q[#{attr}]", 1, @search.send(attr.to_sym))%>
-              <%= attr %>
-            </li>
-          <% end %>
-        </ul>
+      <div class="form-inline form_search_distributor">
+        <span class="form-group">
+          <%= f.check_box :lit_kom_id_not_null, class: "form-check-input" %>
+          <%= f.label :lit_kom_id_not_null, 'Lit-kom', class: "form-check-label" %>
+        </span>
+        <span class="form-group">
+          <%= f.check_box :kovcheg_id_not_null, class: "form-check-input" %>
+          <%= f.label :kovcheg_id_not_null, 'Kovcheg', class: "form-check-label" %>
+        </span>
+        <span class="form-group">
+          <%= f.check_box :nkamin_id_not_null, class: "form-check-input" %>
+          <%= f.label :nkamin_id_not_null, 'Nkamin', class: "form-check-label" %>
+        </span>
+        <span class="form-group">
+          <%= f.check_box :tmf_id_not_null, class: "form-check-input" %>
+          <%= f.label :tmf_id_not_null, 'Tmf', class: "form-check-label" %>
+        </span>
+        <span class="form-group">
+          <%= f.check_box :shulepov_id_not_null, class: "form-check-input" %>
+          <%= f.label :shulepov_id_not_null, 'Shulepov', class: "form-check-label" %>
+        </span>
+        <span class="form-group">
+          <%= f.check_box :realflame_id_not_null, class: "form-check-input" %>
+          <%= f.label :realflame_id_not_null, 'Realflame', class: "form-check-label" %>
+        </span>
+        <span class="form-group button_only_sync">
+          <%= f.check_box :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null, class: "form-check-input" %>
+          <%= f.label :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null, 'Only sync', class: "form-check-label" %>
+        </span>
       </div>
+
+<!--      <div class="dropdown">-->
+        <%# attrs = ["lit_kom_id_not_null", "kovcheg_id_not_null"] %>
+        <%# head = attrs.map {|attr| attr if @search.send(attr.to_sym) }.reject(&:nil?) %>
+<!--        <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
+          <%#= head.present? ? head.join(', ') : "Все товары" %>
+<!--        </button>-->
+<!--        <ul class="dropdown-menu">-->
+          <%# attrs.each do |attr| %>
+<!--            <li class="dropdown-input dropdown-item">-->
+              <%#= check_box_tag("q[#{attr}]", 1, @search.send(attr.to_sym))%>
+              <%#= attr %>
+<!--            </li>-->
+          <%# end %>
+<!--        </ul>-->
+<!--      </div>-->
 
       <div class="form-group ml-2 button_group">
         <% f.submit 'Поиск', class: 'btn btn-info' %>
