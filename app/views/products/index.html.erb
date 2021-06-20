@@ -67,6 +67,22 @@
         </span>
       </div>
 
+<!--      <div class="dropdown">-->
+        <%# attrs = ["lit_kom_id_not_null", "kovcheg_id_not_null"] %>
+        <%# head = attrs.map {|attr| attr if @search.send(attr.to_sym) }.reject(&:nil?) %>
+<!--        <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">-->
+          <%#= head.present? ? head.join(', ') : "Все товары" %>
+<!--        </button>-->
+<!--        <ul class="dropdown-menu">-->
+          <%# attrs.each do |attr| %>
+<!--            <li class="dropdown-input dropdown-item">-->
+              <%#= check_box_tag("q[#{attr}]", 1, @search.send(attr.to_sym))%>
+              <%#= attr %>
+<!--            </li>-->
+          <%# end %>
+<!--        </ul>-->
+<!--      </div>-->
+
       <div class="form-group ml-2 button_group">
         <% f.submit 'Поиск', class: 'btn btn-info' %>
         <%= button_tag(type: 'submit', :class => "btn btn-info") do %><span class="oi oi-magnifying-glass"></span><% end %>
