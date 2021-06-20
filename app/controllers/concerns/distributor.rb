@@ -9,7 +9,7 @@ module Distributor
       # @params.delete(:product_id_null) if @params[:product_id_null] == "0"
       # @params.delete(:product_id_not_null) if @params[:product_id_not_null] == "0"
 
-      @params_q_to_csv = @params.permit(:id_eq, :title_or_sku_cont, :quantity_eq, :quantity_gt, :product_id_null, :product_id_not_null)
+      @params_q_to_csv = @params.permit(:id_eq, :title_or_sku_cont, :quantity_eq, :quantity_gt, :product_id_null, :product_id_not_null, :combinator)
     else
       @params = {}
     end
