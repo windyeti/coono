@@ -58,10 +58,11 @@ class Services::CreateCategoryTmf
 
       if current_top_level
         link = doc_subcategory['href']
-        name = doc_subcategory.text.strip.gsub("/","&#47;")
+        doc_subcategory.at(".grey").unlink
+        name = doc_subcategory.text.strip.gsub("/","&#47;").gsub(/ /, "")
       else
         link = doc_subcategory['href']
-        name = doc_subcategory.text.strip.gsub("/","&#47;")
+        name = doc_subcategory.text.strip.gsub("/","&#47;").gsub(/ /, "")
       end
 
       result << {

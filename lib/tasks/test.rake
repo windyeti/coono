@@ -7,10 +7,16 @@ namespace :p do
     # link = 'https://t-m-f.ru/catalog-new/model/komplektuyushchie_dlya_pechey/chugunnye_kruzhki/#1931'
     # link = 'https://t-m-f.ru/catalog-new/mod/lyuvers_f76_dotsent_inox/'
     # link = 'https://t-m-f.ru/catalog-new/mod/lyuvers_f57_inzhener_inox/'
-    link = 'https://t-m-f.ru/catalog-new/model/komplektuyushchie_dlya_pechey/lyuversy_na_pechi/#1931'
+    link = 'https://t-m-f.ru/catalog-new'
+    doc = rest_client_get link
+    selector_top_level = '.catalog_section_list .section_info li.name a'
+    doc_subcategories = doc.css(selector_top_level)
 
-    doc = rest_client_get(link)
-    p doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
+    doc_subcategories.each do |doc_subcategory|
+      doc_subcategory.at(".grey").unlink
+      p doc_subcategory.text.strip.gsub("/","&#47;").gsub(/ /, "")
+    end
+
   end
 
   task t: :environment do
