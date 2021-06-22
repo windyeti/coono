@@ -4,25 +4,26 @@ namespace :p do
   # include Capybara::DSL
 
   task p: :environment do
-    link = 'https://realflame.ru/kaminnye-drovniki/9-10000bk-drovnik'
+    # link = 'https://t-m-f.ru/catalog-new/model/komplektuyushchie_dlya_pechey/chugunnye_kruzhki/#1931'
+    # link = 'https://t-m-f.ru/catalog-new/mod/lyuvers_f76_dotsent_inox/'
+    # link = 'https://t-m-f.ru/catalog-new/mod/lyuvers_f57_inzhener_inox/'
+    link = 'https://t-m-f.ru/catalog-new/model/komplektuyushchie_dlya_pechey/lyuversy_na_pechi/#1931'
 
     doc = rest_client_get(link)
-    p get_pict(doc)
+    p doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
   end
 
   task t: :environment do
 
   end
 
-  def get_pict(doc)
+  def get_pict_vars(doc)
     result = []
-    doc_picts = doc.css('.wrapp_thumbs li')
+    doc_picts = doc.css('.mod_content .left img')
     if doc_picts.present?
       result = doc_picts.map do |doc_pict|
-        "https://t-m-f.ru#{doc_pict['data-big_img']}" if doc_pict['data-big_img'].present?
+        "https://t-m-f.ru#{doc_pict['src']}" if doc_pict['src'].present?
       end
-    elsif doc.at('.item_main_info img')
-      result << "https://t-m-f.ru#{doc.at('.item_main_info img')['src']}"
     else
       nil
     end

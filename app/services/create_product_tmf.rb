@@ -44,10 +44,10 @@ class Services::CreateProductTmf
 
     get_product_data(product_link, category_path_name)
 
-    skus = get_sku(product_link)
-    if skus
-      skus.each do |sku|
-        get_product_data(sku[:product_link], category_path_name)
+    skus_links = get_sku(product_link)
+    if skus_links.present?
+      skus_links.each do |sku_link|
+        get_product_data(sku_link, category_path_name, false)
       end
     end
     end
@@ -78,7 +78,9 @@ class Services::CreateProductTmf
         "#{name}: #{value}"
       end.join(' --- ')
       sku = nil
-      price = doc.at('.price i').text.strip.gsub(" ", "") rescue nil
+      price = doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
+      pict = get_pict_main(doc)
+      quantity = nil
     else
       desc = nil
       sdesc = nil
@@ -90,16 +92,12 @@ class Services::CreateProductTmf
         "#{name}: #{value}"
       end.join(' --- ')
       sku = doc.at('.top-part .right').text.strip.gsub("Артикул: ", "") rescue nil
-      price = doc.at('.price p').text.strip.gsub(" ", "") rescue nil
+      price = doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
+      pict = get_pict_vars(doc)
+      quantity = nil
     end
 
-
-    pict = get_pict(doc)
-
-    quantity = nil
-
     title = doc.at('#pagetitle').text.strip rescue nil
-
 
     link = product_link
     p4 = category_path_name
@@ -131,7 +129,6 @@ class Services::CreateProductTmf
       mdesc: mdesc,
       mkeyw: mkeyw
     }
-
     if tov.present?
       p '================ UPDATE ================'
       update_product(tov, data)
@@ -149,8 +146,9 @@ class Services::CreateProductTmf
       p "Нет такой страницы #{product_link}"
       return
     end
-
-
+    vars_links = doc.css(".tabs_section .tabs_content.tabs-body .modification").css(" a").map {|a| "https://t-m-f.ru#{a['href']}"}
+    p vars_links.count
+    p vars_links
   end
 
   def self.update_product(tov, data)
@@ -178,7 +176,7 @@ class Services::CreateProductTmf
     end
   end
 
-  def self.get_pict(doc)
+  def self.get_pict_main(doc)
     result = []
     doc_picts = doc.css('.wrapp_thumbs li')
     if doc_picts.present?
@@ -187,6 +185,19 @@ class Services::CreateProductTmf
       end
     elsif doc.at('.item_main_info img')
       result << "https://t-m-f.ru#{doc.at('.item_main_info img')['src']}"
+    else
+      nil
+    end
+    result.join(' ')
+  end
+
+  def self.get_pict_vars(doc)
+    result = []
+    doc_picts = doc.css('.mod_content .left img')
+    if doc_picts.present?
+      result = doc_picts.map do |doc_pict|
+        "https://t-m-f.ru#{doc_pict['src']}" if doc_pict['src'].present?
+      end
     else
       nil
     end
