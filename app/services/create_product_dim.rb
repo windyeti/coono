@@ -1,6 +1,5 @@
 class Services::CreateProductDim
   def self.call
-    # TODO сделать по-умолчанию check: true
     Dim.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryDim.first)
   end
@@ -14,53 +13,54 @@ class Services::CreateProductDim
       get_category(subordinate)
     end
 
-    get_product_links(category.link, category.category_path)
+    get_product(category.link, category.category_path)
     category.update(parsing: true)
   end
 
-  def self.get_product_links(category_url, category_path_name)
-    doc = get_doc("https://dimplex.ru#{category_url}?SHOWALL_1=1")
-
-    product_urls = doc.css('#append-list ul li > div > a').map {|a| "https://dimplex.ru#{a['href']}"}
-p product_urls
-p product_urls.count
-    # get_product(product_urls, category_path_name)
-  end
-
-  def self.get_product(product_urls, category_path_name)
-    product_urls.each do |product_link|
-
+  def self.get_product(product_link, category_path_name)
       p "START <<<< начали собирать данные по продукту #{product_link}"
       begin
         doc = get_doc(product_link)
       rescue
         p "Нет такой страницы #{product_link}"
-        next
+        return
       end
 
-      fid = doc.at('.bxr-basket-item-id') ? doc.at('.bxr-basket-item-id')['value'] : doc.at('.bxr-subscribe-wrap > span')['data-item']
+      return if doc.at('.price').nil? || doc.at('.hdr-block.def h1').text.strip.include?("Каминокомплект")
+
+      title = doc.at('.hdr-block.def h1').text.strip
+
+      fid = title
 
       tov = Dim.find_by(fid: fid)
 
       sku = nil
 
-      p1 = doc.css('.bxr-detail-props tr').map do |doc_tr|
-        tds = doc_tr.css('td')
-        "#{tds[0].text.strip}: #{tds[1].text.strip}"
-      end.join(' --- ')
+      p1 = if doc.at('#paramList')
+                doc_text_block = doc.at('#paramList')
+                result = []
+                doc_dts = doc_text_block.css('dt')
+                doc_dds = doc_text_block.css('dd')
+                doc_dts.each_with_index { |doc_dt, index| result << "#{doc_dt.text.strip}: #{doc_dds[index].text.strip}"}
+                result.join(' --- ')
+              else
+                nil
+              end
 
       pict = get_pict(doc)
 
-      quantity = doc.css('.bxr-instock-wrap').text.strip rescue nil
+      quantity = nil
 
-      title = doc.at('h1[itemprop="name"]').text.strip rescue nil
-      desc = doc.css('#bxr-detail-block-wrap').inner_html rescue nil
-      price = doc.at('.bxr-market-current-price').text.strip.gsub(/руб|\s/, "") rescue nil
+      desc = doc.at('#fld-desc').inner_html.strip rescue nil
+      price = doc.at('meta[itemprop="price"]')['content'] rescue nil
       oldprice = nil
       link = product_link
-      p4 = category_path_name
 
-      categories = category_path_name.split('/')
+      categories_without_product = category_path_name.split('/')
+      categories_without_product.pop
+      categories = categories_without_product
+      p4 = categories_without_product.join('/')
+
       mtitle = doc.at('title').text.strip rescue nil
       mdesc = doc.at('meta[name="description"]')['content'] rescue nil
       mkeyw = doc.at('meta[name="keywords"]')['content'] rescue nil
@@ -95,7 +95,6 @@ p product_urls.count
         create_product(data)
       end
       "END <<<< закончили собирать данные на продукт:: #{product_link}"
-    end
     p "Total: #{Dim.count}"
   end
 
@@ -126,10 +125,11 @@ p product_urls.count
 
   def self.get_pict(doc)
     result = []
-    doc_picts = doc.css('.ax-element-slider-main a')
+    doc_picts = doc.css('.prod-thumb a')
     if doc_picts.present?
       result = doc_picts.map do |doc_pict|
-        "https://shulepov.ru#{doc_pict['href']}"
+        url = doc_pict['href']
+        url[/http|https/] ? url : "https://dimplex.ru#{url}"
       end
     else
       nil

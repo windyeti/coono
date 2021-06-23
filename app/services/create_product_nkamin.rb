@@ -1,7 +1,6 @@
 class Services::CreateProductNkamin
   def self.call(category)
     # НЕТ КАТЕГОРИЙ !!!
-    # TODO сделать по-умолчанию check: true
     Nkamin.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(category)
   end

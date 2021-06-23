@@ -1,6 +1,5 @@
 class Services::CreateProductLitKom
   def self.call
-    # TODO сделать по-умолчанию check: true
     LitKom.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryLitKom.first)
   end

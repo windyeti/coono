@@ -1,6 +1,5 @@
 class Services::CreateProductShulepov
   def self.call
-    # TODO сделать по-умолчанию check: true
     Shulepov.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryShulepov.first)
   end

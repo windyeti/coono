@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   require 'open-uri'
 
+  # TODO NewDistributor
   DISTRIBUTOR = [
     ["lit_kom_id_not_null", "Lit-kom"],
     ["kovcheg_id_not_null", "Kovcheg"],
@@ -8,8 +9,9 @@ class Product < ApplicationRecord
     ["tmf_id_not_null", "Tmf"],
     ["shulepov_id_not_null", "Shulepov"],
     ["realflame_id_not_null", "Realflame"],
-    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_null", "Unsync"],
-    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null", "Sync"],
+    ["dim_id_not_null", "Dimplex"],
+    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_null", "Unsync"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_not_null", "Sync"],
   ]
 
   # TODO NewDistributor

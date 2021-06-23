@@ -1,0 +1,5 @@
+<% if product.dim.present? %>
+  <p>ID: <strong><%= best_in_place product, :dim_id, :as => :input %></strong><br>остаток: <%= product.dim&.quantity %><br>цена: <%= product.dim&.price %></p>
+<% else %>
+  <p>ID: <%= best_in_place product, :dim_id, :as => :input %></p>
+<% end %>

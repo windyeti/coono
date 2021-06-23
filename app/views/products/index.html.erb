@@ -79,6 +79,7 @@
       <th>Tmf</th>
       <th>Shulepov</th>
       <th>Realflame</th>
+      <th>Dimplex</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -105,6 +106,7 @@
         <td><%= render 'distributor_tmf', product: product %></td>
         <td><%= render 'distributor_shulepov', product: product %></td>
         <td><%= render 'distributor_realflame', product: product %></td>
+        <td><%= render 'distributor_dimplex', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -126,6 +128,7 @@
           <% if product.tmf.present? %><p><%= link_to '<span class="oi oi-eye"></span> Tmf'.html_safe, product.tmf.link , target: 'blank' %></p><%end%>
           <% if product.shulepov.present? %><p><%= link_to '<span class="oi oi-eye"></span> Shulepov'.html_safe, product.shulepov.link , target: 'blank' %></p><%end%>
           <% if product.realflame.present? %><p><%= link_to '<span class="oi oi-eye"></span> Realflame'.html_safe, product.realflame.link , target: 'blank' %></p><%end%>
+          <% if product.dim.present? %><p><%= link_to '<span class="oi oi-eye"></span> Dimplex'.html_safe, product.dim.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->

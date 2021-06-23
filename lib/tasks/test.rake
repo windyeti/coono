@@ -4,23 +4,39 @@ namespace :p do
   # include Capybara::DSL
 
   task p: :environment do
+    # doc = get_doc 'https://dimplex.ru/catalog/ochag-revillusion-rlg20/'
     doc = get_doc 'https://dimplex.ru/catalog/otdelnostoyashchie-ochagi/'
-    p doc.css('.loader ul')
-    # p doc.css('#append-list ul li > div > a')
-    # p product_urls = doc.css('#append-list ul li > div > a').map {|a| "https://dimplex.ru#{a['href']}"}
+    p get_pict(doc)
+    # p price = doc.at('#combo-price') ? doc.at('#combo-price .price > span').text.strip.gsub(/\s/,'') : doc.at('#price .price > span').text.strip.gsub(/\s/,'')
 
+    # p title = doc.at('.hdr-block.def h1').text.strip
+    # p desc = doc.at('#fld-desc').inner_html.strip
+
+    # p props = if doc.at('#paramList')
+    #               doc_text_block = doc.at('#paramList')
+    #               result = []
+    #               doc_dts = doc_text_block.css('dt')
+    #               doc_dds = doc_text_block.css('dd')
+    #               doc_dts.each_with_index { |doc_dt, index| result << "#{doc_dt.text.strip}: #{doc_dds[index].text.strip}"}
+    #               result.join(' --- ')
+    #           else
+    #             nil
+    #           end
   end
 
   task t: :environment do
-
+    doc = get_doc('https://dimplex.ru/map')
+    p doc.css('.content.black-link > ul > li:nth-child(1) > ul > li > a').map(&:text)
+    # p doc.css('.content.black-link > ul > li.first-child li')
   end
 
-  def get_pict_vars(doc)
+  def get_pict(doc)
     result = []
-    doc_picts = doc.css('.mod_content .left img')
+    doc_picts = doc.css('.prod-thumb a')
     if doc_picts.present?
       result = doc_picts.map do |doc_pict|
-        "https://t-m-f.ru#{doc_pict['src']}" if doc_pict['src'].present?
+        url = doc_pict['href']
+        url[/http|https/] ? url : "https://dimplex.ru#{url}"
       end
     else
       nil

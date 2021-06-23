@@ -1,6 +1,5 @@
 class Services::CreateProductTmf
   def self.call
-    # TODO сделать по-умолчанию check: true
     Tmf.all.each {|tov| tov.update(check: false, quantity: "0")}
     get_category(CategoryTmf.first)
   end

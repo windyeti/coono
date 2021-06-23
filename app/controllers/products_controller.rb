@@ -17,23 +17,25 @@ class ProductsController < ApplicationController
       @params.delete(:tmf_id_not_null) if @params[:tmf_id_not_null] == '0'
       @params.delete(:shulepov_id_not_null) if @params[:shulepov_id_not_null] == '0'
       @params.delete(:realflame_id_not_null) if @params[:realflame_id_not_null] == '0'
+      @params.delete(:dim_id_not_null) if @params[:dim_id_not_null] == '0'
 
-      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null] == '0'
-      @params.delete(:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_null) if @params[:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_null] == '0'
+      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_not_null] == '0'
+      @params.delete(:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_null) if @params[:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_null] == '0'
 
       # делаем доступные параметры фильтров, чтобы их поместить их в параметр q «кнопки создать csv по фильтру»
       @params_q_to_csv = @params.permit(:sku_or_title_cont,
                                         :distributor_eq,
                                         :quantity_gteq,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_eq,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_eq,
                                         :lit_kom_id_not_null,
                                         :kovcheg_id_not_null,
                                         :nkamin_id_not_null,
                                         :tmf_id_not_null,
                                         :shulepov_id_not_null,
                                         :realflame_id_not_null,
-                                        :lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_null,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_not_null,
+                                        :dim_id_not_null,
+                                        :lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_null,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_not_null,
                                         :combinator
                                         )
     else
@@ -203,7 +205,8 @@ class ProductsController < ApplicationController
                                       :nkamin_id,
                                       :tmf_id,
                                       :shulepov_id,
-                                      :realflame_id
+                                      :realflame_id,
+                                      :dim_id
                                       )
     end
 end
