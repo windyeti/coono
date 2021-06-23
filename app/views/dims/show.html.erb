@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @dim.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @dim.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @dim.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @dim.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @dim.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @dim.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @dim.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @dim.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @dim.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', dims_path %>
