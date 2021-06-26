@@ -12,8 +12,9 @@ class Services::Syncronaize
         price_shulepov = product.shulepov.price.to_f if product.shulepov.present? && product.shulepov.price.present?
         price_realflame = product.realflame.price.to_f if product.realflame.present? && product.realflame.price.present?
         price_dim = product.dim.price.to_f if product.dim.present? && product.dim.price.present?
+        price_sawo = product.sawo.price.to_f if product.sawo.present? && product.sawo.price.present?
 
-        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim].reject(&:nil?).min
+        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo].reject(&:nil?).min
       end
 
       product.price = price_nkamin || (min_price ? min_price - 1 : nil) || 0

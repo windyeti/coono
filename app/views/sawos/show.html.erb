@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @sawo.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @sawo.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @sawo.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @sawo.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @sawo.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @sawo.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @sawo.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @sawo.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @sawo.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', sawos_path %>

@@ -32,13 +32,17 @@
 # set :output, "/log/cron.log"
 # set :chronic_options, :hours24 => true
 
-every 1.day, :at => '22:40' do
+every 1.day, :at => '22:10' do
   runner "ProductImportInsalesXmlJob.perform_later"
 end
 
 
+every 1.day, :at => '22:20' do
+  runner "SawoJob.perform_later"
+end
+
 every 1.day, :at => '22:50' do
-  runner "RealflameJob.perform_later"
+  runner "DimJob.perform_later"
 end
 
 every 1.day, :at => '23:00' do
