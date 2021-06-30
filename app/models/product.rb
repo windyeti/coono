@@ -11,8 +11,9 @@ class Product < ApplicationRecord
     ["realflame_id_not_null", "Realflame"],
     ["dim_id_not_null", "Dimplex"],
     ["sawo_id_not_null", "Sawo"],
-    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_null", "Unsync"],
-    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_not_null", "Sync"],
+    ["saunaru_id_not_null", "Saunaru"],
+    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_null", "Unsync"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_not_null", "Sync"],
   ]
 
   # TODO NewDistributor
@@ -24,6 +25,7 @@ class Product < ApplicationRecord
   belongs_to :realflame, optional: true
   belongs_to :dim, optional: true
   belongs_to :sawo, optional: true
+  belongs_to :saunaru, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }
@@ -81,6 +83,12 @@ class Product < ApplicationRecord
       sawo = Sawo.find_by(id: sawo_id)
       if sawo.nil? || (sawo.product.present? && sawo.product != self)
         errors.add(:sawo_id, "Товар поставщика Sawo не существует или он уже связан с другим товаром")
+      end
+    end
+    if saunaru_id.present?
+      saunaru = Saunaru.find_by(id: saunaru_id)
+      if saunaru.nil? || (saunaru.product.present? && saunaru.product != self)
+        errors.add(:saunaru_id, "Товар поставщика Saunaru не существует или он уже связан с другим товаром")
       end
     end
   end

@@ -1,7 +1,7 @@
 namespace :print_category do
 
   task start: :environment do
-    print_category(CategorySawo.first, 0)
+    print_category(CategorySaunaru.first, 0)
   end
 
   def print_category(category, n)

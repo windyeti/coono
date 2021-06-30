@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @saunaru.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @saunaru.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @saunaru.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @saunaru.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @saunaru.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @saunaru.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @saunaru.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @saunaru.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @saunaru.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', saunarus_path %>

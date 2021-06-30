@@ -8,6 +8,7 @@ module ProductsHelper
       product.shulepov.present? ||
       product.realflame.present? ||
       product.dim.present? ||
-      product.sawo.present?
+      product.sawo.present? ||
+      product.saunaru.present?
   end
 end
