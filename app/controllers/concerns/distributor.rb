@@ -4,7 +4,7 @@ module Distributor
   def index
     if params[:q].present?
       @params = params[:q]
-      @params[:combinator] = 'or'
+      # @params[:combinator] = 'or'
 
       # @params.delete(:product_id_null) if @params[:product_id_null] == "0"
       # @params.delete(:product_id_not_null) if @params[:product_id_not_null] == "0"
