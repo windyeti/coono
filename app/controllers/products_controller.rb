@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   def index
     if params[:q]
       @params = params[:q]
-      @params[:combinator] = 'or'
+      # @params[:combinator] = 'or'
 
       @params.delete(:lit_kom_id_not_null) if @params[:lit_kom_id_not_null] == '0'
       @params.delete(:kovcheg_id_not_null) if @params[:kovcheg_id_not_null] == '0'
@@ -38,8 +38,8 @@ class ProductsController < ApplicationController
                                         :sawo_id_not_null,
                                         :saunaru_id_not_null,
                                         :lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_null,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_not_null,
-                                        :combinator
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_not_null
+                                        # :combinator
                                         )
     else
       @params = []
