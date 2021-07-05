@@ -31,7 +31,7 @@
       <%= f.search_field :sku_or_title_cont, placeholder: 'Артикул, Название', class: "form-control input-sm"%>
       <%= f.collection_select :distributor_eq, Product.select(:distributor).uniq.order('distributor ASC'), 'distributor', 'distributor', {include_blank: false, prompt: 'Производитель'}, class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="dropdown">
         <% head = Product::DISTRIBUTOR.map {|attr| attr[1] if @search.send(attr[0].to_sym) }.reject(&:nil?) %>
