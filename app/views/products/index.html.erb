@@ -79,6 +79,7 @@
       <th>Dimplex</th>
       <th>Sawo</th>
       <th>Saunaru</th>
+      <th>Teplodar</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -108,6 +109,7 @@
         <td><%= render 'distributor_dimplex', product: product %></td>
         <td><%= render 'distributor_sawo', product: product %></td>
         <td><%= render 'distributor_saunaru', product: product %></td>
+        <td><%= render 'distributor_teplodar', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -132,6 +134,7 @@
           <% if product.dim.present? %><p><%= link_to '<span class="oi oi-eye"></span> Dimplex'.html_safe, product.dim.link , target: 'blank' %></p><%end%>
           <% if product.sawo.present? %><p><%= link_to '<span class="oi oi-eye"></span> Sawo'.html_safe, product.sawo.link , target: 'blank' %></p><%end%>
           <% if product.saunaru.present? %><p><%= link_to '<span class="oi oi-eye"></span> Saunaru'.html_safe, product.saunaru.link , target: 'blank' %></p><%end%>
+          <% if product.teplodar.present? %><p><%= link_to '<span class="oi oi-eye"></span> Teplodar'.html_safe, product.teplodar.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->

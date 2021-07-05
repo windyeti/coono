@@ -1,0 +1,2 @@
+module TeplodarsHelper
+end

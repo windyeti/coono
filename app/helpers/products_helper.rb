@@ -9,6 +9,7 @@ module ProductsHelper
       product.realflame.present? ||
       product.dim.present? ||
       product.sawo.present? ||
-      product.saunaru.present?
+      product.saunaru.present? ||
+      product.teplodar.present?
   end
 end

@@ -18,6 +18,7 @@ class Services::ExportCsv
                  .or(Product.where.not(dim: nil))
                  .or(Product.where.not(sawo: nil))
                  .or(Product.where.not(saunaru: nil))
+                 .or(Product.where.not(teplodar: nil))
                  .order(:id)
 
     CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|

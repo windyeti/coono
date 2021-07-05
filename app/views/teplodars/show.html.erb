@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @teplodar.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @teplodar.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @teplodar.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @teplodar.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @teplodar.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @teplodar.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @teplodar.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @teplodar.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @teplodar.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', teplodars_path %>

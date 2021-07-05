@@ -66,6 +66,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :teplodars do
+    collection do
+      get :parsing
+    end
+  end
+
   resources :products do
     collection do
       get :create_csv
