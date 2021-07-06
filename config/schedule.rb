@@ -32,12 +32,12 @@
 # set :output, "/log/cron.log"
 # set :chronic_options, :hours24 => true
 
-every 1.day, :at => '21:10' do
+every 1.day, :at => '21:20' do
   runner "ProductImportInsalesXmlJob.perform_later"
 end
 
 
-every 1.day, :at => '21:20' do
+every 1.day, :at => '21:30' do
   runner "TeplodarJob.perform_later"
 end
 

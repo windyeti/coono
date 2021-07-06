@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       @params_q_to_csv = @params.permit(:sku_or_title_cont,
                                         :distributor_eq,
                                         :quantity_gteq,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_eq,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_eq,
                                         :lit_kom_id_not_null,
                                         :kovcheg_id_not_null,
                                         :nkamin_id_not_null,
@@ -196,26 +196,33 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # TODO NewDistributor
-    def set_product
-      @product = Product.includes(:lit_kom, :kovcheg).find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  # TODO NewDistributor
+  def set_product
+    @product = Product.includes(:lit_kom, :kovcheg).find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    # TODO NewDistributor
-    def product_params
-      params.require(:product).permit(:sku, :title, :desc, :cat, :oldprice, :price, :quantity, :image, :url,
-                                      :lit_kom_id,
-                                      :kovcheg_id,
-                                      :nkamin_id,
-                                      :tmf_id,
-                                      :shulepov_id,
-                                      :realflame_id,
-                                      :dim_id,
-                                      :sawo_id,
-                                      :saunaru_id,
-                                      :teplodar_id
-                                      )
-    end
+  # Only allow a list of trusted parameters through.
+  # TODO NewDistributor
+  def product_params
+    params.require(:product).permit(:sku, :title, :desc, :cat, :oldprice, :price, :quantity, :image, :url,
+                                    :lit_kom_id,
+                                    :kovcheg_id,
+                                    :nkamin_id,
+                                    :tmf_id,
+                                    :shulepov_id,
+                                    :realflame_id,
+                                    :dim_id,
+                                    :sawo_id,
+                                    :saunaru_id,
+                                    :teplodar_id
+                                    )
+  end
+
+  def make_symbol(combinator, ending)
+    body = Product::DISTRIBUTOR.map do |distributor|
+      distributor[0]
+    end.join("_#{combinator}_")
+    "#{body}_#{ending}"
+  end
 end

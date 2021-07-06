@@ -131,7 +131,7 @@ class Services::CreateProductTeplodar
 
       quantity = nil
 
-      price = button['data-price'] rescue nil
+      price = button && button['data-price'] ? button['data-price'] : doc.at('.card-page-product-price-block__price').text.strip.gsub(/\s|&nbsp;| |руб./, "")
 
       desc = doc.at('.page-card-description-section').inner_html.gsub(/\s+/, " ") rescue nil
 

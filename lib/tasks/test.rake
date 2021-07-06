@@ -5,9 +5,7 @@ namespace :p do
 
   task p: :environment do
     doc = get_doc 'https://www.teplodar.ru/catalog/detail/kuban_20_l_panorama/'
-    p button = doc.at('.add-cart-button').present?
-    p button = doc.at('.add-cart-button')['data-name'].nil?
-    p button = doc.at('.add-cart-button')['data-name'].empty?
+p doc.at('.card-page-product-price-block__price').text.strip.gsub(/\s|&nbsp;| |руб./, "")
 
   end
 
