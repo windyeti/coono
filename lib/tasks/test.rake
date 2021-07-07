@@ -4,8 +4,9 @@ namespace :p do
   # include Capybara::DSL
 
   task p: :environment do
-    doc = get_doc 'https://www.teplodar.ru/catalog/detail/kuban_20_l_panorama/'
-p doc.at('.card-page-product-price-block__price').text.strip.gsub(/\s|&nbsp;| |руб./, "")
+    doc = get_doc 'https://www.teplodar.ru/catalog/detail/rus_12_lu/'
+# p doc.at('.card-page-product-price-block__price')
+p doc.at('title')
 
   end
 
