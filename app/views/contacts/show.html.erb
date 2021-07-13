@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @contact.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @contact.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @contact.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @contact.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @contact.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @contact.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @contact.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @contact.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @contact.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', contacts_path %>

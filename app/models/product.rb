@@ -13,8 +13,9 @@ class Product < ApplicationRecord
     ["sawo_id_not_null", "Sawo"],
     ["saunaru_id_not_null", "Saunaru"],
     ["teplodar_id_not_null", "Teplodar"],
-    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_null", "Unsync"],
-    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_not_null", "Sync"],
+    ["contact_id_not_null", "ContactPlus"],
+    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_null", "Unsync"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_not_null", "Sync"],
   ]
 
   # TODO NewDistributor
@@ -28,6 +29,7 @@ class Product < ApplicationRecord
   belongs_to :sawo, optional: true
   belongs_to :saunaru, optional: true
   belongs_to :teplodar, optional: true
+  belongs_to :contact, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }
@@ -97,6 +99,12 @@ class Product < ApplicationRecord
       teplodar = Teplodar.find_by(id: teplodar_id)
       if teplodar.nil? || (teplodar.product.present? && teplodar.product != self)
         errors.add(:teplodar_id, "Товар поставщика Teplodar не существует или он уже связан с другим товаром")
+      end
+    end
+    if contact_id.present?
+      contact = Contact.find_by(id: contact_id)
+      if contact.nil? || (contact.product.present? && contact.product != self)
+        errors.add(:contact_id, "Товар поставщика Contact не существует или он уже связан с другим товаром")
       end
     end
   end

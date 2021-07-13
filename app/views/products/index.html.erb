@@ -31,7 +31,7 @@
       <%= f.search_field :sku_or_title_cont, placeholder: 'Артикул, Название', class: "form-control input-sm"%>
       <%= f.collection_select :distributor_eq, Product.select(:distributor).uniq.order('distributor ASC'), 'distributor', 'distributor', {include_blank: false, prompt: 'Производитель'}, class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="dropdown">
         <% head = Product::DISTRIBUTOR.map {|attr| attr[1] if @search.send(attr[0].to_sym) }.reject(&:nil?) %>
@@ -80,6 +80,7 @@
       <th>Sawo</th>
       <th>Saunaru</th>
       <th>Teplodar</th>
+      <th>ContactPlus</th>
       <th>Всего остатков</th>
       <th>Desc</th>
       <th>Параметры</th>
@@ -110,6 +111,7 @@
         <td><%= render 'distributor_sawo', product: product %></td>
         <td><%= render 'distributor_saunaru', product: product %></td>
         <td><%= render 'distributor_teplodar', product: product %></td>
+        <td><%= render 'distributor_contact', product: product %></td>
 
         <td><%= product.quantity %></td>
         <td><%= product.desc.truncate(25) if product.desc != nil%></td>
@@ -135,6 +137,7 @@
           <% if product.sawo.present? %><p><%= link_to '<span class="oi oi-eye"></span> Sawo'.html_safe, product.sawo.link , target: 'blank' %></p><%end%>
           <% if product.saunaru.present? %><p><%= link_to '<span class="oi oi-eye"></span> Saunaru'.html_safe, product.saunaru.link , target: 'blank' %></p><%end%>
           <% if product.teplodar.present? %><p><%= link_to '<span class="oi oi-eye"></span> Teplodar'.html_safe, product.teplodar.link , target: 'blank' %></p><%end%>
+          <% if product.contact.present? %><p><%= link_to '<span class="oi oi-eye"></span> Contact'.html_safe, product.contact.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
 <!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>-->

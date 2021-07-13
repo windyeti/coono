@@ -10,6 +10,7 @@ module ProductsHelper
       product.dim.present? ||
       product.sawo.present? ||
       product.saunaru.present? ||
-      product.teplodar.present?
+      product.teplodar.present? ||
+      product.contact.present?
   end
 end
