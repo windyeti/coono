@@ -1,0 +1,2 @@
+class CategoryTeplomarket < ApplicationRecord
+end
