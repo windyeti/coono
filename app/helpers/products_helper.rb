@@ -11,6 +11,7 @@ module ProductsHelper
       product.sawo.present? ||
       product.saunaru.present? ||
       product.teplodar.present? ||
-      product.contact.present?
+      product.contact.present? ||
+      product.teplomarket.present?
   end
 end

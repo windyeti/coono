@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210712172229) do
+ActiveRecord::Schema.define(version: 20210717123728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,17 @@ ActiveRecord::Schema.define(version: 20210712172229) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.index ["boss_id"], name: "index_category_teplodars_on_boss_id", using: :btree
+  end
+
+  create_table "category_teplomarkets", force: :cascade do |t|
+    t.integer  "boss_id"
+    t.string   "name"
+    t.string   "link"
+    t.string   "category_path"
+    t.boolean  "parsing",       default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["boss_id"], name: "index_category_teplomarkets_on_boss_id", using: :btree
   end
 
   create_table "category_tmfs", force: :cascade do |t|
@@ -389,6 +400,7 @@ ActiveRecord::Schema.define(version: 20210712172229) do
     t.integer  "saunaru_id"
     t.integer  "teplodar_id"
     t.integer  "contact_id"
+    t.integer  "teplomarket_id"
     t.index ["contact_id"], name: "index_products_on_contact_id", using: :btree
     t.index ["dim_id"], name: "index_products_on_dim_id", using: :btree
     t.index ["kovcheg_id"], name: "index_products_on_kovcheg_id", using: :btree
@@ -399,6 +411,7 @@ ActiveRecord::Schema.define(version: 20210712172229) do
     t.index ["sawo_id"], name: "index_products_on_sawo_id", using: :btree
     t.index ["shulepov_id"], name: "index_products_on_shulepov_id", using: :btree
     t.index ["teplodar_id"], name: "index_products_on_teplodar_id", using: :btree
+    t.index ["teplomarket_id"], name: "index_products_on_teplomarket_id", using: :btree
     t.index ["tmf_id"], name: "index_products_on_tmf_id", using: :btree
   end
 
@@ -612,6 +625,48 @@ ActiveRecord::Schema.define(version: 20210712172229) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "teplomarkets", force: :cascade do |t|
+    t.string   "fid"
+    t.string   "link"
+    t.string   "sku"
+    t.string   "title"
+    t.string   "sdesc"
+    t.string   "desc"
+    t.string   "oldprice"
+    t.string   "price"
+    t.string   "pict"
+    t.string   "quantity"
+    t.string   "cat"
+    t.string   "cat1"
+    t.string   "cat2"
+    t.string   "cat3"
+    t.string   "cat4"
+    t.string   "mtitle"
+    t.string   "mdesc"
+    t.string   "mkeyw"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.string   "option4"
+    t.string   "option5"
+    t.string   "option6"
+    t.string   "option7"
+    t.string   "option8"
+    t.string   "option9"
+    t.string   "option10"
+    t.string   "option11"
+    t.string   "option12"
+    t.string   "option13"
+    t.string   "option14"
+    t.boolean  "check",      default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "tmfs", force: :cascade do |t|
     t.string   "fid"
     t.string   "link"
@@ -678,5 +733,6 @@ ActiveRecord::Schema.define(version: 20210712172229) do
   add_foreign_key "products", "sawos"
   add_foreign_key "products", "shulepovs"
   add_foreign_key "products", "teplodars"
+  add_foreign_key "products", "teplomarkets"
   add_foreign_key "products", "tmfs"
 end

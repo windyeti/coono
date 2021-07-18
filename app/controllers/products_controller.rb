@@ -22,14 +22,15 @@ class ProductsController < ApplicationController
       @params.delete(:saunaru_id_not_null) if @params[:saunaru_id_not_null] == '0'
       @params.delete(:teplodar_id_not_null) if @params[:teplodar_id_not_null] == '0'
       @params.delete(:contact_id_not_null) if @params[:contact_id_not_null] == '0'
-      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_not_null] == '0'
-      @params.delete(:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_null) if @params[:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_null] == '0'
+      @params.delete(:teplomarket_id_not_null) if @params[:teplomarket_id_not_null] == '0'
+      @params.delete(:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_not_null) if @params[:lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_not_null] == '0'
+      @params.delete(:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_null) if @params[:lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_null] == '0'
 
       # делаем доступные параметры фильтров, чтобы их поместить их в параметр q «кнопки создать csv по фильтру»
       @params_q_to_csv = @params.permit(:sku_or_title_cont,
                                         :distributor_eq,
                                         :quantity_gteq,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_eq,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_eq,
                                         :lit_kom_id_not_null,
                                         :kovcheg_id_not_null,
                                         :nkamin_id_not_null,
@@ -41,8 +42,9 @@ class ProductsController < ApplicationController
                                         :saunaru_id_not_null,
                                         :teplodar_id_not_null,
                                         :contact_id_not_null,
-                                        :lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_null,
-                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_not_null
+                                        :teplomarket_id_not_null,
+                                        :lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_null,
+                                        :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_not_null
                                         # :combinator
                                         )
     else
@@ -218,7 +220,8 @@ class ProductsController < ApplicationController
                                     :sawo_id,
                                     :saunaru_id,
                                     :teplodar_id,
-                                    :contact_id
+                                    :contact_id,
+                                    :teplomarket_id
                                     )
   end
 

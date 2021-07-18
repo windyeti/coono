@@ -4,46 +4,61 @@ namespace :p do
   # include Capybara::DSL
 
   task p: :environment do
-    doc = get_doc 'https://contactplus.ru/catalog/pech-dlya-sauny-iki-uglovaya.html'
-# p doc.at('.card-page-product-price-block__price')
-p doc.at('title')
-
+    doc = get_doc "https://teplomarket-m.ru/dlya-bani/elektropechi-elektrokamenki-pechi-dlia-bani-i-sauny/pechi-harvia/harvia-alfa/elektricheskaya-pech-harvia-alfa-a30-steel"
+    p doc.at('.product-title-row h1').text.strip
   end
 
-  task t: :environment do
-    doc = rest_client_get 'https://contactplus.ru/catalog/pech-dlya-sauny-tylo-sense-commercial.html'
-    p get_data_products(doc)
-  end
+    # doc.at('#combo-price .price span').text.strip
+    # p title = doc.at('.hdr-block.def h1').text.strip
+    #
+    #
+    #
+    #
+    # p p1 = if doc.at('#paramList')
+    #        doc_text_block = doc.at('#paramList')
+    #        result = []
+    #        doc_dts = doc_text_block.css('dt')
+    #        doc_dds = doc_text_block.css('dd')
+    #        doc_dts.each_with_index { |doc_dt, index| result << "#{doc_dt.text.strip}: #{doc_dds[index].text.strip}"}
+    #        result.join(' --- ')
+    #      else
+    #        nil
+    #      end
+    #
+    # p pict = get_pict(doc)
+    #
+    # p desc = doc.at('#fld-desc').inner_html.strip rescue nil
 
-  # def get_doc(url)
-  #   category_url = URI.escape(url)
-  #   Nokogiri::HTML(RestClient::Request.execute(:url => category_url, :timeout => 240, :method => :get, :verify_ssl => false))
-  # end
-  #
-  # def self.rest_client_get(url)
-  #   response = RestClient.get(url)
-  #   Nokogiri::HTML(response.body)
-  # end
-  #
-  # def get_data_products(doc)
+
+    # if doc.at('.hdr-block.def h1').text.strip.include?("Каминокомплект")
+    #   p price = doc.at('#combo-price .price span').text.strip rescue nil
+    # else
+    #   p price = doc.at('meta[itemprop="price"]')['content'] rescue nil
+    # end
+
+
+
+
+  # def get_pict(doc)
   #   result = []
-  #   doc_table = doc.at('.item-table')
-  #   doc_table_headers = doc_table.css('.itable-header td')
-  #   table_headers = {}
-  #   doc_table_headers.each do |doc_table_header|
-  #     table_headers[doc_table_header.attribute('class').value] = "#{doc_table_header.text.strip}"
-  #   end
-  #   doc_trs = doc_table.css('tr:not(.itable-header):not(.sub-row)')
-  #   doc_trs.each do |doc_tr|
-  #     next if doc_tr.at("td[colspan='8']")
-  #     product = {}
-  #     table_headers.map do |key, name|
-  #       value = doc_tr.at(".#{key}").text.strip rescue next
-  #       product[name] = value
+  #   doc_picts = doc.css('.sku__gallery a')
+  #   if doc_picts.present?
+  #     result = doc_picts.map do |doc_pict|
+  #       doc_pict['href']
   #     end
-  #     result << product
+  #   else
+  #     nil
   #   end
-  #   result
+  #   result.join(' ')
+  # end
+
+  def get_doc(url)
+    category_url = URI.escape(url)
+    Nokogiri::HTML(RestClient::Request.execute(:url => category_url, :timeout => 100, :method => :get, :verify_ssl => false))
+  end
+
+  # task t: :environment do
+
   # end
 
 end

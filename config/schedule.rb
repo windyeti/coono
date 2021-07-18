@@ -89,6 +89,3 @@ every 1.day, :at => '08:45' do
   runner "ExportCsvJob.perform_later"
 end
 
-# every 1.day, :at => '16:00' do
-#   runner "Product.import"
-# end

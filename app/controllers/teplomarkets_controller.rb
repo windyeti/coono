@@ -24,7 +24,7 @@ class TeplomarketsController < ApplicationController
   end
 
   def parsing
-    # TeplomarketJob.perform_later
+    TeplomarketJob.perform_later
     redirect_to teplomarkets_path, notice: 'Запущен парсинг Teplomarket'
   end
 end
