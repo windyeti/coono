@@ -30,7 +30,7 @@ class Product < ApplicationRecord
   belongs_to :sawo, optional: true
   belongs_to :saunaru, optional: true
   belongs_to :teplodar, optional: true
-  belongs_to :teplomarket, optional: true
+  belongs_to :contact, optional: true
   belongs_to :teplomarket, optional: true
 
   scope :product_all_size, -> { order(:id).size }
