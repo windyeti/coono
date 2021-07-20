@@ -11,7 +11,7 @@ Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'delayed_job.lo
 
 workers = 2
 
-if Rails.env.production? || Rails.env.development?
+if Rails.env.production?
   # Check if the delayed job process is already running
   # Since the process loads the rails env, this file will be called over and over
   # Unless this condition is set.
