@@ -30,6 +30,6 @@ if Rails.env.production? || Rails.env.development?
     File.delete(Rails.root.join('tmp','pids','delayed_job.init')) if File.exist?(Rails.root.join('tmp','pids','delayed_job.init'))
 
   else
-    system "echo  \"delayed_jobs is running\""
+    system "echo \"delayed_jobs is running\""
   end
 end
