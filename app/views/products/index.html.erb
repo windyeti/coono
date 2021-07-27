@@ -1,4 +1,4 @@
-<div class="row mb-1 mr-0 ml-0 align-items-center">
+<div class="row mb-1 mr-0 ml-0 align-items-center" id="filter_menu">
   <h3 class="mr-2 ">Товары</h3>
   <div class="col-md-4 ">
     <div class="mr-1">
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" id="container_for_table_with_data">
 <table class="table table-hover table-condensed table-sm">
   <thead class="thead-light">
     <tr>
@@ -81,8 +81,9 @@
       <th>Saunaru</th>
       <th>Teplodar</th>
       <th>ContactPlus</th>
+      <th>Teplomarket-m</th>
       <th>Всего остатков</th>
-      <th>Desc</th>
+<!--      <th>Desc</th>-->
       <th>Параметры</th>
       <th style="width:250px;">Image</th>
       <th>Товар в InSales</th>
@@ -95,8 +96,18 @@
     <% @products.each do |product| %>
       <tr class="<%= 'sync' if distributor_exist?(product) %>">
         <td><%=check_box_tag "product_ids[]", product.id%></td>
-        <td><%= product.sku %></td>
-        <td><%= product.id %></td>
+        <td>
+          <%= product.sku %>
+        </td>
+        <td>
+          <%= product.id %>
+          <% count_var = count_product_var(product) %>
+          <% if count_var[:count] > 1 %>
+            <span class="product__count_product_var" style="background-color: <%= color_by_id(product.insales_id) %>">
+              <%= count_var[:index_var] %><br>(<%= count_var[:count] %>)
+            </span>
+          <% end %>
+        </td>
         <td><%= link_to product.title, edit_product_path(product) %></td>
         <td><%= product.price %></td>
         <td><%= product.distributor %></td>
@@ -115,8 +126,8 @@
         <td><%= render 'distributor_teplomarket', product: product %></td>
 
         <td><%= product.quantity %></td>
-        <td><%= product.desc.truncate(25) if product.desc != nil%></td>
-        <td><%= product.p1.truncate(25) if product.p1 != nil%></td>
+<!--        <td><%#= product.desc.truncate(25) if product.desc != nil%></td>-->
+        <td><%= product.p1.gsub(" --- ", ", ") %></td>
         <td class="row ml-0 mr-0">
           <% if product.image.present? %>
             <% product.image.split(' ').each do |pict| %>
@@ -152,3 +163,4 @@
 <div class="digg_pagination mt-4 mb-4">
     <%= will_paginate @products %>
 </div>
+

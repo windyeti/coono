@@ -5,13 +5,13 @@ class Services::Syncronaize
       price_nkamin = product.nkamin.price.to_f if product.nkamin.present? && product.nkamin.price.present?
 
       # вычисляем минимальную цену, если price_nkamin отсутствуюет
-      # SAWO цена без отнятия 1
+      # SAWO, Kovcheg цена без отнятия 1
       unless price_nkamin
 
         delta = !!product.distributor[/Fireway|FireWay/] ? 0 : 1
 
         price_lit_kom = product.lit_kom.price.to_f - delta if product.lit_kom.present? && product.lit_kom.price.present?
-        price_kovcheg = product.kovcheg.price.to_f - delta if product.kovcheg.present? && product.kovcheg.price.present?
+        price_kovcheg = product.kovcheg.price.to_f if product.kovcheg.present? && product.kovcheg.price.present?
         price_tmf = product.tmf.price.to_f - delta if product.tmf.present? && product.tmf.price.present?
         price_shulepov = product.shulepov.price.to_f - delta if product.shulepov.present? && product.shulepov.price.present?
         price_realflame = product.realflame.price.to_f - delta if product.realflame.present? && product.realflame.price.present?

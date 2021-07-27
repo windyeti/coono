@@ -1,0 +1,16 @@
+IndianRed
+LightCoral
+Salmon	
+DarkSalmon	
+LightSalmon
+Crimson
+Red
+FireBrick	
+DarkRed
+Pink	
+LightPink	
+HotPink
+DeepPink
+MediumVioletRed
+PaleVioletRed
+

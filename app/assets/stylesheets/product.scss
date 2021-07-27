@@ -26,3 +26,28 @@ form {
     padding: 0;
   }
 }
+.product__count_product_var {
+  display: inline-block;
+  height: 37px;
+  padding: 2px 5px;
+  text-align: center;
+  font-size: 80%;
+  line-height: 104%;
+  color: #fff3cd;
+  background: #105a0a;
+  border: 1px solid white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+#container_for_table_with_data {
+  overflow: auto;
+}
+#container_for_table_with_data thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
