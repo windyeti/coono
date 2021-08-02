@@ -8,7 +8,7 @@ class Services::Syncronaize
       # SAWO, Kovcheg цена без отнятия 1
       unless price_nkamin
 
-        delta = !!product.distributor[/Fireway|FireWay/] ? 0 : 1
+        delta = !!product.distributor[/Fireway|FireWay/] || product.sawo ? 0 : 1
 
         price_lit_kom = product.lit_kom.price.to_f - delta if product.lit_kom.present? && product.lit_kom.price.present?
         price_kovcheg = product.kovcheg.price.to_f if product.kovcheg.present? && product.kovcheg.price.present?
