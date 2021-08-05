@@ -39,6 +39,10 @@ end
 every 1.day, :at => '20:20' do
   runner "TeplomarketJob.perform_later"
 end
+
+every 1.day, :at => '07:30' do
+  runner "DantexgroupJob.perform_later"
+end
 # ------------------------------
 every 1.day, :at => '20:25' do
   runner "ContactJob.perform_later"
