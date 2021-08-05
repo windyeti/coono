@@ -21,6 +21,7 @@ class Services::ExportCsv
                  .or(Product.where.not(teplodar: nil))
                  .or(Product.where.not(contact: nil))
                  .or(Product.where.not(teplomarket: nil))
+                 .or(Product.where.not(dantexgroup: nil))
                  .order(:id)
 
     CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|

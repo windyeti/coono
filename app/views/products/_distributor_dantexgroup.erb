@@ -1,0 +1,5 @@
+<% if product.dantexgroup.present? %>
+  <p>ID: <strong><%= best_in_place product, :dantexgroup_id, :as => :input %></strong><br>остаток: <%= product.dantexgroup&.quantity %><br>цена: <%= product.dantexgroup&.price %></p>
+<% else %>
+  <p>ID: <%= best_in_place product, :dantexgroup_id, :as => :input %></p>
+<% end %>

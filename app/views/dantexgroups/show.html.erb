@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @dantexgroup.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @dantexgroup.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @dantexgroup.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @dantexgroup.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @dantexgroup.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @dantexgroup.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @dantexgroup.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @dantexgroup.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @dantexgroup.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', dantexgroups_path %>

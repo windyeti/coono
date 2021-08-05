@@ -21,8 +21,9 @@ class Services::Syncronaize
         price_teplodar = product.teplodar.price.to_f - delta if product.teplodar.present? && product.teplodar.price.present?
         price_contact = product.contact.price.to_f - delta if product.contact.present? && product.contact.price.present?
         price_teplomarket = product.teplomarket.price.to_f - delta if product.teplomarket.present? && product.teplomarket.price.present?
+        price_dantexgroup = product.dantexgroup.price.to_f - delta if product.dantexgroup.present? && product.dantexgroup.price.present?
 
-        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo, price_saunaru, price_teplodar, price_contact, price_teplomarket].reject(&:nil?).min
+        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo, price_saunaru, price_teplodar, price_contact, price_teplomarket, price_dantexgroup].reject(&:nil?).min
       end
 
       product.price = price_nkamin || min_price

@@ -12,7 +12,8 @@ module ProductsHelper
       product.saunaru.present? ||
       product.teplodar.present? ||
       product.contact.present? ||
-      product.teplomarket.present?
+      product.teplomarket.present? ||
+      product.dantexgroup.present?
   end
 
   def count_product_var(product)
