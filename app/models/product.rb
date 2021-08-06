@@ -15,7 +15,7 @@ class Product < ApplicationRecord
     ["teplodar_id_not_null", "Teplodar"],
     ["contact_id_not_null", "ContactPlus"],
     ["teplomarket_id_not_null", "Teplomarket-m"],
-    ["tdantexgroup_id_not_null", "Dantexgroup"],
+    ["dantexgroup_id_not_null", "Dantexgroup"],
     ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_and_dantexgroup_id_null", "Unsync"],
     ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_or_dantexgroup_id_not_null", "Sync"],
   ]
