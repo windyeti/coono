@@ -42,87 +42,97 @@ class Product < ApplicationRecord
   scope :product_image_nil, -> { where(image: [nil, '']).order(:id) }
 
   # TODO NewDistributor
-  # validate :new_distributor_empty, on: :update
+  validate :new_distributor_empty, on: :update
 
-  # def new_distributor_empty
-  #   if lit_kom_id.present?
-  #     lit_kom = LitKom.find_by(id: lit_kom_id)
-  #     if lit_kom.nil? || (lit_kom.product.present? && lit_kom.product != self)
-  #       errors.add(:lit_kom_id, "Товар поставщика Lit-kom не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if kovcheg_id.present?
-  #     kovcheg = Kovcheg.find_by(id: kovcheg_id)
-  #     if kovcheg.nil? || (kovcheg.product.present? && kovcheg.product != self)
-  #       errors.add(:kovcheg_id, "Товар поставщика Kovcheg не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if nkamin_id.present?
-  #     nkamin = Nkamin.find_by(id: nkamin_id)
-  #     if nkamin.nil? || (nkamin.product.present? && nkamin.product != self)
-  #       errors.add(:nkamin_id, "Товар поставщика Nkamin не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if tmf_id.present?
-  #     tmf = Tmf.find_by(id: tmf_id)
-  #     if tmf.nil? || (tmf.product.present? && tmf.product != self)
-  #       errors.add(:tmf_id, "Товар поставщика Tmf не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if shulepov_id.present?
-  #     shulepov = Shulepov.find_by(id: shulepov_id)
-  #     if shulepov.nil? || (shulepov.product.present? && shulepov.product != self)
-  #       errors.add(:shulepov_id, "Товар поставщика Shulepov не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if realflame_id.present?
-  #     realflame = Realflame.find_by(id: realflame_id)
-  #     if realflame.nil? || (realflame.product.present? && realflame.product != self)
-  #       errors.add(:realflame_id, "Товар поставщика Realflame не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if dim_id.present?
-  #     dim = Dim.find_by(id: dim_id)
-  #     if dim.nil? || (dim.product.present? && dim.product != self)
-  #       errors.add(:dim_id, "Товар поставщика Dim не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if sawo_id.present?
-  #     sawo = Sawo.find_by(id: sawo_id)
-  #     if sawo.nil? || (sawo.product.present? && sawo.product != self)
-  #       errors.add(:sawo_id, "Товар поставщика Sawo не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if saunaru_id.present?
-  #     saunaru = Saunaru.find_by(id: saunaru_id)
-  #     if saunaru.nil? || (saunaru.product.present? && saunaru.product != self)
-  #       errors.add(:saunaru_id, "Товар поставщика Saunaru не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if teplodar_id.present?
-  #     teplodar = Teplodar.find_by(id: teplodar_id)
-  #     if teplodar.nil? || (teplodar.product.present? && teplodar.product != self)
-  #       errors.add(:teplodar_id, "Товар поставщика Teplodar не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if teplomarket_id.present?
-  #     teplomarket = Teplomarket.find_by(id: teplomarket_id)
-  #     if teplomarket.nil? || (teplomarket.product.present? && teplomarket.product != self)
-  #       errors.add(:teplomarket_id, "Товар поставщика Teplomarket не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-  #   if teplomarket_id.present?
-  #     teplomarket = Teplomarket.find_by(id: teplomarket_id)
-  #     if teplomarket.nil? || (teplomarket.product.present? && teplomarket.product != self)
-  #       errors.add(:teplomarket_id, "Товар поставщика Teplomarket не существует или он уже связан с другим товаром")
-  #     end
-  #   end
-    # if dantexgroup_id.present?
-    #   dantexgroup = Dantexgroup.find_by(id: dantexgroup_id)
-    #   if dantexgroup.nil? || (dantexgroup.product.present? && dantexgroup.product != self)
-    #     errors.add(:dantexgroup_id, "Товар поставщика Dantexgroup не существует или он уже связан с другим товаром")
+  def new_distributor_empty
+    if lit_kom_id.present?
+      lit_kom = LitKom.find_by(id: lit_kom_id)
+      if lit_kom.nil?
+        errors.add(:lit_kom_id, "Товар поставщика Lit-kom не существует")
+      end
+    end
+    if kovcheg_id.present?
+      kovcheg = Kovcheg.find_by(id: kovcheg_id)
+      if kovcheg.nil?
+        errors.add(:kovcheg_id, "Товар поставщика Kovcheg не существует")
+      end
+    end
+    if nkamin_id.present?
+      nkamin = Nkamin.find_by(id: nkamin_id)
+      if nkamin.nil?
+        errors.add(:nkamin_id, "Товар поставщика Nkamin не существует")
+      end
+    end
+    if tmf_id.present?
+      tmf = Tmf.find_by(id: tmf_id)
+      if tmf.nil?
+        errors.add(:tmf_id, "Товар поставщика Tmf не существует")
+      end
+    end
+    if shulepov_id.present?
+      shulepov = Shulepov.find_by(id: shulepov_id)
+      if shulepov.nil?
+        errors.add(:shulepov_id, "Товар поставщика Shulepov не существует")
+      end
+    end
+    if realflame_id.present?
+      realflame = Realflame.find_by(id: realflame_id)
+      if realflame.nil?
+        errors.add(:realflame_id, "Товар поставщика Realflame не существует")
+      end
+    end
+    if dim_id.present?
+      dim = Dim.find_by(id: dim_id)
+      if dim.nil?
+        errors.add(:dim_id, "Товар поставщика Dim не существует")
+      end
+    end
+    if sawo_id.present?
+      sawo = Sawo.find_by(id: sawo_id)
+      if sawo.nil?
+        errors.add(:sawo_id, "Товар поставщика Sawo не существует")
+      end
+    end
+    if saunaru_id.present?
+      saunaru = Saunaru.find_by(id: saunaru_id)
+      if saunaru.nil?
+        errors.add(:saunaru_id, "Товар поставщика Saunaru не существует")
+      end
+    end
+    if teplodar_id.present?
+      teplodar = Teplodar.find_by(id: teplodar_id)
+      if teplodar.nil?
+        errors.add(:teplodar_id, "Товар поставщика Teplodar не существует")
+      end
+    end
+    if teplomarket_id.present?
+      teplomarket = Teplomarket.find_by(id: teplomarket_id)
+      if teplomarket.nil?
+        errors.add(:teplomarket_id, "Товар поставщика Teplomarket не существует")
+      end
+    end
+    if teplomarket_id.present?
+      teplomarket = Teplomarket.find_by(id: teplomarket_id)
+      if teplomarket.nil?
+        errors.add(:teplomarket_id, "Товар поставщика Teplomarket не существует")
+      end
+    end
+    if dantexgroup_id.present?
+      dantexgroup = Dantexgroup.find_by(id: dantexgroup_id)
+      if dantexgroup.nil?
+        errors.add(:dantexgroup_id, "Товар поставщика Dantexgroup с таким ID не существует")
+      end
+    end
+
+
+
+    # --------- FULL TEMPLATE -------------
+    # if teplomarket_id.present?
+    #   teplomarket = Teplomarket.find_by(id: teplomarket_id)
+    #   if teplomarket.nil? || (teplomarket.product.present? && teplomarket.product != self)
+    #     errors.add(:teplomarket_id, "Товар поставщика Teplomarket не существует или он уже связан с другим товаром")
     #   end
     # end
-  # end
+  end
 
 end

@@ -5,7 +5,7 @@ class Services::Syncronaize
       price_nkamin = product.nkamin.price.to_f if product.nkamin.present? && product.nkamin.price.present?
 
       # вычисляем минимальную цену, если price_nkamin отсутствуюет
-      # SAWO, Kovcheg цена без отнятия 1
+      # SAWO, Kovcheg, Dantexgroup цена без отнятия 1
       unless price_nkamin
 
         delta = !!product.distributor[/Fireway|FireWay/] || product.sawo ? 0 : 1
