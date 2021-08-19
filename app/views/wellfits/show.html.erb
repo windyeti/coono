@@ -1,0 +1,48 @@
+<p>
+  <strong>Название:</strong>
+  <%= @wellfit.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @wellfit.sku %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @wellfit.desc&.html_safe %>
+</p>
+
+<p>
+  <strong>Категория:</strong>
+  <%= @wellfit.cat %>
+</p>
+
+<p>
+  <strong>Характеристики:</strong>
+  <%= @wellfit.p1.gsub(' --- ', ', ') %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @wellfit.price %>
+</p>
+
+<p>
+  <strong>Количество:</strong>
+  <%= @wellfit.quantity %>
+</p>
+
+<p>
+  <strong>Картинки:</strong>
+  <% @wellfit.pict.split(' ').each do |image| %>
+    <%= image_tag image%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Товар у поставщика:</strong>
+  <%= link_to "Ссылка", @wellfit.link, target: '_blank' %>
+</p>
+
+<%= link_to 'Back', wellfits_path %>

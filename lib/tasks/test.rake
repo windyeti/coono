@@ -4,27 +4,14 @@ namespace :p do
   # include Capybara::DSL
 
   task p: :environment do
-    p 'PRINT TEST!'
   end
 
   task t: :environment do
-      link = "https://dantexgroup.ru/catalog/kaminy/elektrokaminy/ochagi/klassicheskie/royal-flame/ochag-fobos-fx-m-black-rlf/"
-      # link = "https://dantexgroup.ru/catalog/kaminy/elektrokaminy/portaly/derevyannye/royal-flame/kaminokomplekt-dallas-60-slonovaya-kost-s-patinoy-rlf-s-ochagom-vision-60-log-led-rlf-26994/"
+      # link = "https://www.wellfitness.ru/index.php?route=product/product&path=103_104&product_id=843"
+      link = "https://www.wellfitness.ru/index.php?route=product/product&path=62&product_id=308"
       doc = get_doc(link)
-
-  p get_price(doc)
+      p doc.at('input[name="product_id"]')['value']
   end
-  # def get_price(doc)
-  #   price = doc.at('.price > span').text.strip.gsub(/\s| | /, "").to_i rescue nil
-  #   if doc.at('h1').text.strip[/^Каминокомплект/]
-  #     curComboID = doc.css('.wrapper script')[1]
-  #                    .text
-  #                    .match(/var\scurComboID\s=\s\d+;/).to_s.split('=').last.gsub(/'|;|\s/,"")
-  #     combo_price = doc.at("#prod-list li[data-rel='#{curComboID}'] .price-block > .price")['data-price'].to_i
-  #     price = price + combo_price
-  #   end
-  #   price
-  # end
 
   task p: :environment do
     # doc = get_doc "https://dantexgroup.ru/catalog-kamin/get_content.php?3&?sflt=1&sectID=1281"
@@ -32,5 +19,23 @@ namespace :p do
     sectID = get_doc(link).css('.wrapper script').last.text.match(/\/\/\svar\slistData\s=\s'\?sflt=1&sectID=\d+';$/).to_s.split('=').last.gsub("';","")
     doc = rest_client_get "https://dantexgroup.ru/catalog-kamin/get_content.php?3&?sflt=1&sectID=#{sectID}&&SHOWALL_1=1"
     p doc.css('li a').map {|a| a['href']}
+  end
+
+  # def get_pict(doc)
+  #   result = []
+  #   doc_picts = doc.css('#example1 a')
+  #   if doc_picts.present?
+  #     result = doc_picts.map do |doc_pict|
+  #       doc_pict['href']
+  #     end
+  #   else
+  #     nil
+  #   end
+  #   result.join(' ')
+  # end
+
+  def get_doc(url)
+    category_url = URI.escape(url)
+    Nokogiri::HTML(RestClient::Request.execute(:url => category_url, :timeout => 100, :method => :get, :verify_ssl => false))
   end
 end

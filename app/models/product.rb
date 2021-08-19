@@ -16,8 +16,9 @@ class Product < ApplicationRecord
     ["contact_id_not_null", "ContactPlus"],
     ["teplomarket_id_not_null", "Teplomarket-m"],
     ["dantexgroup_id_not_null", "Dantexgroup"],
-    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_and_dantexgroup_id_null", "Unsync"],
-    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_or_dantexgroup_id_not_null", "Sync"],
+    ["wellfit_id_not_null", "Wellfitness"],
+    ["lit_kom_id_and_kovcheg_id_and_nkamin_id_and_tmf_id_and_shulepov_id_and_realflame_id_and_dim_id_and_sawo_id_and_saunaru_id_and_teplodar_id_and_contact_id_and_teplomarket_id_and_dantexgroup_id_and_wellfit_id_null", "Unsync"],
+    ["lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_or_dantexgroup_id_or_wellfit_id_not_null", "Sync"],
   ]
 
   # TODO NewDistributor
@@ -34,6 +35,7 @@ class Product < ApplicationRecord
   belongs_to :contact, optional: true
   belongs_to :teplomarket, optional: true
   belongs_to :dantexgroup, optional: true
+  belongs_to :wellfit, optional: true
 
   scope :product_all_size, -> { order(:id).size }
   scope :product_qt_not_null, -> { where('quantity > 0') }
@@ -121,6 +123,12 @@ class Product < ApplicationRecord
       dantexgroup = Dantexgroup.find_by(id: dantexgroup_id)
       if dantexgroup.nil?
         errors.add(:dantexgroup_id, "Товар поставщика Dantexgroup с таким ID не существует")
+      end
+    end
+    if wellfit_id.present?
+      wellfit = Wellfit.find_by(id: wellfit_id)
+      if wellfit.nil?
+        errors.add(:wellfit_id, "Товар поставщика Wellfitness с таким ID не существует")
       end
     end
 

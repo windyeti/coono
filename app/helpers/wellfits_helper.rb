@@ -1,0 +1,2 @@
+module WellfitsHelper
+end

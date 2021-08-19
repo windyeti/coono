@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210803211322) do
+ActiveRecord::Schema.define(version: 20210819083003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,17 @@ ActiveRecord::Schema.define(version: 20210803211322) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.index ["boss_id"], name: "index_category_tmfs_on_boss_id", using: :btree
+  end
+
+  create_table "category_wellfits", force: :cascade do |t|
+    t.integer  "boss_id"
+    t.string   "name"
+    t.string   "link"
+    t.string   "category_path"
+    t.boolean  "parsing",       default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["boss_id"], name: "index_category_wellfits_on_boss_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -455,6 +466,7 @@ ActiveRecord::Schema.define(version: 20210803211322) do
     t.integer  "contact_id"
     t.integer  "teplomarket_id"
     t.integer  "dantexgroup_id"
+    t.integer  "wellfit_id"
     t.index ["contact_id"], name: "index_products_on_contact_id", using: :btree
     t.index ["dantexgroup_id"], name: "index_products_on_dantexgroup_id", using: :btree
     t.index ["dim_id"], name: "index_products_on_dim_id", using: :btree
@@ -468,6 +480,7 @@ ActiveRecord::Schema.define(version: 20210803211322) do
     t.index ["teplodar_id"], name: "index_products_on_teplodar_id", using: :btree
     t.index ["teplomarket_id"], name: "index_products_on_teplomarket_id", using: :btree
     t.index ["tmf_id"], name: "index_products_on_tmf_id", using: :btree
+    t.index ["wellfit_id"], name: "index_products_on_wellfit_id", using: :btree
   end
 
   create_table "realflames", force: :cascade do |t|
@@ -778,6 +791,48 @@ ActiveRecord::Schema.define(version: 20210803211322) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wellfits", force: :cascade do |t|
+    t.string   "fid"
+    t.string   "link"
+    t.string   "sku"
+    t.string   "title"
+    t.string   "sdesc"
+    t.string   "desc"
+    t.string   "oldprice"
+    t.string   "price"
+    t.string   "pict"
+    t.string   "quantity"
+    t.string   "cat"
+    t.string   "cat1"
+    t.string   "cat2"
+    t.string   "cat3"
+    t.string   "cat4"
+    t.string   "mtitle"
+    t.string   "mdesc"
+    t.string   "mkeyw"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.string   "option4"
+    t.string   "option5"
+    t.string   "option6"
+    t.string   "option7"
+    t.string   "option8"
+    t.string   "option9"
+    t.string   "option10"
+    t.string   "option11"
+    t.string   "option12"
+    t.string   "option13"
+    t.string   "option14"
+    t.boolean  "check",      default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   add_foreign_key "products", "contacts"
   add_foreign_key "products", "dantexgroups"
   add_foreign_key "products", "dims"
@@ -791,4 +846,5 @@ ActiveRecord::Schema.define(version: 20210803211322) do
   add_foreign_key "products", "teplodars"
   add_foreign_key "products", "teplomarkets"
   add_foreign_key "products", "tmfs"
+  add_foreign_key "products", "wellfits"
 end

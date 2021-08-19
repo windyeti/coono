@@ -23,7 +23,10 @@ class Services::Syncronaize
         price_teplomarket = product.teplomarket.price.to_f - delta if product.teplomarket.present? && product.teplomarket.price.present? && price_saunaru.nil?
         price_dantexgroup = product.dantexgroup.price.to_f if product.dantexgroup.present? && product.dantexgroup.price.present?
 
-        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo, price_saunaru, price_teplodar, price_contact, price_teplomarket, price_dantexgroup].reject(&:nil?).min
+        # FITNESS
+        price_wellfit = product.wellfit.price.to_f - delta if product.wellfit.present? && product.wellfit.price.present?
+
+        min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo, price_saunaru, price_teplodar, price_contact, price_teplomarket, price_dantexgroup, price_wellfit].reject(&:nil?).min
       end
 
       product.price = price_nkamin || min_price
