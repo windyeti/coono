@@ -94,6 +94,9 @@ end
 
 
 every 1.day, :at => '08:30' do
+  runner "LinkingJobJob.perform_later"
+end
+every 1.day, :at => '08:40' do
   runner "SyncronaizeJob.perform_later"
 end
 every 1.day, :at => '08:45' do
