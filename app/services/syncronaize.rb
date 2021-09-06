@@ -14,7 +14,7 @@ class Services::Syncronaize
         price_kovcheg = product.kovcheg.price.to_f if product.kovcheg.present? && product.kovcheg.price.present?
         price_tmf = product.tmf.price.to_f - delta if product.tmf.present? && product.tmf.price.present?
         price_shulepov = product.shulepov.price.to_f - delta if product.shulepov.present? && product.shulepov.price.present?
-        price_realflame = product.realflame.price.to_f - delta if product.realflame.present? && product.realflame.price.present?
+        price_realflame = product.realflame.price.to_f if product.realflame.present? && product.realflame.price.present?
         price_dim = product.dim.price.to_f if product.dim.present? && product.dim.price.present?
         price_sawo = product.sawo.price.to_f if product.sawo.present? && product.sawo.price.present?
         price_saunaru = product.saunaru.price.to_f - delta if product.saunaru.present? && product.saunaru.price.present?
