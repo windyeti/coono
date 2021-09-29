@@ -56,6 +56,7 @@
       <th>Описание</th>
       <th>Параметры</th>
       <th>Товар у поставщика</th>
+      <th></th>
     </tr>
     </thead>
 
@@ -72,6 +73,7 @@
         <td><%= product.desc.strip.truncate(50) if product.desc != nil %></td>
         <td><%= product.p1.truncate(25) if product.p1 != nil  %></td>
         <td><%= link_to '<span class="oi oi-eye"></span>'.html_safe, product.link, target: '_blank' %></td>
+        <td><%= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: {confirm: "Вы уверены?"} %></td>
       </tr>
     <% end %>
     </tbody>

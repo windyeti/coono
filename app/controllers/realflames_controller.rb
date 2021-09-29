@@ -23,6 +23,11 @@ class RealflamesController < ApplicationController
     end
   end
 
+  def destroy
+    @realflame = Realflame.find(params[:id])
+    @realflame.destroy
+  end
+
   def parsing
     RealflameJob.perform_later
     redirect_to realflames_path, notice: 'Запущен парсинг Realflame'
