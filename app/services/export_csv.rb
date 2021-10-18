@@ -26,7 +26,7 @@ class Services::ExportCsv
                  .order(:id)
 
     CSV.open("#{Rails.root}/public/export_insales.csv", "wb") do |writer|
-      headers = [ 'ID варианта товара', 'Название товара', 'Артикул', 'Цена продажи' ]
+      headers = [ 'ID варианта товара', 'Название товара', 'Артикул', 'Цена продажи', 'Остаток' ]
 
       writer << headers
       products.each do |pr|
@@ -34,8 +34,9 @@ class Services::ExportCsv
         title = pr.title
         sku = pr.sku
         price = pr.price
+        quantity = pr.quantity
 
-        writer << [productid_var_insales, title, sku, price]
+        writer << [productid_var_insales, title, sku, price, quantity ]
       end
     end #CSV.open
   end

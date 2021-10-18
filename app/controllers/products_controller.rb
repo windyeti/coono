@@ -186,6 +186,7 @@ class ProductsController < ApplicationController
   end
 
   def syncronaize
+    # Services::Syncronaize.call
     SyncronaizeJob.perform_later
     flash[:notice] = 'Задача синхронизации каталога запущена'
     redirect_to products_path

@@ -57,7 +57,7 @@ class Services::CreateProductNkamin
 
       pict = get_pict(doc)
 
-      quantity = doc.css('.card_data_info .green, .card_data_info .red').text.strip rescue nil
+      quantity = doc.css('.card_data_info .green, .card_data_info .red').text.strip == 'В наличии' ? '100' : '0' rescue nil
 
       title = doc.at('.page-title').text.strip rescue nil
       desc = doc.css('.TabBoxCont .card_tab_text')[0].inner_html rescue nil

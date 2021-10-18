@@ -60,7 +60,7 @@ class Services::CreateProductTeplomarket
 
       pict = get_pict(doc)
 
-      quantity = doc.at('.sku__status').text.strip rescue nil
+      quantity = doc.at('.sku__status').text.strip == 'На складе' ? '100' : '0' rescue nil
 
       desc = doc.css('.details .tabdescription').inner_html rescue nil
       price = doc.at('.sku__price .special-price') ? doc.at('.sku__price .special-price').text.strip.gsub(/₽|\s| /, "") : doc.at('.sku__price').text.strip.gsub(/₽|\s| /, "")

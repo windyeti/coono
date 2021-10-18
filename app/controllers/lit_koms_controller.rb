@@ -11,7 +11,7 @@ class LitKomsController < ApplicationController
   def edit; end
 
   def update
-        respond_to do |format|
+    respond_to do |format|
       if @lit_kom.update(params[:lit_kom])
         format.html { redirect_to(@lit_kom, :notice => 'Lit-kom was successfully updated.') }
         format.json { respond_with_bip(@lit_kom) }

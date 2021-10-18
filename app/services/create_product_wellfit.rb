@@ -53,7 +53,7 @@ class Services::CreateProductWellfit
 
       pict = get_pict(doc)
 
-      quantity = doc.at('#product .availability').text.strip rescue nil
+      quantity = doc.at('#product .availability').text.strip == 'В наличии' ? '100' : '0' rescue nil
 
       desc = doc.at('.description-section').inner_html rescue nil
       price = doc.at('.newPrice').text.strip.gsub(/р.|\s| /, "") rescue nil

@@ -67,7 +67,8 @@ class Services::CreateProductSaunaru
         "#{name}: #{value}"
       end.reject(&:nil?).join(' --- ')
 
-      quantity = doc.at(".product-label") && doc.at(".product-label").text == "Распродано" ? "Нет в наличии" : "В наличии"
+      quantity = get_quantity(doc)
+      # quantity = doc.at(".product-label") && doc.at(".product-label").text == "Распродано" ? "Нет в наличии" : "В наличии"
 
       title = doc.at('.product-title').text.strip rescue nil
 
@@ -160,6 +161,11 @@ class Services::CreateProductSaunaru
       nil
     end
     result.join(' ')
+  end
+
+  def self.get_quantity(doc)
+  # Nokogiri не может взять текст "В наличии", так он вставляется через js.
+    doc.at(".product-label") && doc.at(".product-label").text == "Распродано" ? "0" : "100"
   end
 
   def self.get_doc(url)

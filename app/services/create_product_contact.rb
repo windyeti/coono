@@ -37,7 +37,7 @@ class Services::CreateProductContact
       tov = Contact.find_by(fid: fid)
       title = data_product["Наименование"]
 
-      quantity = data_product["Наличие"]
+      quantity = data_product["Наличие"] == 'В наличии' ? '100' : '0'
 
       price = data_product["Цена"].gsub(/\s|₽| | /, "").strip
 

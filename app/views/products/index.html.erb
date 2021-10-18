@@ -31,7 +31,7 @@
       <%= f.search_field :sku_or_title_cont, placeholder: 'Артикул, Название', class: "form-control input-sm"%>
       <%= f.collection_select :distributor_eq, Product.select(:distributor).uniq.order('distributor ASC'), 'distributor', 'distributor', {include_blank: false, prompt: 'Производитель'}, class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_gteq, placeholder: 'Остаток: >=', class: "form-control input-sm" %>
-      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id__or_teplomarket_id_or_dantexgroup_id_or_wellfit_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
+      <%= f.search_field :lit_kom_id_or_kovcheg_id_or_nkamin_id_or_tmf_id_or_shulepov_id_or_realflame_id_or_dim_id_or_sawo_id_or_saunaru_id_or_teplodar_id_or_contact_id_or_teplomarket_id_or_dantexgroup_id_or_wellfit_id_eq, placeholder: 'ID продукта у поставщика', class: "form-control input-sm" %>
 
       <div class="dropdown">
         <% head = Product::DISTRIBUTOR.map {|attr| attr[1] if @search.send(attr[0].to_sym) }.reject(&:nil?) %>
@@ -69,6 +69,7 @@
       <th>ID</th>
       <th style="width:250px;">Title</th>
       <th>Цена продажи</th>
+      <th>Остаток</th>
       <th>Производитель</th>
       <th>Lit-kom</th>
       <th>Kovcheg</th>
@@ -84,7 +85,6 @@
       <th>Teplomarket-m</th>
       <th>Dantexgroup</th>
       <th>Wellfitness</th>
-      <th>Всего остатков</th>
 <!--      <th>Desc</th>-->
       <th>Параметры</th>
       <th style="width:250px;">Image</th>
@@ -112,6 +112,7 @@
         </td>
         <td><%= link_to product.title, edit_product_path(product) %></td>
         <td><%= product.price %></td>
+        <td><%= product.quantity %></td>
         <td><%= product.distributor %></td>
 
         <td><%= render 'distributor_lit_kom', product: product %></td>
@@ -128,8 +129,6 @@
         <td><%= render 'distributor_teplomarket', product: product %></td>
         <td><%= render 'distributor_dantexgroup', product: product %></td>
         <td><%= render 'distributor_wellfitness', product: product %></td>
-
-        <td><%= product.quantity %></td>
 <!--        <td><%#= product.desc.truncate(25) if product.desc != nil%></td>-->
         <td><%= product.p1.gsub(" --- ", ", ") %></td>
         <td class="row ml-0 mr-0">

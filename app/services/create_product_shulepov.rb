@@ -51,7 +51,7 @@ class Services::CreateProductShulepov
 
       pict = get_pict(doc)
 
-      quantity = doc.css('.bxr-instock-wrap').text.strip rescue nil
+      quantity = doc.css('.bxr-instock-wrap').text.strip == 'В наличии' ? '100' : '0' rescue nil
 
       title = doc.at('h1[itemprop="name"]').text.strip rescue nil
       desc = doc.css('#bxr-detail-block-wrap').inner_html rescue nil

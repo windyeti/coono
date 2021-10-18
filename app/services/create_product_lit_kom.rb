@@ -63,7 +63,8 @@ class Services::CreateProductLitKom
         "#{name.gsub(/:/,"")}: #{value}"
       end.join(' --- ')
 
-      quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
+      quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? '100' : '0'
+      # quantity = doc.at('.ty-qty-in-stock.ty-control-group__item').text.strip == 'В наличии' ? 'В наличии' : 'Ожидается'
 
       title = doc.at('.ty-product-block-title').text.strip rescue nil
       desc = doc.at('#content_description').inner_html rescue nil

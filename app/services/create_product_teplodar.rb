@@ -63,7 +63,7 @@ class Services::CreateProductTeplodar
       link = category_url
       p4 = category_path_name
 
-      quantity = nil
+      quantity = doc.at('.label-outOfProduction') && doc.at('.label-outOfProduction').text.strip == 'Снято с производства' ? '0' : '100'
 
       categories = category_path_name.split('/')
 

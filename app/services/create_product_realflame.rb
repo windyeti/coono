@@ -59,7 +59,8 @@ class Services::CreateProductRealflame
         "#{name}: #{value}"
       end.reject(&:nil?).join(' --- ')
 
-      quantity = doc.at('#quickorder').text.strip rescue nil
+      quantity = "100"
+      # quantity = doc.at('#quickorder').text.strip == 'Заказать' ? '100' : '0' rescue nil
 
       title = title
       desc = doc.at('#short_description_content').inner_html.gsub(/\s+/, " ") rescue nil
