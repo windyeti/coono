@@ -79,7 +79,6 @@ class Services::CreateProductTmf
       sku = nil
       price = doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
       pict = get_pict_main(doc)
-      quantity = nil
     else
       desc = nil
       sdesc = nil
@@ -93,13 +92,14 @@ class Services::CreateProductTmf
       sku = doc.at('.top-part .right').text.strip.gsub("Артикул: ", "") rescue nil
       price = doc.css('.price').text.gsub(/[а-яА-Я]|\*|\.|\s|₽|^0+/, "").strip rescue nil
       pict = get_pict_vars(doc)
-      quantity = nil
     end
 
     title = doc.at('#pagetitle').text.strip rescue nil
 
     link = product_link
     p4 = category_path_name
+
+    quantity = "100"
 
     categories = category_path_name.split('/')
     mtitle = doc.at('title').text.strip rescue nil

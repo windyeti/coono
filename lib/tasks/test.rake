@@ -4,10 +4,11 @@ namespace :p do
   # include Capybara::DSL
 
   task q: :environment do
-    link = "https://www.teplodar.ru/catalog/detail/bylina-setka-24-ch/"
-    # link = "https://www.wellfitness.ru/index.php?route=product/product&path=108&product_id=865"
+    link = "https://sawo.ru/product/montazhnyy-flanets-dlya-pechi-tower-th2-th3-stal-art-th-collar-st2-cnr"
+    link2 = "https://sawo.ru/product/sawo-elektricheskaya-pech-aries-napolnaya-pristennaya-bez-pulta-vstr-blok-moschnosti-90-kvt-nerzh-stal-artikul-ari3-90ni2-wl-p"
     doc = get_doc(link)
-    p doc.at('.label-outOfProduction') && doc.at('.label-outOfProduction').text.strip == 'Снято с производства' ? '0' : '100'
+    doc2 = get_doc(link2)
+    p doc.at('.availability').text.strip == "В наличии" ? "100" : "0"
   end
 
   task h: :environment do

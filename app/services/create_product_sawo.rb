@@ -58,7 +58,7 @@ class Services::CreateProductSawo
         "#{name}: #{value}"
       end.reject(&:nil?).join(' --- ')
 
-      quantity = doc.at('#order input[name="quantity"]')['value'] == "1" ? "В наличии" : "Нет" if doc.at('#order input[name="quantity"]')
+      quantity = doc.at('.availability').text.strip == "В наличии" ? "100" : "0" rescue nil
 
       title = doc.at('.product-title').text.strip rescue nil
 

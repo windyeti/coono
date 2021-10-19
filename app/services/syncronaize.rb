@@ -54,6 +54,10 @@ class Services::Syncronaize
       # teplomarket - можно исключить из синхронизации, так как он учитывается только при наличии 100 у saunaru
       product.quantity =  nkamin&.quantity == "100" ||
                           saunaru&.quantity == "100" ||
+                          kovcheg&.quantity == "100" ||
+                          tmf&.quantity == "100" ||
+                          dim&.quantity == "100" ||
+                          dantexgroup&.quantity == "100" ||
                           lit_kom&.quantity == "100" ||
                           (teplomarket&.quantity == "100" && saunaru&.quantity == "100") ||
                           shulepov&.quantity == "100" ||

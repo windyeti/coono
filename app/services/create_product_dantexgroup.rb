@@ -72,6 +72,8 @@ class Services::CreateProductDantexgroup
       link = product_link
       p4 = category_path_name
 
+      quantity = "100"
+
       categories = category_path_name.split('/')
       mtitle = doc.at('title').text.strip rescue nil
       mdesc = doc.at('meta[name="description"]')['content'] rescue nil
@@ -86,7 +88,7 @@ class Services::CreateProductDantexgroup
         price: price,
         oldprice: nil,
         pict: pict,
-        quantity: nil,
+        quantity: quantity,
         p1: p1,
         p4: p4,
         link: link,

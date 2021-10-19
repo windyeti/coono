@@ -49,7 +49,7 @@ class Services::CreateProductDim
 
       pict = get_pict(doc)
 
-      quantity = nil
+      quantity = "100"
 
       desc = doc.at('#fld-desc').inner_html.strip rescue nil
       price = doc.at('meta[itemprop="price"]')['content'] rescue nil

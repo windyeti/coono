@@ -68,7 +68,7 @@ class Services::CreateProductKovcheg
 
       pict = get_pict(doc)
 
-      quantity = nil
+      quantity = "100"
 
       title = doc.at('.productDescription h1').text.strip rescue nil
 
