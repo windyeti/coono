@@ -81,3 +81,12 @@ $(document).ready(function(e) {
     $container_table.height($(window).height() - header_height - filter_height - pagination_height - 70);
   })
 });
+
+$(document).ready(function() {
+  $("#products_table").on("ajax:success", function(e) {
+    var $target = $(e.target);
+    console.log(e);
+    if ( $target.hasClass("delete_product") ) { $target.closest('tr').remove(); }
+
+  })
+});
