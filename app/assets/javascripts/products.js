@@ -83,10 +83,21 @@ $(document).ready(function(e) {
 });
 
 $(document).ready(function() {
-  $("#products_table").on("ajax:success", function(e) {
+  $("#products_table").on("ajax:success", function(e, data) {
     var $target = $(e.target);
-    console.log(e);
-    if ( $target.hasClass("delete_product") ) { $target.closest('tr').remove(); }
+    console.log(data);
+    if ( $target.hasClass("delete_product") ) {
+      $target.closest('tr').remove();
+      var $button = $('<button>').addClass('close').html('&times;');
+      var $div_inner= $('<div>').attr("id", "flash_notice");
+      var $div_outer = $('<div>')
+        .addClass('message')
+        .append($button)
+        .append($div_inner).html("Удалили "+ data["title"]).delay(4000).slideUp(200, function() {
+          $(this).alert('close');
+        });
+      $("main.container-fluid").prepend($div_outer)
+    }
 
   })
 });
