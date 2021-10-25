@@ -41,7 +41,7 @@ class Services::Syncronaize
         price_dantexgroup = dantexgroup.price.to_f if dantexgroup&.price.present?
 
         # FITNESS
-        price_wellfit = wellfit.price.to_f - delta if wellfit&.price.present?
+        price_wellfit = wellfit.price.to_f if wellfit&.price.present?
 
         min_price = [price_lit_kom, price_kovcheg, price_tmf, price_shulepov, price_realflame, price_dim, price_sawo, price_saunaru, price_teplodar, price_contact, price_teplomarket, price_dantexgroup, price_wellfit].reject(&:nil?).min
       end
