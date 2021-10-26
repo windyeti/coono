@@ -29,6 +29,10 @@
       <%#= f.collection_select :brend_cont, Dr.all.select(:brend).uniq, :brend, :brend, {include_blank: 'Бренд'} , class: "form-control input-sm" , style: "max-width: 150px;" %>
       <%= f.search_field :quantity_eq, placeholder: 'Остаток: =', class: "form-control input-sm"%>
       <%= f.search_field :quantity_gt, placeholder: 'Остаток: >=', class: "form-control input-sm"%>
+      <div class="form-group ml-2 button_group">
+        Цена от <%= f.search_field :price_gteq, placeholder: 'Цена от', class: "form-control input-sm mr-2"%>
+        Цена до <%= f.search_field :price_lteq, placeholder: 'Цена до', class: "form-control input-sm"%>
+      </div>
 
       <%= render 'shared/filtersync', f: f %>
 
