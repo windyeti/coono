@@ -123,55 +123,52 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit_multiple
-    puts params[:product_ids].present?
-    if params[:product_ids].present?
-			@products = Product.find(params[:product_ids])
-			respond_to do |format|
-			  format.js
-			end
-		else
-			redirect_to products_url
-		end
-  end
+  # def edit_multiple
+  #   puts params[:product_ids].present?
+  #   if params[:product_ids].present?
+	# 		@products = Product.find(params[:product_ids])
+	# 		respond_to do |format|
+	# 		  format.js
+	# 		end
+	# 	else
+	# 		redirect_to products_url
+	# 	end
+  # end
 
-  def update_multiple
-    @products = Product.find(params[:product_ids])
-		@products.each do |pr|
-			attr = params[:product_attr]
-			attr.each do |key,value|
-				if key.to_s == 'picture'
-					# if value.to_i == 1
-					# product_id = pr.id
-					#puts product_id
-					# Product.productimage(product_id)
-					# end
-				end
-				if key.to_s != 'picture'
-					if !value.blank?
-					pr.update_attributes(key => value)
-            if key.to_s == 'pricepr'
-              Product.update_pricepr(pr.id)
-            end
-					end
-				end
-			end
-		end
-		flash[:notice] = 'Данные обновлены'
-		redirect_to :back
-  end
+  # def update_multiple
+  #   @products = Product.find(params[:product_ids])
+	# 	@products.each do |pr|
+	# 		attr = params[:product_attr]
+	# 		attr.each do |key,value|
+	# 			if key.to_s == 'picture'
+	# 				# if value.to_i == 1
+	# 				# product_id = pr.id
+	# 				#puts product_id
+	# 				# Product.productimage(product_id)
+	# 				# end
+	# 			end
+	# 			if key.to_s != 'picture'
+	# 				if !value.blank?
+	# 				pr.update_attributes(key => value)
+  #           if key.to_s == 'pricepr'
+  #             Product.update_pricepr(pr.id)
+  #           end
+	# 				end
+	# 			end
+	# 		end
+	# 	end
+	# 	flash[:notice] = 'Данные обновлены'
+	# 	redirect_to :back
+  # end
 
   def delete_selected
-    # @products = Product.find(params[:ids])
-    p '=============================='
-    p params[:ids]
-    p '=============================='
-		# @products.each do |product|
-		#     product.destroy
-		# end
+    @products = Product.find(params[:ids])
+		@products.each do |product|
+		    product.destroy
+		end
 		respond_to do |format|
 		  format.html { redirect_to products_url, notice: 'Товары удалёны' }
-		  format.json { render json: {:status => "ok", :message => "Товары удалёны"} }
+		  format.json { render json: {status: "ok", message: "Товары удалёны", ids: params[:ids]} }
 		end
   end
 
