@@ -64,7 +64,10 @@
 <table class="table table-hover table-condensed table-sm">
   <thead class="thead-light">
     <tr>
-      <th><%= check_box_tag 'selectAll', value = 'selectAll'%></th>
+      <th>
+        <%#= link_to "Delete selected", delete_selected_products_path, method: :post, remote: true, data: {type: :json}, class: "btn btn-danger btn-sm", id: "deleteAll" %>
+        <%= check_box_tag 'selectAll', value = 'selectAll'%>
+      </th>
       <th>Артикул</th>
       <th>ID</th>
       <th style="width:250px;">Title</th>
@@ -98,7 +101,9 @@
   <tbody id="products_table">
     <% @products.each do |product| %>
       <tr class="<%= 'sync' if distributor_exist?(product) %>" id='<%= "product_id_#{product.id}" %>'>
-        <td><%=check_box_tag "product_ids[]", product.id%></td>
+        <td>
+          <%=check_box_tag "product_ids[]", product.id%>
+        </td>
         <td>
           <%= product.sku %>
         </td>

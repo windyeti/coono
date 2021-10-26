@@ -4,11 +4,9 @@ namespace :p do
   # include Capybara::DSL
 
   task q: :environment do
-    link = "https://sawo.ru/product/montazhnyy-flanets-dlya-pechi-tower-th2-th3-stal-art-th-collar-st2-cnr"
-    link2 = "https://sawo.ru/product/sawo-elektricheskaya-pech-aries-napolnaya-pristennaya-bez-pulta-vstr-blok-moschnosti-90-kvt-nerzh-stal-artikul-ari3-90ni2-wl-p"
+    link = "https://spb.teplomarket-m.ru"
     doc = get_doc(link)
-    doc2 = get_doc(link2)
-    p doc.at('.availability').text.strip == "В наличии" ? "100" : "0"
+    p doc.css('.nav__menu .nav__cat .nav__dropdown .nav__list-body .nav__list-menu > li > a').map {|a| "#{a.text} -- #{a['href']}"}
   end
 
   task h: :environment do

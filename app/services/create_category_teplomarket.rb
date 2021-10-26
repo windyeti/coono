@@ -3,7 +3,7 @@ class Services::CreateCategoryTeplomarket
 
     CategoryTeplomarket.all.each {|c| c.update(parsing: false)}
 
-    url_source = "https://teplomarket-m.ru"
+    url_source = "https://spb.teplomarket-m.ru"
     selector_top_level = '.nav__menu .nav__cat .nav__dropdown .nav__list-body .nav__list-menu > li > a'
     selector_other_level = '.catalog__category .cat-in-row .category__item'
 
@@ -24,7 +24,12 @@ class Services::CreateCategoryTeplomarket
     url = "https://t-m-f.ru#{url}" unless url[/http|https/]
     # p url = URI.encode(url)
 
-    doc = get_doc url
+    begin
+      doc = get_doc url
+    rescue
+      p "Нет такой страницы #{url}"
+      return
+    end
 
     selector = current_top_level ? selector_top_level : selector_other_level
 
@@ -46,7 +51,8 @@ class Services::CreateCategoryTeplomarket
 
     if subcategories.present?
       subcategories.each do |subcategory_data|
-        category.subordinates << create_structure(subcategory_data, selector_top_level, selector_other_level, level + 1)
+        sub_category = create_structure(subcategory_data, selector_top_level, selector_other_level, level + 1)
+        category.subordinates << sub_category if sub_category.present?
       end
     end
     category

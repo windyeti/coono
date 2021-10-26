@@ -1,7 +1,7 @@
 namespace :print_category do
 
   task start: :environment do
-    print_category(CategoryWellfit.first, 0)
+    print_category(CategoryTeplomarket.first, 0)
   end
 
   def print_category(category, n)
@@ -18,7 +18,7 @@ namespace :print_category do
             elsif n == 5
               '          '
             end
-    p "#{space}#{category.name}"
+    p "#{space}#{category.name} ---- #{category.link}"
     m = n + 1 if category.subordinates.present?
     category.subordinates.each do |subordinate|
       print_category(subordinate, m)
