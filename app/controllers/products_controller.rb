@@ -168,8 +168,7 @@ class ProductsController < ApplicationController
 
       Product.transaction do
         response = Services::DeleteProductInsales.new(insales_product_id).call
-        p response['code']
-        raise "ERROR DELETE PRODUCT in InSales; id in insales: #{insales_product_id}; id in app: #{product.id}" unless response['code'] == 200
+        raise "ERROR DELETE PRODUCT in InSales; id in insales: #{insales_product_id}; id in app: #{product.id}" unless response['status'] == 'ok'
         product.destroy
       end
 		end

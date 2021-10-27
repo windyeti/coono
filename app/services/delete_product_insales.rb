@@ -16,8 +16,7 @@ class Services::DeleteProductInsales
       when 200
         puts "sleep 0.5 #{id} товар удалили"
         sleep 0.5
-        p resp = JSON.parse(response)
-        resp
+        JSON.parse(response)
       when 422
         puts "error 422 - не удалили товар"
         JSON.parse(response)
