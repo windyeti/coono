@@ -51,7 +51,7 @@ $(document).ready(function() {
       },
       success: function(data, textStatus, jqXHR) {
         if (data.status === 'ok') {
-          // alert(data.message);
+          alert(data.message);
           location.reload();
         }
       },
