@@ -93,8 +93,7 @@
       <th style="width:250px;">Image</th>
       <th>Товар в InSales</th>
       <th>Товар у поставщика</th>
-      <th></th>
-<!--      <th>Карточка товара</th>-->
+<!--      <th></th>-->
     </tr>
   </thead>
 
@@ -164,7 +163,7 @@
           <% if product.wellfit.present? %><p><%= link_to '<span class="oi oi-eye"></span> Wellfitness'.html_safe, product.wellfit.link , target: 'blank' %></p><%end%>
         </td>
 <!--        <td><%#= link_to '<span class="oi oi-eye"></span>'.html_safe, product %></td>-->
-        <td><%= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { type: :json, confirm: "Удалить? #{product.title}" }, remote: true, class: "delete_product" %></td>
+<!--        <td><%#= link_to '<span class="oi oi-trash"></span>'.html_safe, product, method: :delete, data: { type: :json, confirm: "Удалить? #{product.title}" }, remote: true, class: "delete_product" %></td>-->
       </tr>
     <% end %>
   </tbody>
