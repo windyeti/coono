@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
     # данные для «кнопки создать csv по фильтру», все данные в отличии от @products, который ограничен 100
     @search_id_by_q = Product.ransack(@params).result.pluck(:id)
 
-    @products = @search.result.paginate(page: params[:page], per_page: 100)
+    @products = @search.result.paginate(page: params[:page], per_page: 3)
 
     if params['otchet_type'] == 'selected'
       Services::CsvSelected.call(@search_id_by_q)
@@ -164,7 +164,13 @@ class ProductsController < ApplicationController
   def delete_selected
     @products = Product.find(params[:ids])
 		@products.each do |product|
-		    product.destroy
+      insales_product_id = product.insales_id
+
+      Product.transaction do
+        response = Services::DeleteProductInsales.new(insales_product_id).call
+        raise "ERROR DELETE PRODUCT in InSales; id in insales: #{insales_product_id}; id in app: #{product.id}" unless response['code'] == 200
+        product.destroy
+      end
 		end
 		respond_to do |format|
 		  format.html { redirect_to products_url, notice: 'Товары удалёны' }
