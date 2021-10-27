@@ -6,14 +6,18 @@ class Services::DeleteProductInsales
   end
 
   def call
-    url_api_category = "http://#{Rails.application.[:api_key]}:#{Rails.application.[:password]}@#{Rails.application.[:domain]}/admin/products/#{id}.json"
+    api_key = Rails.application.secrets.api_key
+    password = Rails.application.secrets.password
+    domain = Rails.application.secrets.domain
+    url_api_category = "http://#{api_key}:#{password}@#{domain}/admin/products/#{id}.json"
 
     RestClient.delete( url_api_category, :accept => :json, :content_type => "application/json") do |response, request, result, &block|
       case response.code
       when 200
-        puts "sleep 0.5 #{id_product} товар удалили"
+        puts "sleep 0.5 #{id} товар удалили"
         sleep 0.5
-        JSON.parse(response)
+        p resp = JSON.parse(response)
+        resp
       when 422
         puts "error 422 - не удалили товар"
         JSON.parse(response)
