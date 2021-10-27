@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
     # данные для «кнопки создать csv по фильтру», все данные в отличии от @products, который ограничен 100
     @search_id_by_q = Product.ransack(@params).result.pluck(:id)
 
-    @products = @search.result.paginate(page: params[:page], per_page: 3)
+    @products = @search.result.paginate(page: params[:page], per_page: 100)
 
     if params['otchet_type'] == 'selected'
       Services::CsvSelected.call(@search_id_by_q)
