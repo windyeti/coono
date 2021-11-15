@@ -13,7 +13,7 @@ class SawosController < ApplicationController
     @sawo = Sawo.find(params[:id])
 
     respond_to do |format|
-      if @sawo.update(params[:lit_kom])
+      if @sawo.update(permit_params)
         format.html { redirect_to(@sawo, :notice => 'Sawo was successfully updated.') }
         format.json { respond_with_bip(@sawo) }
       else

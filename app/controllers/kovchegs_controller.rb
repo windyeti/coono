@@ -13,7 +13,7 @@ class KovchegsController < ApplicationController
     @kovcheg = Kovcheg.find(params[:id])
 
     respond_to do |format|
-      if @kovcheg.update(params[:lit_kom])
+      if @kovcheg.update(permit_params)
         format.html { redirect_to(@kovcheg, :notice => 'Kovcheg was successfully updated.') }
         format.json { respond_with_bip(@kovcheg) }
       else

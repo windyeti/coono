@@ -4,9 +4,8 @@ namespace :p do
   # include Capybara::DSL
 
   task q: :environment do
-    link = "https://spb.teplomarket-m.ru"
-    doc = get_doc(link)
-    p doc.css('.nav__menu .nav__cat .nav__dropdown .nav__list-body .nav__list-menu > li > a').map {|a| "#{a.text} -- #{a['href']}"}
+    uri = "https://myshop-bqg173.myinsales.ru/marketplace/86818.xml"
+    p response = open.get(uri)
   end
 
   task h: :environment do

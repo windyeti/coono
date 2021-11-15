@@ -13,7 +13,7 @@ class DimsController < ApplicationController
     @dim = Dim.find(params[:id])
 
     respond_to do |format|
-      if @dim.update(params[:lit_kom])
+      if @dim.update(permit_params)
         format.html { redirect_to(@dim, :notice => 'Dim was successfully updated.') }
         format.json { respond_with_bip(@dim) }
       else

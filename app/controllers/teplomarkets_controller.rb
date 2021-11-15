@@ -13,7 +13,7 @@ class TeplomarketsController < ApplicationController
     @teplomarket = Teplomarket.find(params[:id])
 
     respond_to do |format|
-      if @teplomarket.update(params[:lit_kom])
+      if @teplomarket.update(permit_params)
         format.html { redirect_to(@teplomarket, :notice => 'Teplomarket was successfully updated.') }
         format.json { respond_with_bip(@teplomarket) }
       else

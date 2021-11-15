@@ -38,4 +38,8 @@ module Distributor
     instance_var_name = "@#{controller_name.singularize}s".to_sym
     instance_variable_set(instance_var_name, @search.result.includes(:product).paginate(page: params[:page], per_page: 100))
   end
+
+  def permit_params
+    params.require("@#{controller_name.singularize}s".to_sym).permit(:price, :quantity)
+  end
 end

@@ -51,6 +51,9 @@ $(document).ready(function() {
       },
       success: function(data, textStatus, jqXHR) {
         if (data.status === 'ok') {
+          // $(data.ids).each(function() {
+          //   $(".product_id_" + this).remove()
+          // });
           alert(data.message);
           location.reload();
         }
@@ -60,8 +63,6 @@ $(document).ready(function() {
       }
     })
   });
-
-
 });
 
 $(document).ready(function(e) {

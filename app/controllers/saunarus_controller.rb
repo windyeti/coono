@@ -13,7 +13,7 @@ class SaunarusController < ApplicationController
     @saunaru = Saunaru.find(params[:id])
 
     respond_to do |format|
-      if @saunaru.update(params[:lit_kom])
+      if @saunaru.update(permit_params)
         format.html { redirect_to(@saunaru, :notice => 'Saunaru was successfully updated.') }
         format.json { respond_with_bip(@saunaru) }
       else

@@ -43,21 +43,4 @@ module ProductsHelper
 
     colors[color_id]
   end
-  # def color_by_id(id)
-  #   color_id = id.to_s.split('').last
-  #   # color_id = id[/\d{2}$/]
-  #   colors = {
-  #     "0" => "red",
-  #     "1" => "blue",
-  #     "2" => "green",
-  #     "3" => "#ffc107;",
-  #     "4" => "black",
-  #     "5" => "#20c997;",
-  #     "6" => "LightCoral;",
-  #     "7" => "gray",
-  #     "8" => "tomato",
-  #     "9" => "purple"
-  #   }
-  #   colors[color_id]
-  # end
 end

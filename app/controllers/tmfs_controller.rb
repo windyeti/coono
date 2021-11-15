@@ -13,7 +13,7 @@ class TmfsController < ApplicationController
     @tmf = Tmf.find(params[:id])
 
     respond_to do |format|
-      if @tmf.update(params[:lit_kom])
+      if @tmf.update(permit_params)
         format.html { redirect_to(@tmf, :notice => 'Tmf was successfully updated.') }
         format.json { respond_with_bip(@tmf) }
       else

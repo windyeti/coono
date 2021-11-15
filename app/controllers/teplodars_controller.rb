@@ -13,7 +13,7 @@ class TeplodarsController < ApplicationController
     @teplodar = Teplodar.find(params[:id])
 
     respond_to do |format|
-      if @teplodar.update(params[:lit_kom])
+      if @teplodar.update(permit_params)
         format.html { redirect_to(@teplodar, :notice => 'Teplodar was successfully updated.') }
         format.json { respond_with_bip(@teplodar) }
       else

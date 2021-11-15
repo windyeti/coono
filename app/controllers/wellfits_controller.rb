@@ -13,7 +13,7 @@ class WellfitsController < ApplicationController
     @wellfit = Wellfit.find(params[:id])
 
     respond_to do |format|
-      if @wellfit.update(params[:lit_kom])
+      if @wellfit.update(permit_params)
         format.html { redirect_to(@wellfit, :notice => 'Wellfit was successfully updated.') }
         format.json { respond_with_bip(@wellfit) }
       else

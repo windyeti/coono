@@ -10,10 +10,10 @@ class ContactsController < ApplicationController
   def edit; end
 
   def update
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(permit_params)
 
     respond_to do |format|
-      if @contact.update(params[:lit_kom])
+      if @contact.update(permit_params)
         format.html { redirect_to(@contact, :notice => 'Contact was successfully updated.') }
         format.json { respond_with_bip(@contact) }
       else

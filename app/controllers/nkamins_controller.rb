@@ -13,7 +13,7 @@ class NkaminsController < ApplicationController
     @nkamin = Nkamin.find(params[:id])
 
     respond_to do |format|
-      if @nkamin.update(params[:lit_kom])
+      if @nkamin.update(permit_params)
         format.html { redirect_to(@nkamin, :notice => 'Nkamin was successfully updated.') }
         format.json { respond_with_bip(@nkamin) }
       else

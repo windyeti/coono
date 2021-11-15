@@ -13,7 +13,7 @@ class DantexgroupsController < ApplicationController
     @dantexgroup = Dantexgroup.find(params[:id])
 
     respond_to do |format|
-      if @dantexgroup.update(params[:lit_kom])
+      if @dantexgroup.update(permit_params)
         format.html { redirect_to(@dantexgroup, :notice => 'Dantexgroup was successfully updated.') }
         format.json { respond_with_bip(@dantexgroup) }
       else

@@ -13,7 +13,7 @@ class RealflamesController < ApplicationController
     @realflame = Realflame.find(params[:id])
 
     respond_to do |format|
-      if @realflame.update(params[:lit_kom])
+      if @realflame.update(permit_params)
         format.html { redirect_to(@realflame, :notice => 'Realflame was successfully updated.') }
         format.json { respond_with_bip(@realflame) }
       else

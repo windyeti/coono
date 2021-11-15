@@ -13,7 +13,7 @@ class ShulepovsController < ApplicationController
     @shulepov = Shulepov.find(params[:id])
 
     respond_to do |format|
-      if @shulepov.update(params[:lit_kom])
+      if @shulepov.update(permit_params)
         format.html { redirect_to(@shulepov, :notice => 'Shulepov was successfully updated.') }
         format.json { respond_with_bip(@shulepov) }
       else
