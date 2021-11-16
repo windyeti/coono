@@ -39,7 +39,7 @@ class Services::CreateProductContact
 
       quantity = data_product["Наличие"] == 'В наличии' ? '100' : '0'
 
-      price = data_product["Цена"].gsub(/\s|₽| | /, "").strip
+      price = data_product["Цена"].gsub(/\s|₽| | | /, "").strip
 
       data_product.delete("Артикул")
       data_product.delete("Наименование")

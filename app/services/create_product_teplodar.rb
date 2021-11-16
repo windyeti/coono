@@ -6,7 +6,7 @@ class Services::CreateProductTeplodar
 
   def self.get_category(category)
     p "GUARD --> #{category.parsing}"
-    p category.name
+    p "#{category.name} ==> #{category.link}"
     return if category.parsing
 
     category.subordinates.each do |subordinate|
@@ -63,7 +63,7 @@ class Services::CreateProductTeplodar
       link = category_url
       p4 = category_path_name
 
-      quantity = doc.at('.label-outOfProduction') && doc.at('.label-outOfProduction').text.strip == 'Снято с производства' ? '0' : '100'
+      quantity = doc_component.at('.label-outOfProduction') && doc_component.at('.label-outOfProduction').text.strip == 'Снято с производства' ? '0' : '100'
 
       categories = category_path_name.split('/')
 
@@ -129,7 +129,7 @@ class Services::CreateProductTeplodar
         "#{name}: #{value}" unless name.nil? && value.nil?
       end.reject(&:nil?).join(' --- ')
 
-      quantity = nil
+      quantity = doc.at(".card-page-head-description-labels") && doc.at(".card-page-head-description-labels").text.strip == "Снято с производства" ? 0 : 100
 
       price = button && button['data-price'] ? button['data-price'] : doc.at('.card-page-product-price-block__price').text.strip.gsub(/\s|&nbsp;| |руб./, "")
 

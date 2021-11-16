@@ -4,8 +4,9 @@ namespace :p do
   # include Capybara::DSL
 
   task q: :environment do
-    uri = "https://myshop-bqg173.myinsales.ru/marketplace/86818.xml"
-    p response = open.get(uri)
+    link = "https://www.teplodar.ru/catalog/detail/uyut-10-2020/"
+    doc = get_doc(link)
+    p quantity = doc.at(".card-page-head-description-labels") && doc.at(".card-page-head-description-labels").text.strip == "Снято с производства" ? 0 : 100
   end
 
   task h: :environment do
@@ -67,7 +68,7 @@ namespace :p do
     # end
   end
 
-  def get_product(id)
+  def get_product_api(id)
     id_product = id
     url_api_category = "http://#{Rails.application.secrets.api_key}:#{Rails.application.secrets.password}@#{Rails.application.secrets.domain}/admin/products/#{id_product}.json"
 
